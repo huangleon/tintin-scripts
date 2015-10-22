@@ -1,0 +1,15 @@
+#class {duwanli_work} open;
+#act {^你终于完成了抄书的工作。}
+{
+	ask duwanli about work;
+};
+#act {^读万里惊讶的说：大侠您的经验太高，小店没有适合您的工作了。}
+{
+	#tick {ask_exp} {ask duwanli about exp} {5};
+};
+#act {^由于你的懒惰，你的等级降低到了}
+{
+	#untick {ask_exp};
+	ask duwanli about work;
+};
+#class {duwanli_work} close;

@@ -1,0 +1,20 @@
+#class {taoist_fight} open;
+#var weapon {mozi sword};
+#alias {sew} {scribe earth-warp on seal};
+#alias {ssm} {scribe save-me on seal};
+#alias {ca} {cast astral-vision};
+#alias {ci} {cast invocation};
+#alias {bs} {burn save-me sheet};
+#alias {be} {burn earth-warp sheet};
+#alias {pb} {wield $weapon;perform baixueaiai};
+#alias {startpb}
+{
+	wiled $weapon;
+	perform baixueaiai;
+	#tick {pbtick} {perform baixueaiai} {2};
+};
+#alias {stoppb}
+{
+	#untick {pbtick};
+};
+#class {taoist_fight} close;

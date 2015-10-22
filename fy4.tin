@@ -386,13 +386,15 @@
 #nop {5}
 #alias {start_work}
 {
-	#act {^你终于完成了抄书的工作。$} {ask duwanli about work;};
+	#class duwanli_work read duwanli_work.class;
 	ask duwanli about work;
+	
 }
 {5}
 #alias {stop_work}
 {
-	#unact {^你终于完成了抄书的工作。$};
+	#class {duwanli_work} kill;
+	#untick {ask_exp};
 }
 {5}
 #alias {tj2nh}
@@ -550,11 +552,25 @@
 	#2 west;northdown;#3 n;w;s;e;
 }
 {5}
+#nop qxl 名称 owner name;
 #alias {qxl}
 {
-	#var quest_name %0;
+	#var quest_obj %1;
+	#var quest_seller %2;
+	#if { "%5" != "" }
+	{
+		#var {quest_name} {%3 %4 %5};
+	};
+	#elseif { "%4" != "" }
+	{
+		#var {quest_name} {%3 %4};
+	};
+	#else
+	{
+		#var quest_name %3;
+	};	
 	#class quest_buy read quest_buy.class;
-	quest;
+	sell $quest_name;
 }
 {5}
 #alias {tj2tf}

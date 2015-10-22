@@ -1,27 +1,28 @@
 #class {quest_buy} open;
-#act {^你现在的任务是寻『%1』。}
+#act {^你现在的任务是寻『%W』。}
 {
-	#unact {^你现在的任务是寻『%1』。};
-	#var quest_obj %1;
-	sell $quest_name;
+	#nop #unact {^你现在的任务是寻『%W』。};
+	#nop #var quest_obj %1;
+	#nop sell $quest_name;
 };
-#act {^队伍成员 %1 现在的任务是: 寻『%2』。}
+#act {^队伍成员 %W 现在的任务是: 寻『%W』。}
 {
-	#unact {^队伍成员 %1 现在的任务是: 寻『%2』。};
-	#var quest_obj %2;
-	sell $quest_name;
+	#nop #unact {^队伍成员 %W 现在的任务是: 寻『%W』。};
+	#nop #var quest_obj %2;
+	#nop sell $quest_name;
+
 };
-#act {^你把身上的%1卖掉。}
+#act {^你把身上的%W卖掉。}
 {
-	#delay 1 {buy $quest_name from xiangling;};
+	#delay 1 {buy $quest_name from $quest_seller;};
 };
-#act {^你向香菱买下一个%1.}
+#act {^你向香菱买下一个%W.}
 {
 	#if {"%1" == "$quest_obj"}
 	{
-		#unact {^你把身上的%1卖掉。};
-		#unact {^你向香菱买下一个%1.};
-		#unact {^你向香菱买下最后一个%1.};
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一个%W.};
+		#unact {^你向香菱买下最后一个%W.};
 		say done;
 		#class quest_buy kill;
 	}
@@ -29,22 +30,211 @@
 		sell $quest_name;		
 	}
 };
-#act {^你向香菱买下最后一个%1.}
+#act {^你向香菱买下最后一个%W.}
 {
 	#if {"%1" == "$quest_obj"}
 	{
-		#unact {^你把身上的%1卖掉。};
-		#unact {^你向香菱买下一个%1.};
-		#unact {^你向香菱买下最后一个%1.};
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一个%W.};
+		#unact {^你向香菱买下最后一个%W.};
 		say done;
 		#class quest_buy kill;
 	}
 	{
 		sell $quest_name;		
+	}
+};
+#act {^你向香菱买下一本%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一本%W.};
+		#unact {^你向香菱买下最后一本%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;		
+	}
+};
+#act {^你向香菱买下最后一本%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一本%W.};
+		#unact {^你向香菱买下最后一本%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;		
+	}
+};
+#act {^你向香菱买下一枝%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一枝%W.};
+		#unact {^你向香菱买下最后一枝%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;
+	}
+};
+#act {^你向香菱买下最后一枝%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一枝%W.};
+		#unact {^你向香菱买下最后一枝%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;
+	}
+};
+#act {^你向香菱买下一件%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一件%W.};
+		#unact {^你向香菱买下最后一件%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;
+	}
+};
+#act {^你向香菱买下最后一件%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一件%W.};
+		#unact {^你向香菱买下最后一件%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;
+	}
+};
+#act {^你向香菱买下一双%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一双%W.};
+		#unact {^你向香菱买下最后一双%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;
+	}
+};
+#act {^你向香菱买下最后一双%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一双%W.};
+		#unact {^你向香菱买下最后一双%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;
+	}
+};
+#act {^你向香菱买下一支%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一支%W.};
+		#unact {^你向香菱买下最后一支%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;
+	}
+};
+#act {^你向香菱买下最后一支%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一支%W.};
+		#unact {^你向香菱买下最后一支%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;
+	}
+};
+#act {^你向香菱买下一条%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一条%W.};
+		#unact {^你向香菱买下最后一条%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;
+	}
+};
+#act {^你向香菱买下最后一条%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向香菱买下一条%W.};
+		#unact {^你向香菱买下最后一条%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;
+	}
+};
+#act {^你向驼背老汉买下一盘%W.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%W卖掉。};
+		#unact {^你向驼背老汉买下一盘%W.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		drop $quest_name;		
 	}
 };
 #act {^你上一个动作还没有完成，不能买物品。}
 {
-	#delay 1 {buy $quest_name from xiangling;};
+	#delay 1 {buy $quest_name from $quest_seller;};
+};
+#act {^什么？}
+{
+	#delay 1 {buy $quest_name from $quest_seller;};
+};
+#act {^你丢下一盘%W}
+{
+	#delay 1 {buy $quest_name from $quest_seller;};
 };
 #class {quest_buy} close;
