@@ -1,0 +1,12 @@
+#class {nh_roads} open;
+#act {^林中小路} {s};
+#act {^平原路} {s};
+#act {^南海大道}
+{
+	#unact {^南海大道};
+	#unact {^平原路};
+	#unact {^林中小路};
+	#class {nh_roads} kill;
+	#showme {nh_roads finish};
+}
+#class {nh_roads} close;

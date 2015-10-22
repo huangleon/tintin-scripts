@@ -1,0 +1,37 @@
+#class {ml_tj} open
+#act {^这是一根粗壮光滑的树枝，现在对着正%1方。$}
+{
+	#if {"%1" == "北"}
+	{
+        swing vine;
+    }
+    {
+		turn vine;
+	}
+	look vine;
+};
+#act {^你顺着树杆爬了上来。$}
+{
+    #unact {^你顺着树杆爬了上来。$};
+    look vine;
+};
+#act {^你要看什麽}
+{
+	#unact {^这是一根粗壮光滑的树枝，现在对着正%1方。$};
+	#2 n;
+};
+#act {^南北大道} {n};
+#act {^风云南}
+{
+	#unact {^南北大道};
+	#unact {^风云南};
+	unwield all;
+	#path load fysouth;
+	#tick {slowwalk} {#path walk b} {0.5};
+	#event {END OF PATH}
+	{
+		#untick slowwalk;
+		#class {ml_tj} kill;
+	};
+};
+#class {ml_tj} close

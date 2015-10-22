@@ -1,0 +1,68 @@
+#class {luoye_combat} open;
+#act {^（你上一个动作还没有完成，不能施用外功。）}
+{
+	perform dodge.luoyeqiufeng;
+};
+#act {^结果%1被扰得眼花潦乱，接应不暇！}
+{
+	#unact {^（你上一个动作还没有完成，不能施用外功。）};
+	#unact {^结果%1被扰得眼花潦乱，接应不暇！};
+	#unact {^对方身势灵活，功力深湛，不会被此步法迷惑的。};
+	#unact {^你刚刚施展过［落叶秋风］！！};
+	#unact {^%1已经手忙脚乱了！};
+	#unact {^可惜%1看出了你的身法，向你倏然攻击！};
+	wield $weapon;
+	perform duangechangmeng;
+	#class {luoye_combat} kill;
+};
+#act {^对方身势灵活，功力深湛，不会被此步法迷惑的。}
+{
+	#unact {^（你上一个动作还没有完成，不能施用外功。）};
+	#unact {^结果%1被扰得眼花潦乱，接应不暇！};
+	#unact {^对方身势灵活，功力深湛，不会被此步法迷惑的。};
+	#unact {^你刚刚施展过［落叶秋风］！！};
+	#unact {^%1已经手忙脚乱了！};
+	#unact {^可惜%1看出了你的身法，向你倏然攻击！};
+	unwield all;
+	enable unarmed meihua-shou;
+	perform meihai;
+	enable unarmed qidaoforce;
+	wield $weapon;
+	#class {luoye_combat} kill;
+};
+#act {^你刚刚施展过［落叶秋风］！！}
+{
+	#unact {^（你上一个动作还没有完成，不能施用外功。）};
+	#unact {^结果%1被扰得眼花潦乱，接应不暇！};
+	#unact {^对方身势灵活，功力深湛，不会被此步法迷惑的。};
+	#unact {^你刚刚施展过［落叶秋风］！！};
+	#unact {^%1已经手忙脚乱了！};
+	#unact {^可惜%1看出了你的身法，向你倏然攻击！};
+	#class {luoye_combat} kill;
+};
+#act {^%1已经手忙脚乱了！}
+{
+	#unact {^（你上一个动作还没有完成，不能施用外功。）};
+	#unact {^结果%1被扰得眼花潦乱，接应不暇！};
+	#unact {^对方身势灵活，功力深湛，不会被此步法迷惑的。};
+	#unact {^你刚刚施展过［落叶秋风］！！};
+	#unact {^%1已经手忙脚乱了！};
+	#unact {^可惜%1看出了你的身法，向你倏然攻击！};
+	#class {luoye_combat} kill;
+};
+#act {^可惜%1看出了你的身法，向你倏然攻击！}
+{
+	#unact {^（你上一个动作还没有完成，不能施用外功。）};
+	#unact {^结果%1被扰得眼花潦乱，接应不暇！};
+	#unact {^对方身势灵活，功力深湛，不会被此步法迷惑的。};
+	#unact {^你刚刚施展过［落叶秋风］！！};
+	#unact {^%1已经手忙脚乱了！};
+	#unact {^可惜%1看出了你的身法，向你倏然攻击！};
+	unwield all;
+	enable unarmed meihua-shou;
+	perform meihai;
+	enable unarmed qidaoforce;
+	wield $weapon;
+	#class {luoye_combat} kill;
+};
+#class {luoye_combat} close;

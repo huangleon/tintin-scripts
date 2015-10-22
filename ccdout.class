@@ -1,0 +1,24 @@
+#class {ccdout} open;
+#act {^许久许久，海面上什么也没有出现。} {blow pipe};
+#act {^老婆子说道：“上船吧！”} {down};
+#act {^一条小船缓缓驶了过来。} {down};
+#act {^老婆子说道：“到了，你们可以下船了。”}
+{
+	#unact {^许久许久，海面上什么也没有出现。};
+	#unact {^老婆子说道：“上船吧！”};
+	#unact {^一条小船缓缓驶了过来。};
+	#unact {^老婆子说道：“到了，你们可以下船了。”};
+	up;n;#2 w;
+};
+#act {^小路} {w};
+#act {^山中小路} {w};
+#act {^平原路} {w};
+#act {^危崖前}
+{
+	#unact {^小路};
+	#unact {^山中小路};
+	#unact {^平原路};
+	#unact {^危崖前};
+	#class {ccdout} kill;
+};
+#class {ccdout} close;

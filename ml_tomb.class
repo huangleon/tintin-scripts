@@ -1,0 +1,17 @@
+#class {ml_tomb} open;
+#list {srcs} {create} {白;蓝;绿;红;黄};
+#list {dsts} {create} {e;s;n;s;w};
+#list {directs} {create} {east;south;west;north};
+#act {^不出名字的%1色野花，但见落叶铺地，踩上去沙沙做响}
+{
+	#list {srcs} find {%1} {i};
+	#nop #delay {1} $dsts[$i];
+	$dsts[$i];
+};
+#act {^人影飘动之间，你已经从密林穿了出去！}
+{
+	#unact {^不出名字的%1色野花，但见落叶铺地，踩上去沙沙做响};
+	#unact {^人影飘动之间，你已经从密林穿了出去！};
+	#class ml_tomb kill;
+};
+#class {ml_tomb} close;

@@ -1,0 +1,20 @@
+#class {blow_conch} open;
+#act {^你鼓起腮帮子，粗着脖子吹起七彩海螺，但什么声响也没有。}
+{
+	blow shell;
+}
+#act {^许久许久，雾气依旧，什么都没有发生。}
+{
+	blow shell;
+};
+#act {^突然一阵风刮起来，雾气似乎消散了许多。}
+{
+	#unact {^你鼓起腮帮子，粗着脖子吹起七彩海螺，但什么声响也没有。};
+	#unact {^许久许久，雾气依旧，什么都没有发生。};
+	#unact {^突然一阵风刮起来，雾气似乎消散了许多。};
+	put shell in $bag_container;
+	say done;
+	#delay {3} {southwest;s;charge center;};
+	#class {blow_conch} kill;
+};
+#class {blow_conch} close;

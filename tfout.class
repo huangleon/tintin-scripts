@@ -1,0 +1,10 @@
+#class {tfout} open;
+#act {^小路} {s};
+#act {^谷内小径}
+{
+	#unact {^小路};
+	#unact {^谷内小径};
+	#class {tfout} kill;
+	#showme tfout finish;
+};
+#class {tfout} close;

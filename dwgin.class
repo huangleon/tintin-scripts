@@ -1,0 +1,10 @@
+#class {dwgin} open;
+#act {^迷茫风雨路} {eastup};
+#act {^云海孤舟}
+{
+	#unact {^迷茫风雨路};
+	#unact {^云海孤舟};
+	northeast;#2 e;#5 s;east;e;east;e;#2 e;down;touch statue;e;#2 e;#2 e;e;#3 s;#3 w;#2 s;
+	#class {dwgin} kill;
+}
+#class {dwgin} close;

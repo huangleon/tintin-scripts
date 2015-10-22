@@ -1,0 +1,10 @@
+#class {boji} open;
+#act {^你脚下一虚，被激流冲上潭边。}
+{
+	#delay {3} {use heiyu;hp;boji blade};
+};
+#act {^你凝气守中，双足稳稳站定，奋力与激流搏击}
+{
+	#delay {3} {use heiyu;hp;boji blade};
+};
+#class {boji} close;

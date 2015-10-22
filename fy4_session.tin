@@ -1,0 +1,41 @@
+#act {^请选择您使用的内码}
+{
+	#send 0;
+};
+#act {^您的英文名字：}
+{
+	#if { "$username" != "" }
+	{
+		#send $username;
+	};
+};
+#act {^此英文名字已被使用，请输入此帐号的密码：}
+{
+	#send $password;
+};
+#act {^请敲回车键［ＲＥＴＵＲＮ］．．．．．}
+{
+	#split;
+	#kill;
+	#cr;
+	#read fy4.tin;
+	quest;
+	start_idle
+};
+#act {^您要将另一个连线中的相同人物赶出去，取而代之吗？}
+{
+	#split;
+	#kill;
+	#send y;
+	#read fy4.tin;
+	quest;
+	start_idle
+};
+#act {^重新连线完毕。}
+{
+	#split;
+	#kill;
+	#read fy4.tin;
+	quest;
+	start_idle
+}

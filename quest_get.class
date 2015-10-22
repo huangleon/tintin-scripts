@@ -1,0 +1,77 @@
+#class {quest_get} open;
+#act {现在的任务是: 杀『%W』。}
+{
+	#undelay {killclass};
+	#delay {killclass}
+	{
+		#unvar {item_index};
+		#class {quest_get} kill;
+		#showme quest_get finish;
+	} {1};
+};
+#act {现在的任务是杀『%W』。}
+{
+	#undelay {killclass};
+	#delay {killclass}
+	{
+		#unvar {item_index};
+		#class {quest_get} kill;
+		#showme quest_get finish;
+	} {1};
+};
+#act {现在的任务是寻『%W』。}
+{
+	#undelay {killclass};
+	#unact {现在的任务是寻『%W』。};
+	#list {items_obj} {find} {%1} {item_index};
+	#if { $item_index != 0 }
+	{
+		get $items_name[$item_index] from $bag_container;
+		give $items_name[$item_index] to tianji;
+		#list {items_obj} delete {$item_index};
+		#list {items_name} delete {$item_index};
+		
+		#unvar {item_index};
+		#class {quest_get} kill;
+		#showme quest_get finish;
+	}
+	{
+		#showme <fca> no %1;
+		say 哪位大侠给我 %1;
+		#delay {killclass}
+		{
+			#unvar {item_index};
+			#class {quest_get} kill;
+			#showme quest_get finish;
+		} {1};
+	};
+
+};
+#act {现在的任务是: 寻『%W』。}
+{
+	#undelay {killclass};
+	#unact {现在的任务是: 寻『%W』。};
+	#list {items_obj} {find} {%1} {item_index};
+	#if { $item_index != 0 }
+	{
+		get $items_name[$item_index] from $bag_container;
+		give $items_name[$item_index] to tianji;
+		#list {items_obj} delete {$item_index};
+		#list {items_name} delete {$item_index};
+
+		#unvar {item_index};
+		#class {quest_get} kill;
+		#showme quest_get finish;
+	}
+	{
+		#showme <fca> no %1;
+		say 哪位大侠给我 %1;
+		#delay {killclass}
+		{
+			#unvar {item_index};
+			#class {quest_get} kill;
+			#showme quest_get finish;
+		} {1};
+	};
+};
+#class {quest_get} close;

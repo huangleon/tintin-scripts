@@ -1,0 +1,16 @@
+#class {cx_hy_gw} open
+#act {^    这是一个无边的沙砾地} {northwest;}
+#act {^大漠风沙} {w}
+#act {^绿洲} {w}
+#act {^山脚}
+{
+	#unact {^    这是一个无边的沙砾地};
+	#unact {^大漠风沙};
+	#unact {^绿洲};
+	#unact {^山脚};
+	#nop {#10 w;s;e;};
+	#nop use map to goto dest;
+	#showme cx_hy_gw finish;
+	#class {cx_hy_gw} kill;
+}
+#class {cx_hy_gw} close

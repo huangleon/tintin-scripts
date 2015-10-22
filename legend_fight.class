@@ -1,0 +1,26 @@
+#class {legend_fight} open;
+#alias {pd} {perform duangechangmeng};
+#alias {pm}
+{
+	unwield $weapon;
+	enable unarmed meihua-shou;
+	perform meihai;
+	enable unarmed qidaoforce;
+	wield $weapon;
+};
+#alias {pdl}
+{
+	#class {luoye_combat} read luoye_combat.class;
+	perform dodge.luoyeqiufeng;
+};
+
+#alias {startpd}
+{
+	perform duangechangmeng;
+	#tick {pdtick} {perform duangechangmeng} {3};
+};
+#alias {stoppd}
+{
+	#untick {pdtick};
+};
+#class {legend_fight} close;

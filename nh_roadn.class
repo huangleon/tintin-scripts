@@ -1,0 +1,12 @@
+#class {nh_roadn} open;
+#act {^林中小路} {northdown};
+#act {^平原路} {n};
+#act {^莽林边缘}
+{
+	#unact {^莽林边缘};
+	#unact {^平原路};
+	#unact {^林中小路};
+	#class {nh_roadn} kill;
+	#showme {nh_roadn finish};
+}
+#class {nh_roadn} close;

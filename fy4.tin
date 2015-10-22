@@ -1,0 +1,843 @@
+#alias {osess}
+{
+	#sess %1 fy4.vmud.com 30004;
+	#%1 {#var {username} {%1};#var {password} {1Q2w3e4r};#read fy4_session.tin};
+}
+{5};
+#act {^天机老人说道：请找回『%1』给天机老人。}
+{
+	#var tj_quest_obj %1;
+};
+#act {^天机老人说道：请替天机老人杀了『%1』。}
+{
+	#var tj_quest_obj %1;
+};
+#act {^如果你愿意加入，请用 team with nordic。}
+{
+	team with nordic;
+};
+#ALIAS {gc}
+{
+	get all from corpse
+}
+{5}
+#alias {gfc}
+{
+	get %0 from $bag_container;
+}
+{5}
+#alias {pc}
+{
+	put %0 in $bag_container;
+}
+{5}
+#ALIAS {lv}
+{
+	look vine
+}
+{5}
+#ALIAS {tv}
+{
+	turn vine
+}
+{5}
+#ALIAS {sv}
+{
+	swing vine
+}
+{5}
+#alias {fr} {follow ring seller} {5}
+#alias {chihe}
+{
+	get pumpkin from $bag_container;
+	eat pumpkin;
+	put pumpkin in $bag_container;
+	#delay 2
+	{
+		get wineskin from $bag_container;
+		drink wineskin;
+		put wineskin in $bag_container;
+	};
+}
+{5}
+#alias {ua} {unwield all} {5}
+#alias {wa} {wield all} {5}
+#alias {ga} {get all} {5}
+#nop #alias {su} {southup} {5}
+#nop #alias {sd} {southdown} {5}
+#nop #alias {nu} {northup} {5}
+#nop #alias {nd} {northdown} {5}
+#nop #alias {eu} {eastup} {5}
+#nop #alias {ed} {eastdown} {5}
+#nop #alias {wu} {westup} {5}
+#nop #alias {wd} {westdown} {5}
+#nop #alias {se} {southeast} {5}
+#nop #alias {sw} {southwest} {5}
+#nop #alias {ne} {northeast} {5}
+#nop #alias {nw} {northwest} {5}
+
+#alias {res} {use heiyu;hp} {5}
+
+#list {taskobjs} create {afrji;bstu;dzmwen;fozhu;guyuehan;handkerchief;hgyituo;hongbao;huaqun;hudie-sword;huhualing;iron-bow;ironrobe;jade-boots;jade-pin;jade-ring;jiledan;jygu;kaoti;lantern;lighting-pearl;lindao;lubanchi;magrobe;meipai;moonheart;msqi;needle box;ngjiapu;ningsword;old jade;pxshan;qipan;quman;sharp dagger;shenbingpu;shengsibu;shouyu;slingshot;songpai;sqgonggui;szjing;tianyi poison;tiexue-flag;wave-hammer;wine-hulu;wood-wandao;wudanglu;wujianxinfa;wuxingpai;xiayiling;xmdaofa;xxge;yeguangbei;yingoupai;yinzhang;yue-script;yumeiren;zhihuan;zhupai};
+
+#list {taskowners} create {afa;biao ge;chi song;master gelun;shi guanyin;hong niangzi;master xing;huang;linxian;master xuerui;xiao ma;bancha bana;royal servant;tianji;tianji;tianji;chunyu;lixia;kaoguan;hao shengyi;laodie;owner;amao;xiaoyao;mei;jin lingzhi;funu;master xiao;nangong;master kumei;master liu;master chu;黑袍公;eagle gulina;mulati;bai xiaosheng;panguan;master hu;qi xiaoyan;song;fighter;drink monk;master shenshui;master tie;master zhuwu;guo;ding peng;xie;master ximen;master shi;lian;master ding;zhu zao;master chai;fang;master yin;master yue;su rongrong;lu;zhu};
+
+#list {tasklocs} create {};
+#alias {ret}
+{
+	#list {taskobjs} find {%0} {taskindex};
+	#if { $taskindex != 0 }
+	{
+		#showme <fca>$taskowners[$taskindex];
+		give $taskobjs[$taskindex] to $taskowners[$taskindex];
+	}
+	{
+		#showme <fac>no item %0;
+	};
+}
+{5}
+#alias {ltask}
+{
+	#nop prepare the task list;
+	#nop use tick to do the sleep work;
+	#class {locate_tasks} read locate_tasks.class;
+	#showme start locate_tasks;
+}
+{5}
+#alias {qobj}
+{
+	#var {items_count} {0};
+	#list {items_name} size {items_count};
+	#if { $items_count == 0 || $container_full == 1 }
+	{
+		#var container_full {0};
+		upitems;
+	}
+	{
+		#delay {1} {#showme update_items finish};
+	};
+	#unvar {items_count};
+	#act {update_items finish}
+	{
+		#unact {update_items finish};
+		#class {quest_get} read quest_get.class;
+		quest;
+	};
+}
+{5}
+#CONFIG           {256 COLORS}  {ON}
+#CONFIG           {AUTO TAB}  {5000}
+#CONFIG           {BUFFER SIZE}  {20000}
+#CONFIG           {CHARSET}  {ASCII}
+#CONFIG           {COMMAND COLOR}  {<078>}
+#CONFIG           {COMMAND ECHO}  {ON}
+#CONFIG           {CONNECT RETRY}  {15}
+#CONFIG           {HISTORY SIZE}  {1000}
+#CONFIG           {LOG}  {RAW}
+#CONFIG           {PACKET PATCH}  {0.00}
+#CONFIG           {REPEAT CHAR}  {!}
+#CONFIG           {REPEAT ENTER}  {OFF}
+#CONFIG           {SCROLL LOCK}  {ON}
+#CONFIG           {SPEEDWALK}  {OFF}
+#CONFIG           {TINTIN CHAR}  {#}
+#CONFIG           {VERBATIM}  {OFF}
+#CONFIG           {VERBATIM CHAR}  {\}
+#CONFIG           {VERBOSE}  {OFF}
+#CONFIG           {WORDWRAP}  {ON}
+#FUNCTION {f1}
+{
+	look;
+	#return
+}
+
+#PATHDIR          {d}  {u}  {32}
+#PATHDIR          {e}  {w}  {2}
+#PATHDIR          {n}  {s}  {1}
+#PATHDIR          {ne}  {sw}  {3}
+#PATHDIR          {nw}  {se}  {9}
+#PATHDIR          {s}  {n}  {4}
+#PATHDIR          {se}  {nw}  {6}
+#PATHDIR          {sw}  {ne}  {12}
+#PATHDIR          {u}  {d}  {16}
+#PATHDIR          {w}  {e}  {8}
+#PATHDIR          {nd}  {su}  {33}
+#PATHDIR          {ed}  {wu}  {34}
+#PATHDIR          {sd}  {nu}  {36}
+#PATHDIR          {wd}  {eu}  {40}
+#PATHDIR          {nu}  {sd}  {17}
+#PATHDIR          {eu}  {wd}  {18}
+#PATHDIR          {su}  {nd}  {20}
+#PATHDIR          {wu}  {ed}  {24}
+
+#VARIABLE         {result}  {}
+#nop #VARIABLE         {woman}  {e;e;e;e;e;e;e;s;s;s;s;s;s;e;e};
+#nop #VARIABLE         {bath}   {n;n;n;w;w;n;w;w};
+#nop #VARIABLE         {fysouth}  {s;s;s;s;s;s;s};
+
+#var quest_player {};
+#var {weapon} {redblade};
+#var {bag_container} {qiankun dai};
+#var {container_full} {0};
+#list items_obj create {};
+#list items_name create {};
+#list quests_obj create {};
+
+#list tgt_desc create {woman;tj;gw;gl;tx;dwg;pa;th;taish;wd;wlp;yks;stage;tp;qj;sq;sl;dalu;aid;tf;zhu;hs;cl;lotus;ntm;wg;sy;ymg;bridge;bath;jx;cx;qf;xl;fg;js;laowu;begger;gy;lsd;eh;cf;shuaiy;gland;max;tower;bana;cq;mj;lan;erg;yuzhu;sg;libie};
+#list tgt_map create {fyall;fyall;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;cxgw;tieflag;tieflag;cxgw;cxgw;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;cxgw;fyall};
+#list tgt_pos create {300;4;201;220;243;562;530;331;585;313;289;87;151;162;166;465;213;256;281;1;12;124;131;149;615;624;184;195;636;55;228;5;366;98;266;504;432;35;385;305;645;22;353;192;501;669;254;77;552;482;301;415;107;114};
+
+#alias {to}
+{
+	#list tgt_desc find %1 i;
+	#if { "$i" != "0" }
+	{
+   		relocate $tgt_map[$i];
+	    #act {relocate_pos finish}
+    	{
+    		#unact {relocate_pos finish};
+			#map run $tgt_pos[$i];
+    		#map destroy;
+    	};
+	}
+	{
+		#showme <fac>Cannot find the target pos in the list;
+	};
+}
+{5}
+#alias {tj2cx}
+{
+	#nop #class tj_ml read tj_ml.class;
+	#nop #class ml_cx read ml_cx.class;
+    #nop unwield all;
+    #nop #path load fysouth;
+	#nop #tick {slowwalk} {#path walk f} {0.5};
+	#nop #event {END OF PATH} {#untick slowwalk};
+	#nop south;
+	
+	#nop use map to do the area working;
+	
+	relocate fyall;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 495;
+		#map destroy;
+		#2 s;
+		#delay {1}
+		{
+			#class ml read ml.class;
+			#var {target_dir} {西};
+			climb tree;
+		};
+		#act {ml finish}
+		{
+			#unact {ml finish};
+			#map read cxgw.map;
+			#map goto 13;
+			#map run 5;
+			#map destroy;
+		};
+	};
+}
+{5}
+#alias {cx2tj}
+{
+	#nop #class ml_tj read ml_tj.class;
+	#nop unwield all;
+	#nop #6 e;
+	#nop climb tree;
+	
+	#nop use map to do the area working;
+	
+	relocate cxgw;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 13;
+		#map destroy;
+		#2 e;
+		#delay {1}
+		{
+			#class ml read ml.class;
+			#var {target_dir} {北};
+			climb tree;
+		};
+		#act {ml finish}
+		{
+			#unact {ml finish};
+			#map read fyall.map;
+			#map goto 495;
+			#map run 4;
+			#map destroy;
+		};
+	};
+}
+{5}
+#alias {tj2ty}
+{
+	relocate fyall;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 735;
+		#map destroy;
+		#class tyin read tyin.class;
+	};
+}
+{5}
+#alias {ty2tj}
+{
+	unwield all;
+	push gate;northwest;w;
+	#class tyout read tyout.class;
+}
+{5}
+#alias {start_idle}
+{
+	#if {"%1" == "stop" }
+	{
+		#untick {idle_tick};
+	}
+	{
+		#tick {idle_tick} {idle} {15};
+	}
+}
+{5}
+#alias {start_quest}
+{
+	#if { "%1" == "stop" }
+	{
+		#untick {quest_tick};
+		#class {receive_command} kill;
+	}
+	{
+		#class {receive_command} read receive_command.class;
+		#tick {quest_tick}
+		{
+			#nop clear all classes;
+			#class {accept_obj} kill;
+			#class {get_quest} kill;
+			
+			#var {names_count} {0};
+			#var {objs_count} {0};
+			#list {items_name} size {names_count};
+			#list {items_obj} size {objs_count};
+			#if { $names_count == 0 || $objs_count == 0 }
+			{
+				#var container_full {0};
+				upitems;
+			}
+			{
+				#delay {1} {#showme update_items finish};
+			};
+			#act {update_items finish}
+			{
+				#unact {update_items finish};
+				#class {accept_obj} read accept_obj.class;
+				inventory;
+			};
+			#act {accept_obj finish}
+			{
+				#unact {accept_obj finish};
+				#class {get_quest} read get_quest.class;
+				quest;
+			};
+			#act {get_quest finish}
+			{
+				#unact {get_quest finish};
+				#list {quests_obj} {size} {quests_size};
+				#var {quest_index} {1};
+				#while {$quest_index <= $quests_size}
+				{
+					#list {items_obj} {find} {$quests_obj[$quest_index]} {item_index};
+					#if { $item_index != 0 }
+					{
+						team talk 有 $quests_obj[$quest_index];
+						get $items_name[$item_index] from $bag_container;
+						give $items_name[$item_index] to tianji;
+						#list {items_obj} delete {$item_index};
+						#list {items_name} delete {$item_index};
+					}
+					{
+						#nop team talk 没有 $quests_obj[$quest_index];
+						#showme <fca> no $quests_obj[$quest_index];
+						#nop say 哪位大侠给我 $quests_obj[$quest_index];
+						#if { "$quest_player" != "" }
+						{
+							tell $quest_player $quests_obj[$quest_index];
+						};
+					};
+					#math {quest_index} {$quest_index + 1};
+				};
+				#unvar {quest_index};
+			};
+		}
+		{10};
+	};
+}
+{5}
+#nop #alias {tj2bath}
+#nop {
+#nop     unwield all;
+#nop     #path load bath;
+#nop     #tick {slowwalk} {#path walk %1} {0.5};
+#nop     #event {END OF PATH} {#untick slowwalk};
+#nop }
+#nop {5}
+#alias {start_work}
+{
+	#act {^你终于完成了抄书的工作。$} {ask duwanli about work;};
+	ask duwanli about work;
+}
+{5}
+#alias {stop_work}
+{
+	#unact {^你终于完成了抄书的工作。$};
+}
+{5}
+#alias {tj2nh}
+{
+	#nop use map to do the area working;
+	
+	relocate fyall;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 495;
+		#map destroy;
+		#2 s;
+		#delay {1}
+		{
+			#class ml read ml.class;
+			#var {target_dir} {南};
+			climb tree;
+		};
+		#act {ml finish}
+		{
+			#unact {ml finish};
+			#class {nh_roads} read nh_roads.class;
+			su;
+			#act {nh_roads finish}
+			{
+				#unact {nh_roads finish};
+				relocate baiyun;
+				#act {relocate_pos finish}
+				{
+					#unact {relocate_pos finish};
+					#map run 3;
+					#map destroy;
+				};
+			};
+		};
+	};
+}
+{5}
+#alias {nh2tj}
+{
+	relocate baiyun;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 1;
+		#map destroy;
+		#class {nh_roadn} read nh_roadn.class;
+		n;
+		#act {nh_roadn finish}
+		{
+			#unact {nh_roadn finish};
+			#2 n;
+			#delay {1}
+			{
+				#class ml read ml.class;
+				#var {target_dir} {北};
+				climb tree;
+			};
+			#act {ml finish}
+			{
+				#unact {ml finish};
+				relocate fyall;
+				#act {relocate_pos finish}
+				{
+					#unact {relocate_pos finish};
+					#map run 4;
+					#map destroy;
+				};
+			};
+		};
+	};
+}
+{5}
+#alias {tj2wm}
+{
+	#nop use map to do the area working;
+	
+	relocate fyall;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 495;
+		#map destroy;
+		#2 s;
+		#delay {1}
+		{
+			#class ml read ml.class;
+			#var {target_dir} {东};
+			climb tree;
+		};
+		#act {ml finish}
+		{
+			#unact {ml finish};
+			relocate wanmei;
+			#act {relocate_pos finish}
+			{
+				#unact {relocate_pos finish};
+				#map run 4;
+				#map destroy;
+			};
+		};
+	};
+}
+{5}
+#alias {wm2tj}
+{
+	#nop use map to do the area working;
+	
+	relocate wanmei;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 1;
+		#map destroy;
+		#2 w;
+		#delay {1}
+		{
+			#class ml read ml.class;
+			#var {target_dir} {北};
+			climb tree;
+		};
+		#act {ml finish}
+		{
+			#unact {ml finish};
+			relocate fyall;
+			#act {relocate_pos finish}
+			{
+				#unact {relocate_pos finish};
+				#map run 4;
+				#map destroy;
+			};
+		};
+	};
+}
+{5}
+#alias {gw2ghost}
+{
+	relocate cxgw;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 255;
+		#map destroy;
+		#delay {1}
+		{
+			#class {forest_ghost} read forest_ghost.class;
+			s;
+		};
+	};
+}
+{5}
+#alias {ghost2gw}
+{
+	#2 west;northdown;#3 n;w;s;e;
+}
+{5}
+#alias {qxl}
+{
+	#var quest_name %0;
+	#class quest_buy read quest_buy.class;
+	quest;
+}
+{5}
+#alias {tj2tf}
+{
+	relocate fyall;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 484;
+		#map destroy;
+		
+		#delay {1}
+		{
+			#class tfin read tfin.class;
+			n;
+		}
+	};
+}
+{5}
+#alias {tf2tj}
+{
+	#class tfout read tfout.class;
+	e;
+	#act {tfout finish}
+	{
+		#unact {tfout finish};
+		relocate fyall;
+		#act {relocate_pos finish}
+		{
+			#unact {relocate_pos finish};
+			#map run 4;
+			#map destroy;
+		};
+	};
+}
+{5}
+#alias {2zhu}
+{
+	relocate tieflag;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 12;
+		#map destroy;
+		remove all;
+		ask zhu about test;
+	};
+}
+{5}
+#alias {tj2cy}
+{
+	#nop use map;
+	relocate fyall;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 487;
+		#map destroy;
+		#class cyin read cyin.class;
+		talk xiao juan;
+	};
+}
+{5}
+#alias {tf2ccdferry}
+{
+	#class ccdin read ccdin.class;
+	e;
+}
+{5}
+#alias {ccdferry2tf}
+{
+	#class ccdout read ccdout.class;
+	blow pipe;
+}
+{5}
+#alias {ferry2plat}
+{
+	#class uproad read uproad.class;
+	#var {toferry} {0};
+	e;
+}
+{5}
+#alias {plat2ferry}
+{
+	#class uproad read uproad.class;
+	#var {toferry} {1};
+	w;
+}
+{5}
+#alias {wa2tomb}
+{
+	#nop #class ml_tomb read ml_tomb.class;
+	#class milin_passthrough read milin_passthrough.class;
+	#var {totomb} {1};
+	w;
+}
+{5}
+#alias {tomb2wa}
+{
+	#nop #class ml_whiteant read ml_whiteant.class;
+	#class milin_passthrough read milin_passthrough.class;
+	#var {totomb} {0};
+	e;
+}
+{5}
+#alias {bridge2pine}
+{
+	hold vine;#3 s;climb cliff;climb up;
+	#class {pinein} read pinein.class;
+	s;
+}
+{5}
+#alias {blowconch}
+{
+	#class {blow_conch} read blow_conch.class;
+	get conch shell from qiankun dai;
+	blow shell;
+}
+{5}
+#alias {tf2bat}
+{
+	#class {batin} read batin.class;
+	e;
+}
+{5}
+#alias {automap}
+{
+	#if { "%1" == "0" }
+	{
+		#class {auto_map} kill;
+	}
+	{
+		#class {auto_map} read auto_map.class;
+	};
+}
+{5}
+#alias {relocate}
+{
+	#map read %1.map;
+	#class {relocate_pos} read relocate_pos.class;
+	look;
+}
+{5}
+#alias {start_boji}
+{
+	#if { "%1" == "stop" }
+	{
+		#class {boji} kill;
+	}
+	{
+		#class {boji} read boji.class;
+		wield $weapon;
+		boji $weapon;
+	};
+}
+{5}
+#alias {omap}
+{
+	#if { "%1" == "" }
+	{
+		#map destroy;
+		#split 0 1;
+	}
+	{
+		relocate %1;
+		#act {relocate_pos finish}
+		{
+			#unact {relocate_pos finish};
+			#split 10 1;
+		};
+	};
+}
+{5}
+#alias {upitems}
+{
+	#class {update_items} read update_items.class;
+	#list {items_obj} clear;
+	#list {items_name} clear;
+	look $bag_container;
+}
+{5}
+#alias {gcb}
+{
+	#class {update_container_items} read update_container_items.class;
+	#list {container_items_obj} clear;
+	#list {container_items_name} clear;
+	look %1;
+	#act {update_container_items finish}
+	{
+		#unact {update_container_items finish};
+		#list {container_items_obj} {size} {items_size};
+		#if { $items_size > 0 }
+		{
+			#loop {1} {$items_size} {index}
+			{
+				#if { "$container_items_obj[$index]" != "布衣"}
+				{
+					get $container_items_name[$index] from %1;
+					put $container_items_name[$index] in $bag_container;
+				};
+			};
+		};
+	};
+}
+{5}
+#alias {2loulan}
+{
+	#class {wade_sandstream} read wade_sandstream.class;
+	look;
+}
+{5}
+#alias {2bat}
+{
+	#class {tobat} read tobat.class;
+	ask master about bat island;
+}
+{5}
+#alias {accept_obj}
+{
+	#if { "%1" == "stop" }
+	{
+		#class {accept_obj} kill;
+	}
+	{
+		#class {accept_obj} read accept_obj.class;
+	}
+}
+{5}
+#alias {getfund}
+{
+	w;#3 n;e;ask jieri shizhe about fund;ask jieri shizhe about reward;w;#3 s;e
+}
+{5}
+#alias {clearitems}
+{
+	#list items_obj clear;
+	#list items_name clear;
+}
+{5}
+#alias {qc}
+{
+	tell %1 quest cancel;
+}
+{5}
+#alias {startbath}
+{
+	#if { "%1" == "stop" }
+	{
+		#class {infinite_bath} kill;
+		#showme infinite_bath finish;
+	}
+	{
+		#class {infinite_bath} read infinite_bath.class;
+		jump;
+	}
+}
+{5}
+#alias {pneedle}
+{
+	#class put_needle read put_needle.class;
+	inventory;
+}
+{5}
+#alias {tunequest}
+{
+	#if { "$quest_player" != "" }
+	{
+		#all #var quest_player {};
+	}
+	{
+		#all #var quest_player cypher;
+	};
+}
+{5}
+#alias {gmj}
+{
+	gc;
+	#forall {tong;wan;tiao} {put &0 in $bag_container};
+	drop cloth;
+}
+{5}
+#alias {loadfight}
+{
+	#class %1 read %1.class;
+}
+{5}

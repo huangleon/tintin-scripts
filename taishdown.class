@@ -1,0 +1,10 @@
+#class {taishdown} open;
+#act {^ Æ∞À≈Ã} {down};
+#act {^∂‘À…Õ§}
+{
+	#unact {^ Æ∞À≈Ã};
+	#unact {^∂‘À…Õ§};
+	down;westdown;southdown;#6 down;southdown;
+	#class {taishdown} kill;
+};
+#class {taishdown} close;

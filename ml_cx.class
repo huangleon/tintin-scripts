@@ -1,0 +1,38 @@
+#class {ml_cx} open;
+#not var target_dir;
+
+{这里明显的出口是 east 和 west。}
+
+{这里明显的出口是 north 和 southup。}
+{这里明显的出口是 north 和 south。}
+
+#act {这里唯一的出口是 down。}
+{
+	look vine;
+};
+#act {^这是一根粗壮光滑的树枝，现在对着正%W方。$}
+{
+	#if {"%1" == "西"}
+	{
+	    swing vine;
+	}
+	{
+	    turn vine;
+	}
+};
+#act {^你顺着树杆爬了上来。$}
+{
+	#unact {^你顺着树杆爬了上来。$};
+	look vine;
+};
+#act {^你抓紧树枝，用力向%W方荡去！}
+{
+	
+};
+#act {^你要看什麽}
+{
+	#unact {^这是一根粗壮光滑的树枝，现在对着正%W方。$};
+	#4 w;
+	#class {ml_cx} kill;
+};
+#class {ml_cx} close

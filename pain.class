@@ -1,0 +1,10 @@
+#class {pain} open;
+#act {^迷茫风雨路} {eastup};
+#act {^云海孤舟}
+{
+	#unact {^迷茫风雨路};
+	#unact {^云海孤舟};
+	northeast;#2 e;#4 s;#2 e;
+	#class {pain} kill;
+}
+#class {pain} close;

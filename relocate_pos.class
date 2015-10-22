@@ -1,0 +1,20 @@
+#class {relocate_pos} open;
+#act {^%W%s-}
+{
+	#unact {^%W%s-};
+	#map goto %1;
+	#map get roomname strroomname;
+	
+	#nop check the room name
+	#if { "%1" == "$strromname" }
+	{
+		#map goto %1;
+	}
+	{
+		#showme <118> Relocate position failed.
+	};
+	#unvar strroomname;
+	#class {relocate_pos} kill;
+	#showme relocate_pos finish;
+};
+#class {relocate_pos} close;

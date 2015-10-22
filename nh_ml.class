@@ -1,0 +1,13 @@
+#class {nh_ml} open
+#act {^平原路} {n};
+#act {^林中小路} {northdown};
+#act {^    这里明显的出口是 north 和 southup。}
+{
+	#unact {^平原路};
+	#unact {^林中小路};
+	#unact {^    这里明显的出口是 north 和 southup。};
+	#2 n;
+	climb tree;
+	#class {nh_ml} kill;
+}
+#class {nh_ml} close

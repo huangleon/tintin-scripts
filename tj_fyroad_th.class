@@ -1,0 +1,10 @@
+#class {tj_fyroad} open;
+#act {^    这里明显的出口是 south 和 north。} {n};
+#act {^    这里明显的出口是 south、north、east 和 westup。}
+{
+	#unact {^    这里明显的出口是 south 和 north。};
+	#unact {^    这里明显的出口是 south、north、east 和 westup。};
+	#showme tj_fyroad finish;
+	#class {tj_fyroad} kill;
+};
+#class {tj_fyroad} close;

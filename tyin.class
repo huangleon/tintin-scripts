@@ -1,0 +1,23 @@
+#class {tyin} open;
+#tick {start_around} {around} {5};
+#act {^你转来转去，也没找到出口，你迷了路！！}
+{
+	#untick {start_around};
+};
+#act {看来，你只好四处转转看了。} {around};
+#act {潭边长满了不知名的花草，一棵小树斜斜地生长在潭水边。} {around};
+#act {^  野兔(Rabbit)}
+{
+	#unact {看来，你只好四处转转看了。};
+	#unact {潭边长满了不知名的花草，一棵小树斜斜地生长在潭水边。};
+	#tick {catch_rabbit} {catch rabbit} {1};
+}
+#act {那琴声却又无影无踪。}
+{
+	#unact {那琴声却又无影无踪。};
+	#untick {catch_rabbit};
+	listen;southeast;
+	#class {tyin} kill;
+	#showme tyin finish;
+};
+#class {tyin} close;

@@ -1,0 +1,31 @@
+#class {put_needle} open;
+#list {needle_list} create {};
+#list {needle_types} create {黑色的细针;白色的细针;红色的细针;黄色的细针;绿色的细针};
+#list {hole_types} create {kidney;lung;heart;stomach;liver};
+#act {^    %W(%*)}
+{
+	#undelay {invent_finish};
+	#if { "%2%3" == "Needle" }
+	{
+		#list {needle_list} {add} {%1};
+	};
+	#delay {invent_finish} {#showme invent_list finish} {1};
+};
+#act {invent_list finish}
+{
+	#var {needle_index} {1};
+	#list {needle_list} size {needle_count};
+	#while { $needle_index <= $needle_count }
+	{
+		#list {needle_types} find {$needle_list[$needle_index]} {type_index};
+		#if { $type_index != 0 }
+		{
+			put needle in $hole_types[$type_index];
+		};
+		#math {needle_index} {$needle_index + 1};
+	};
+	touch mark;n;
+	#class {put_needle} kill;
+	#showme put_needle finish;
+};
+#class {put_needle} close;

@@ -1,0 +1,29 @@
+#class {shaolin_combat} open;
+#var {fight_step} {0};
+#act {^（你上一个动作还没有完成，不能施用外功。）}
+{
+	#if { $fight_step == 0 }
+	{
+		unwield all;
+		perform qianshouqianbian;
+		wield $weapon;
+	}
+	{
+		perform fanbei;
+	};
+};
+#act {^结果%W被你攻了个手忙脚乱！}
+{
+	#unact {^结果%W被你攻了个手忙脚乱！};
+	#var {fight_step} {1};
+	wield $weapon;
+	perform fanbei;
+};
+#act {^你使出反转流星锤法中的［反背连环］，假意抽身急退，蓦地反身抖手一锤！}
+{
+	#unact {^（你上一个动作还没有完成，不能施用外功。）};
+	#unact {^你使出反转流星锤法中的［反背连环］，假意抽身急退，蓦地反身抖手一锤！};
+	#var {fight_step} {0};
+	#class {shaolin_combat} kill;
+};
+#class {shaolin_combat} close;

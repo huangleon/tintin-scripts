@@ -1,0 +1,11 @@
+#class {gw_hy_cx} open
+#act {^    这是一个无边的沙砾地} {s}
+#act {^    这是一个无边的荒野地}
+{
+	#unact {^    这是一个无边的沙砾地};
+	#unact {^    这是一个无边的荒野地};
+	#unact {^山脚};
+	southup;southwest;#2 southeast;southwest;southeast;s;
+	#class {gw_hy_cx} kill;
+}
+#class {gw_hy_cx} close

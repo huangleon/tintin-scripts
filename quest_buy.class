@@ -1,0 +1,50 @@
+#class {quest_buy} open;
+#act {^你现在的任务是寻『%1』。}
+{
+	#unact {^你现在的任务是寻『%1』。};
+	#var quest_obj %1;
+	sell $quest_name;
+};
+#act {^队伍成员 %1 现在的任务是: 寻『%2』。}
+{
+	#unact {^队伍成员 %1 现在的任务是: 寻『%2』。};
+	#var quest_obj %2;
+	sell $quest_name;
+};
+#act {^你把身上的%1卖掉。}
+{
+	#delay 1 {buy $quest_name from xiangling;};
+};
+#act {^你向香菱买下一个%1.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%1卖掉。};
+		#unact {^你向香菱买下一个%1.};
+		#unact {^你向香菱买下最后一个%1.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;		
+	}
+};
+#act {^你向香菱买下最后一个%1.}
+{
+	#if {"%1" == "$quest_obj"}
+	{
+		#unact {^你把身上的%1卖掉。};
+		#unact {^你向香菱买下一个%1.};
+		#unact {^你向香菱买下最后一个%1.};
+		say done;
+		#class quest_buy kill;
+	}
+	{
+		sell $quest_name;		
+	}
+};
+#act {^你上一个动作还没有完成，不能买物品。}
+{
+	#delay 1 {buy $quest_name from xiangling;};
+};
+#class {quest_buy} close;

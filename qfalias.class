@@ -1,0 +1,5 @@
+#class {qfalias} open
+#alias {gneedle} {get needle from corpse} {5}
+#alias {dneedle} {get needle from corpse;drop needle} {5}
+#alias {p} {put needle in %1} {5}
+#class {qfalias} close

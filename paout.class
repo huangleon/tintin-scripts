@@ -1,0 +1,10 @@
+#class {paout} open;
+#act {^迷茫风雨路} {w};
+#act {^赤峰路}
+{
+	#unact {^赤峰路};
+	#unact {^迷茫风雨路};
+	#6 w;
+	#class {paout} kill;
+}
+#class {paout} close;

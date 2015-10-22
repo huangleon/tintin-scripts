@@ -1,0 +1,9 @@
+#class {tfin} open;
+#act {^小路} {w};
+#act {^危崖前}
+{
+	#unact {^小路};
+	#unact {^危崖前};
+	#class {tfin} kill;
+}
+#class {tfin} close;

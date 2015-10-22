@@ -1,0 +1,15 @@
+#class {update_items} open;
+#act {^    %W(%*)}
+{
+	#undelay {killclass};
+	#list {items_obj} {add} {%1};
+	#format {item_name} {%l} {%2%3};
+	#list {items_name} {add} {$item_name};
+	#delay {killclass}
+	{
+		#unvar {item_name};
+		#class {update_items} kill;
+		#showme update_items finish;
+	} {1};
+};
+#class {update_items} close;

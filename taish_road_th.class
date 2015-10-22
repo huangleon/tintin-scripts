@@ -1,0 +1,10 @@
+#class {taish_road_th} open
+#act {^斜阳道} {s};
+#act {^青石路}
+{
+	#unact {^斜阳道};
+	#unact {^青石路};
+	#2 w;
+	#class {taish_road_th} kill;
+};
+#class {taish_road_th} close

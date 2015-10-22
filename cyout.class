@@ -1,0 +1,11 @@
+#class {cyout} open;
+#act {可以听到从小镇传来的噪杂人声。} {southwest};
+#act {^赤峰路}
+{
+	#unact {可以听到从小镇传来的噪杂人声。};
+	#unact {^赤峰路};
+	unwield all;
+	#7 w;
+	#class {cyout} kill;
+};
+#class {cyout} close;

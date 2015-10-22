@@ -1,0 +1,41 @@
+#class {batin} open;
+#act {^小路} {e};
+#act {^山中小路} {e};
+#act {^平原路} {e};
+#act {^海边路}
+{
+	#unact {^小路};
+	#unact {^山中小路};
+	#unact {^平原路};
+	#unact {^海边路};
+	#2 e;
+	dash bush;
+};
+#act {^你使劲往灌木林中一闯，结果一个跟头翻了进去！}
+{
+	#unact {^你使劲往灌木林中一闯，结果一个跟头翻了进去！};
+	ask wei xing long about book;fight wei xing long;
+};
+#act {^魏行龙无可奈何地从怀里掏出一本书递给你。}
+{
+	#unact {^魏行龙无可奈何地从怀里掏出一本书递给你。};
+	e;
+	ask master chu about bat island;
+};
+#act {^你听了心中一动，顿时起了极大的兴趣，赶紧往海滨赶去.....}
+{
+	#unact {^你听了心中一动，顿时起了极大的兴趣，赶紧往海滨赶去.....};
+	give qing feng book to ding feng;
+};
+#act {^船夫升起帆，船就向东方航行。}
+{
+	#unact {^船夫升起帆，船就向东方航行。};
+	look wave;
+};
+#act {^突然间，你的船触礁了！一个大浪打来，你被抛入空中．．．}
+{
+	#unact {^突然间，你的船触礁了！一个大浪打来，你被抛入空中．．．};
+	e;dash;open rightdoor;
+	#class {batin} kill;
+};
+#class {batin} close;

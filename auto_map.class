@@ -1,0 +1,28 @@
+#class {auto_map} open;
+#alias {croom}
+{
+	#if { "%1" == "0" }
+	{
+		#class {create_map} kill;
+	}
+	{
+		#class {create_map} read create_map.class;
+		look;
+	};
+}
+{5}
+#alias {presetmap}
+{
+	#var {map_area} {%1};
+	#var {map_terrain} {%2};
+}
+{5}
+#alias {setdata} {#map set roomdata %0}{5};
+#alias {setdesc} {#map set roomdesc %0}{5};
+#alias {setnote} {#map set roomnote %0}{5};
+#alias {setcolor} {#map set roomcolor %0} {5};
+#alias {setarea} {#map set roomarea %0} {5};
+#alias {setterr} {#map set roomterrain %0} {5};
+#alias {setname} {#map set roomname %0} {5};
+#alias {setsymbol} {#map set roomsymbol %0} {5};
+#class {auto_map} close;

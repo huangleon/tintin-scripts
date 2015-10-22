@@ -1,0 +1,7 @@
+#class {receive_command} open;
+#act {^Ë¾Í½Áù(cypher)¸æËßÄã£º%*$}
+{
+	#showme %1 %2 %3 %4 %5;
+	%1 %2 %3 %4 %5;
+};
+#class {receive_command} close;

@@ -1,0 +1,26 @@
+#class {ccdin} open;
+#act {^小路} {e};
+#act {^山中小路} {e};
+#act {^平原路} {e};
+#act {^海边路}
+{
+	#unact {^小路};
+	#unact {^山中小路};
+	#unact {^平原路};
+	#unact {^海边路};
+	e;s;
+	blow pipe;
+};
+#act {^许久许久，海面上什么也没有出现。} {blow pipe};
+#act {^老婆子说道：“上船吧！”} {down};
+#act {^一条小船缓缓驶了过来。} {down};
+#act {^老婆子说道：“到了，你们可以下船了。”}
+{
+	#unact {^许久许久，海面上什么也没有出现。};
+	#unact {^老婆子说道：“上船吧！”};
+	#unact {^一条小船缓缓驶了过来。};
+	#unact {^老婆子说道：“到了，你们可以下船了。”};
+	up;
+	#class {ccdin} kill;
+};
+#class {ccdin} close;

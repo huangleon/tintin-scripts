@@ -1,0 +1,69 @@
+#class {forest_ghost} open;
+#tick {lrock} {l rock} {5};
+#act {^你．．．是谁？帮我！没有我，你走不出的！} {agree to help};
+#act {^孤独美说道：向%1走。}
+{
+	#switch {"%1"}
+	{
+		#case "东" {#var {lastmove} {e};say $lastmove;#delay {1} $lastmove;}
+		#case "南" {#var {lastmove} {s};say $lastmove;#delay {1} $lastmove;}
+		#case "西" {#var {lastmove} {w};say $lastmove;#delay {1} $lastmove;}
+		#case "北" {#var {lastmove} {n};say $lastmove;#delay {1} $lastmove;}
+		#default say "%1";
+	}
+};
+#act {^粉燕子笑了笑道：有时候我连你都想要。} {leave gu du mei};
+#act {^叶孤鸿对你说道:你们可以走了！} {$lastmove};
+#act {^孤独美说道：到了。}
+{
+	#unact {^你．．．是谁？帮我！没有我，你走不出的！};
+	#unact {^孤独美说道：向%1走。};
+	#unact {^粉燕子笑了笑道：有时候我连你都想要。};
+	#unact {^叶孤鸿对你说道:你们可以走了！};
+	#unact {^孤独美说道：到了。}
+	l rock;
+};
+#act {^眼前景色似乎有些熟悉，你依稀记得往南方的高处走有座山崖。}
+{
+	#untick {lrock};
+	#unact {^眼前景色似乎有些熟悉，你依稀记得往南方的高处走有座山崖。};
+	southup;
+	l rock;
+};
+#act {^你要看什麽？}
+{
+	#untick {lrock};
+	s;n;e;e;
+};
+#act {^一块大青石。}
+{
+	#unact {^一块大青石。};
+	get pipe from rock;
+	blow pipe;
+	put pipe in rock;
+	#2 e;
+};
+#act {^勾魂使者喝道：没有合约，不可以进幽灵山庄。除非你能接我一招！}
+{
+	accept test;
+	tell ghost no face;
+};
+#act {^勾魂使者对你说道：好功夫！你可以过去了。}
+{
+	#unact {^勾魂使者喝道：没有合约，不可以进幽灵山庄。除非你能接我一招！};
+	#unact {^勾魂使者对你说道：好功夫！你可以过去了。};
+	#unact {^勾魂使者脸色变得极为难看，对你说道：你可以过去了。};
+	e;
+};
+#act {^勾魂使者脸色变得极为难看，对你说道：你可以过去了。}
+{
+	#unact {^勾魂使者喝道：没有合约，不可以进幽灵山庄。除非你能接我一招！};
+	#unact {^勾魂使者对你说道：好功夫！你可以过去了。};
+	#unact {^勾魂使者脸色变得极为难看，对你说道：你可以过去了。};
+	e;
+};
+#act {^幽灵山庄}
+{
+	#class forest_ghost kill;
+};
+#class {forest_ghost} close;

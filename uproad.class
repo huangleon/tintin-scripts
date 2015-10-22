@@ -1,0 +1,53 @@
+#class {uproad} {open};
+#var {toferry} {0};
+#act {^常春岛渡口 -}
+{
+	#class {uproad} kill;
+	#showme uproad finish;
+};
+#act {^平台 -}
+{
+	#class {uproad} kill;
+	#showme uproad finish;
+};
+#act {^    这里明显的出口是 northeast 和 west。}
+{
+	#if { $toferry == 0 }
+	{
+		northeast;
+	}
+	{
+		west;
+	};
+};
+#act {^    这里明显的出口是 southeast 和 southwest。}
+{
+	#if { $toferry == 0 }
+	{
+		southeast;
+	}
+	{
+		southwest;
+	};
+};
+#act {^    这里明显的出口是 eastup 和 northwest。}
+{
+	#if { $toferry == 0 }
+	{
+		eastup;
+	}
+	{
+		northwest;
+	};
+};
+#act {^    这里明显的出口是 westdown 和 east。}
+{
+	#if { $toferry == 0 }
+	{
+		east;
+	}
+	{
+		westdown;
+	};
+};
+#class {uproad} {close};

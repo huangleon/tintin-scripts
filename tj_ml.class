@@ -1,0 +1,11 @@
+#class {tj_ml} open;
+#act {^南北大道} {s};
+#act {^小山坡西面}
+{
+	#unact {^南北大道};
+	#unact {^小山坡西面};
+	#3 s;
+	#class {tj_ml} kill;
+	climb tree;
+};
+#class {tj_ml} close;

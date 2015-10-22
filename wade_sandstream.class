@@ -1,0 +1,27 @@
+#class {wade_sandstream} open;
+#act {^%W -}
+{
+	
+	#if { "%1" == "¿×È¸ºÓ" }
+	{
+		wade sandstream;
+	};
+	#if { "%1" == "ÄÏ·ğËş" }
+	{
+		#class {wade_sandstream} kill;
+		#showme wade_sandstream finish;
+	};
+	#if { "%1" == "¶«·ğËş" }
+	{
+		up;
+	};
+	#if { "%1" == "Î÷·ğËş" }
+	{
+		up;
+	};
+	#if { "%1" == "±±·ğËş" }
+	{
+		up;
+	};
+};
+#class {wade_sandstream} close;

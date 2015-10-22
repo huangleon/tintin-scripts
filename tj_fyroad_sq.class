@@ -1,0 +1,10 @@
+#class {tj_fyroad_sq} open;
+#act {^    这里明显的出口是 south 和 north。} {n};
+#act {^    这里明显的出口是 south、north、east 和 westup。}
+{
+	#unact {^    这里明显的出口是 south 和 north。};
+	#unact {^    这里明显的出口是 south、north、east 和 westup。};
+	#2 westup;#4 northup;#2 climb mountain;#5 n;
+	#class {tj_fyroad_sq} kill;
+};
+#class {tj_fyroad_sq} close;

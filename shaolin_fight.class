@@ -1,0 +1,23 @@
+#class {shaolin_fight} open;
+#alias {pw}
+{
+	perform dodge.wuwuwuwo $username;
+};
+#alias {pd}
+{
+	unwield all;
+	perform qianshouqianbian;
+	wield $weapon;
+};
+#alias {pfb}
+{
+	wield $weapon;
+	perform fanbei;
+}
+#alias {pdl}
+{
+	#class {shaolin_combat} read shaolin_combat.class;
+	unwield all;
+	perform qianshouqianbian;
+};
+#class {shaolin_fight} close;

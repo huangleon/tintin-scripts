@@ -1,0 +1,76 @@
+#class {milin_passthrough} open;
+#var {inlook} {0};
+#var {totomb} {0};
+#list {exits} create {east;south;west;north};
+#list {exits} size {exits_size};
+#list {attributes} create {金;水;木;火;土};
+
+#list {srcs} create {白;蓝;绿;红;黄};
+#list {to_tomb_targets} create {蓝;绿;红;黄;白};
+#list {to_ant_targets} create {绿;红;黄;白;蓝};
+#var {index} {0};
+#var cur_attr {};
+#var target_attr {};
+#var next_exit {};
+#var steps {0};
+
+#alias resume
+{
+	#if { $inlook == 0 }
+	{
+		look;
+	}
+	{
+		look $next_exit;
+	}
+};
+#act {^不出名字的%1色野花，但见落叶铺地，踩上去沙沙做响}
+{
+	#if { $inlook == 0 }
+	{
+		#nop in move;
+		#list {srcs} {find} {%1} {index};
+		#var cur_attr {$srcs[$index]};
+		#if { $totomb == 0 }
+		{
+			#var target_attr {$to_ant_targets[$index]};
+		}
+		{
+			#var target_attr {$to_tomb_targets[$index]};
+		};
+		#var index {1};
+		#var next_exit {$exits[$index]};
+		#var inlook {1};
+		look $next_exit;
+	}
+	{
+		#nop in look;
+		#if { "$target_attr" != "%1" }
+		{
+			#math {index} {$index + 1};
+			#if { $index > $exits_size }
+			{
+				#showme <fca> exits_size exceed !!!;
+				#nop #class {milin_passthrough} kill;
+			}
+			{
+				#var next_exit {$exits[$index]};
+				look $next_exit;
+			}
+		}
+		{
+			#var inlook {0};
+			#math {steps} {$steps + 1};
+			$next_exit;
+		}
+	};
+};
+#act {^人影飘动之间，你已经从密林穿了出去！}
+{
+	#unact {^不出名字的%1色野花，但见落叶铺地，踩上去沙沙做响};
+	#unact {^人影飘动之间，你已经从密林穿了出去！};
+	#showme steps : $steps;
+	#class {milin_passthrough} kill;
+	#showme milin_passthrough finish;
+};
+#class {milin_passthrough} close;

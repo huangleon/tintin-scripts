@@ -1,0 +1,10 @@
+#class {fyroad_tj} open;
+#act {^南北大道} {s};
+#act {^风云城北}
+{
+	#unact {^南北大道};
+	#unact {^风云城北};
+	#showme fyroad_tj finish;
+	#class {th_fyroad_tj} kill;
+};
+#class {fyroad_tj} close;

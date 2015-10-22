@@ -1,0 +1,45 @@
+#class {locate_tasks} open;
+#list {taskobjs} {size} {tsize};
+#var {i} {0};
+#act {^start locate_tasks}
+{
+	#unact {^start locate_tasks};
+	#var {i} {0};
+	#list {tasklocs} clear;
+	next_step;
+};
+#alias {next_step}
+{
+	#math {i} {$i + 1};
+	#if {$i > $tsize}
+	{
+		#var {j} {1};
+		#showme $tsize;
+		#while { $j <= $tsize }
+		{
+			#showme $tasklocs[$j];
+			#math {j} {$j + 1};
+		};
+		#class {locate_tasks} kill;
+		#showme locate_task finish;
+	}
+	{
+		locate $taskobjs[$i];
+	};
+};
+#act {^『%W』似乎在%W。}
+{
+	#list tasklocs add %2;
+	next_step;
+};
+#act {^你的心神不足以查寻位置。}
+{
+	#list tasklocs add {心神不足};
+	next_step;
+};
+#act {^确定不了%*的大概位置。}
+{
+	#list tasklocs add {被完成};
+	next_step;
+};
+#class {locate_tasks} close;

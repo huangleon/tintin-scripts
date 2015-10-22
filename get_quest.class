@@ -1,0 +1,44 @@
+#class {get_quest} open;
+#list {quests_obj} clear;
+
+#act {^天机老人说道：请替天机老人} {quest;};
+#act {^天机老人说道：请找回} {quest;};
+#act {^你现在没有任何任务！}
+{
+	#undelay {killclass};
+	#class {get_quest} kill;
+	#showme get_quest finish;
+};
+#act {^队伍成员 %W 现在的任务是现在的任务是: 杀『%W』。}
+{
+	#undelay {killclass};
+	#delay {killclass}
+	{
+		#class {get_quest} kill;
+		#showme get_quest finish;
+	} {1};
+};
+#act {^你现在的任务是杀『%W』。}
+{
+	#undelay {killclass};
+	#class {get_quest} kill;
+	#showme get_quest finish;
+};
+#act {^你现在的任务是寻『%W』。}
+{
+	#undelay {killclass};
+	#list {quests_obj} {add} {%1};
+	#class {get_quest} kill;
+	#showme get_quest finish;
+};
+#act {^队伍成员 %W 现在的任务是: 寻『%W』。}
+{
+	#undelay {killclass};
+	#list {quests_obj} {add} {%2};
+	#delay {killclass}
+	{
+		#class {get_quest} kill;
+		#showme get_quest finish;
+	} {1};
+};
+#class {get_quest} close;

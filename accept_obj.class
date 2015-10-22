@@ -1,0 +1,45 @@
+#class {accept_obj} open;
+#nop 更新inventory list,将items放入container,更新items_obj,items_name;
+
+#list {invent_items_obj} create {};
+#list {invent_items_name} create {};
+#var {invent_item_name} {};
+#var {invent_items_count} {0};
+#var {invent_item_index} {0};
+
+#act {invent_list finish}
+{
+	#var {invent_item_index} {1};
+	#list {invent_items_name} size {invent_items_count};
+	#while { $invent_item_index <= $invent_items_count }
+	{
+		#if { "$invent_items_name[$invent_item_index]" != "$bag_container" }
+		{
+			put $invent_items_name[$invent_item_index] in $bag_container;
+			
+			#nop add into list;
+			#list {items_obj} {add} {$invent_items_obj[$invent_item_index]};
+			#list {items_name} {add} {$invent_items_name[$invent_item_index]};
+		};
+		#math {invent_item_index} {$invent_item_index + 1};
+	};
+	#class {accept_obj} kill;
+	#showme accept_obj finish;
+};
+#act {^乾坤袋里面已经有太多东西了。}
+{
+	#var container_full {1};
+	say 我的 乾坤袋里面已经有太多东西了;
+};
+#act {^    %W(%*)}
+{
+	#undelay {invent_finish};
+	#if { "%2%3" != "Silver" && "%2%3" != "Coin" && "%2%3" != "Gold" && "%1" != "布衣" }
+	{
+		#list {invent_items_obj} {add} {%1};
+		#format {invent_item_name} {%l} {%2%3};
+		#list {invent_items_name} {add} {$invent_item_name};
+	};
+	#delay {invent_finish} {#showme invent_list finish} {1};
+};
+#class {accept_obj} close;

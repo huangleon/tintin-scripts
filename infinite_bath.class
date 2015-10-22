@@ -1,0 +1,6 @@
+#class {infinite_bath} open;
+#act {^你的精气神全恢复了！！}
+{
+	jump;
+};
+#class {infinite_bath} close;

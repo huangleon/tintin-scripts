@@ -1,0 +1,8 @@
+#class {cyin} open;
+#act {蒙面人将小娟装入大布袋，向黑松山遁去。}
+{
+	#unact {蒙面人将小娟装入大布袋，向黑松山遁去。};
+	n;up;e;up;#2 e;up;
+	#class {cyin} kill;
+};
+#class {cyin} close;

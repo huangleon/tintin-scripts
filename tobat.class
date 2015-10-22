@@ -1,0 +1,22 @@
+#class {tobat} open;
+#act {^你听了心中一动，顿时起了极大的兴趣，赶紧往海滨赶去.....}
+{
+	#unact {^你听了心中一动，顿时起了极大的兴趣，赶紧往海滨赶去.....};
+	give qing feng book to ding feng;
+};
+#act {^船夫升起帆，船就向东方航行。}
+{
+	#unact {^船夫升起帆，船就向东方航行。};
+	look wave;
+};
+#act {^海浪就象是一头头恶狼，唑咬着你的船！}
+{
+	look wave;
+};
+#act {^突然间，你的船触礁了！一个大浪打来，你被抛入空中．．．}
+{
+	#unact {^突然间，你的船触礁了！一个大浪打来，你被抛入空中．．．};
+	#class {tobat} kill;
+	#showme tobat finish;
+};
+#class {tobat} close;

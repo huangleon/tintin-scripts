@@ -1,0 +1,22 @@
+#class {tyout} open;
+#tick {start_around} {around} {5};
+#act {^你转来转去，也没找到出口，你迷了路！！}
+{
+	#untick {start_around};
+};
+#act {^    这里没有任何明显的出路。} {around};
+#act {^    这里唯一的出口是 south}
+{
+	#unact {^    这里没有任何明显的出路。};
+	#unact {^    这里唯一的出口是 south};
+	relocate fyall;
+	#act {relocate_pos finish}
+	{
+		#unact {relocate_pos finish};
+		#map run 4;
+		#map destroy;
+		#class {tyout} kill;
+		#showme tyout finish;
+	};
+}
+#class {tyout} close;

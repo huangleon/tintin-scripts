@@ -1,0 +1,68 @@
+#class {ml} open;
+#var {target_dir} {};
+#var {act_dir} {};
+#var {swing_count} {0};
+
+#act {这里明显的出口是 east 和 west。}
+{
+	#if {"$act_dir" != "" && "$target_dir" == "$act_dir"}
+	{
+		#unact {这里明显的出口是 east 和 west。};
+		#class {ml} kill;
+		#showme {ml finish};
+	}
+	{
+		#if {"$act_dir" == "东"}
+		{
+			#2 w;
+			climb tree;
+		};
+		#elseif {"$act_dir" != ""}
+		{
+			#2 e;
+			climb tree;
+		};
+	};
+};
+#act {这里明显的出口是 north 和 south}
+{
+	#if {"$act_dir" != "" && "$target_dir" == "$act_dir"}
+	{
+		#unact {这里明显的出口是 north 和 south};
+		#class {ml} kill;
+		#showme {ml finish};
+	}
+	{
+		#if {"$act_dir" == "南"}
+		{
+			#2 n;
+			climb tree;
+		};
+		#elseif {"$act_dir" != ""}
+		{
+			#2 s;
+			climb tree;
+		};
+	};
+};
+#act {^这是一根粗壮光滑的树枝，现在对着正%W方。}
+{
+	#if {"%1" == "$target_dir"}
+	{
+	    swing vine;
+	}
+	{
+	    turn vine;
+	    look vine;
+	};
+};
+#act {这里唯一的出口是 down。}
+{
+	say $target_dir;
+	look vine;
+};
+#act {^你抓紧树枝，用力向%W方荡去！}
+{
+	#var {act_dir} {%1};
+};
+#class {ml} close;

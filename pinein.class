@@ -1,0 +1,9 @@
+#class {pinein} open;
+#act {^松树林 -} {s};
+#act {^老云寨秘密入口}
+{
+	#unact {^松树林 -};
+	#unact {^老云寨秘密入口};
+	#class {pinein} kill;
+};
+#class {pinein} close;

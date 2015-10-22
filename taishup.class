@@ -1,0 +1,9 @@
+#class {taishup} open;
+#act {^十八盘} {up};
+#act {^南天门}
+{
+	#unact {^十八盘};
+	#unact {^南天门};
+	#class {taishup} kill;
+};
+#class {taishup} close;

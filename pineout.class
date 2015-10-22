@@ -1,0 +1,13 @@
+#class {pineout} open;
+#act {^松树林 -} {s};
+#act {^老云寨秘密入口} {w};
+#act {^林间小路} {w};
+#act {^小石桥}
+{
+	#unact {^松树林 -};
+	#unact {^老云寨秘密入口};
+	#unact {^林间小路};
+	#unact {^小石桥};
+	#class {pineout} kill;
+}
+#class {pineout} close;

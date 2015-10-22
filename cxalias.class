@@ -1,0 +1,22 @@
+#class {cxalias} open
+#alias {makemedvase}
+{
+	buy freshfish from fishseller;
+	north;
+	northwest;
+	west;
+	buy lycii from waiter;
+	buy codonopsis from waiter;
+	buy astragalt from waiter;
+	buy pilosulae from waiter;
+	buy dioscoreae from waiter;
+	west;
+	cook;
+}
+{5};
+#alias {med2cx}
+{
+	#2 e;southeast;s;
+}
+{5};
+#class {cxalias} close
