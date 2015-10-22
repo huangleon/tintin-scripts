@@ -1,0 +1,2916 @@
+http://blog.sina.com.cn/fengyun2005
+
+ALL free master
+林仙儿(qianjin)，杀原随云，并给金丝软甲，可学charm 或者杀伊哭，并给青魔手，可学charm(150)
+梦焕(songshan)，完成守经楼的任务(m_success/勇保经书)，可学literate(150)
+胖公子(huashan)，给白棋子或黑棋子，可以学perception(150)
+姜仙公(huashan)，给琥珀，可学incarnation(150)
+驼子喇嘛(quicksand)，给火龙赤皮并且杀赤龙(m_success/孽龙)，可学yoga(151)
+百里灵(taishan)，给寒潭蛙(亲自抓，4M后)，可学herb(100)
+郭大路(fugui)，(m_success/结拜郭大路)，需要(marks/烂瓦罐)和(marks/救济劫匪)，先给绍兴女儿红，再给极品女儿红，获得(marks/烂瓦罐)，烤鸭，给竹叶青，得到金链。
+查猛(fy)，every one knows
+王仁德(fy)，every one knows
+缇萦(death)，xiaodao(200)
+公冶长(huashan)，?
+赤松(quicksand)，给真舍利子，或给9ring-staff且杀葛伦，可学iron-cloth(150)
+楚留香(bat)，给斜阳倚翠红袖招楚，亲自获得，exp>2.5M，可学
+无名夫人(tieflag)，要有(marks/嫁衣)，可学jiayiforce(75), 1.2
+陆小凤(wanmei)，有(marks/救鹰眼)，且没学doomsword，可学linxi-zhi(150)，如再杀了西门吹雪，可学perform心有灵犀
+天枫十四郎(wudang)，2.5M, score 15k可以挑战
+一强(shaolin)，可学daode(200)
+老刀把子(ghost)，every one knows
+蓝一尘(libie)，?
+风尘简，虬髯大汉处，zhai flag;fight redcloth girl;
+
+
+arrest 所需经验:random( (兵法*兵法*用人*用人/1000) + (经验-2000)/1000 ) < 目标经验 失败
+
+可以用needle box 射杀的NPC(无危险)
+活佛(Huofe)
+荆无命(Master jin)
+黄衣卫统领(Guard leader)
+青竹先生(Zhu)
+商玉龙(Seller)
+钦卫(Qinwei)
+风骚雅人(Yaren)
+小公子(Prince)
+南宫灵(Master nangong)2下
+定邦大师(Master ding)
+参机大师(Master can)
+云海(yunhai)2下
+金蚂蚁(Gold ant)
+
+
+无法用needle box 射杀的NPC(有危险)
+巡逻士兵(Police)
+西门风(ximen feng)
+上官金虹(Master shangguan)
+吴青(Wuqing)
+账房先生(Xiansheng)
+查猛(Meng)
+欧阳镖师(Biaotou ouyang)
+诸葛镖师(Biaotou zhuge)
+司马镖师(Biaotou sima)
+风兵(Fengyun garrison)
+瞎子阿鸣(Xiazi aming)
+蓝一尘(Master yichen)
+花四爷(Hua siye)
+关东豪客(Guandong haoke)
+云明(Yunming)
+云空(Yunkong)
+兴国大师(Master xing)
+
+
+/d/npc.c
+天骄奖励：
+pot = difficulty*50;
+combat_exp = difficulty*300;
+score = difficulty*4;
+
+
+
+/adm/daemons/taskd.c
+task 没隔15 ~ 45 mins 小刷新，
+
+计算公式：
+
+15-(运行时间/15的剩余数+运行天数/15的剩余数)
+
+一、关于技能与学习、练习：
+1、提高技能到（Ｎ＋１）级需要的熟练度＝（Ｎ＋１）＾２＋１。（Ｎ为当前等级） 
+2、系数：
+　　基本技能的系数均为0.5。
+3、enable后出现了有效等级，可算得特殊技能的系数＝（特殊技能的有效等级－基本技能等级／２）／特殊技能等级
+　　同样反之可得：特殊技能的有效等级（enable值）＝基本技能等级／２＋特殊技能等级＊系数 
+4、提升等级需要经验：
+　　将一项技能学到Ｎ级所需要的经验＝［（Ｎ－１）＊系数］＾３／１０
+　　将一项技能通过读书达到Ｎ级所需要的经验＝［（Ｎ－１）＊系数］＾３
+　　所以读书需要的经验是学习的十倍，但可以节省潜能。
+5、practice：
+　　A、一些特殊技能可以通过练习（practice）相应的基本技能来提高。
+　　B、每次practice所得到的熟练度，与该基本技能及特殊技能的级别有关。
+　　　基本技能等级越高，每次practice获得的熟练度越多。
+　　C、还有些特殊设置，使某些技能难practice，有些容易。
+　　D、practice能到的等级＝基本技能／２／特殊技能系数
+　　　即：靠practice练到最高（点数变红不能升级）时，技能的有效等级最高等于该基本技能的等级。
+　　　例如：puti-steps系数为1，320级dodge能直接practice到160级。
+　　E、当特殊技能等级＊系数＞＝基本技能等级／２时， 你最后要学一下才能涨一级（经验足够升级时）。
+　　F、practice最好的地方是澡堂。如果网速够快，可以每三秒来十几个practice，不断jump/wash。耗内力的在全恢复时补补内力就行了。
+　　　如果能正循环的，练起来更快，只要吸一口气，就可以练好久（达到正循环的要求是内功有效等级很高，是高手练功的方法。呆在广场也能练功，爽吧）。
+
+二、关于research：
+1、research需要的潜能＝（当前等级＋１）＾２／（１点潜能research获得的熟练度）
+　　其中一点潜能research获得的熟练度，是个随机数，决定于你的才智和技能的系数。才智越高，系数越低，research效率越高。
+　　你可以用100点潜能research一种技能，获得的熟练度除以100就可以得之。
+例如：research修仙术到501级，需要潜能：
+　　502*502*2/1点潜能research修仙术获得的熟练度
+2、注意：
+　　A、research需要大量潜能，大概是学习所花潜能的十倍。
+　　B、research不受经验和灵性的限制，不会走火入魔。
+　　C、尽量提高才智，才能提高research效率。
+
+三、关于身体：
+1、精气神等的计算公式：
+　　精力最大值＝１００＋灵力＋灵性＊１０＋耐力＾２ 
+　　气血最大值＝１００＋内力＋体质＊１０＋耐力＾２ 
+　　心神最大值＝１００＋法力＋才智＊１０＋耐力＾２ 
+　　灵力最大值＝（法术等级＋法术enable值／５）＊５ 
+　　内力最大值＝（基本内功等级＋内功enable值／５）＊５ 
+　　法力最大值＝（咒术等级＋咒术enable值／５）＊５ 
+2、用Ｎ点内力所能恢复的精气神＝Ｎ＊（１０＋有效内功／１０）／２０ 
+3、每次打坐后如果食物和饮水均不为零，则食物和饮水降为原来的一半，所有的精气神、内力、灵力、法力均加倍，至最大值。
+4、内力、灵力、法力最高当前值可达（最大值＊２）－１。
+　　提升当前值过程中，如果当前值超过最大值两倍，就会退回到最大值。
+　　这样可以提高精气神的恢复速度，还可以用此办法提升内力当前值.
+5、如何提高精气神最大值
+　　A、正规途径： 
+　　　　exercise：提高内力，同时提高气。需要提高force有效等级。 
+　　　　respirate：提高灵力，同时提高精。需要提高magic有效等级。 
+　　　　meditate：提高法力，同时提高神。需要提高spells有效等级。 
+　　B、吃potion，可以临时增加精或气或神（10%），退出游戏后失效。
+　　注意：PK用此办法加上唯我独尊来杀人，可杀经验100倍于自己的人。
+　　C、学yoga（读华严血经或龙皮），大量提高精气神。
+　　D、才智提高，会少量提高精气神。 
+　　E、年龄增加，会少量提高精气神。 
+7、转化命令：
+　　exert regenerate：内力转化成精　　　　　respirate：精转化成灵力
+　　exert recover：内力转化成气　　　　　　exercise：气转化成内力
+　　exert refresh：内力转化成神　　　　　　meditate：神转化成法力
+　　enforce：使用内力　　　　　　　　　　　enchant：使用灵力
+
+四、set指令技巧：
+　　1、set brief1＝set brief3：不看描述，只看路标、人物、物品。
+　　2、set brief 3：只看路标。
+　　3、set savemyass quit：当气血少时，输入“quit”，即马上退出游戏。
+　　4、wimpy 30：当气血少于30%时，开始逃跑。（30可以随意改）
+　　5、tune 某频道英文名：关闭某频道。
+　　6、passwd：修改密码。
+　　7、补充：kill多人有两种指令技巧。举例：#8 kill dashi %i＝#loo 1,8 (kill dashi %i)
+ 
+
+
+时间：adm/daemons/natured.c
+all宿命：
+宿命B/桃源_晨雾...........天上白玉京imbue，华山,puti-steps，华山方少壁
+宿命B/桃源_核桃...........天灵翡翠，KHL天魔解体大法armageddon，deathfate-
+宿命B/黄山_云海...........林太平imbue，deathfate+
+宿命B/泰山_日出...........义助小马，deathfate-
+宿命B/武当_枫叶...........澡堂枫叶，蛰龙赤丹
+宿命A&B...................樊夫人，幽冥紫晶
+宿命B/泰山_日出==9........小方imbue
+宿命B/黄山_佛光...........少林面壁，deathfate+
+宿命B/黄山_瀑布
+宿命B/黄山_日出...........杨铮，离别imbue，deathfate+
+宿命B/华山_鸟粪...........天上白玉京imbue
+宿命A/天山_流星...........xiaohun-sword perform
+宿命B/常春_海潮...........拜谢晓峰
+宿命A/风云_蝴蝶...........燕十三的剑，铁雪第三剑
+宿命A/桃源_流星...........xiaohun-sword perform
+宿命A/泰山_流星...........xiaohun-sword perform
+
+年龄限制：
+10-12岁，宿命A/桃源_流星
+20-30岁，女性，江左司徒，进KHL
+<16岁，fugui，俊俏相公，被扔出去
+可拥有age / 11件自造物品(衣服)
+可拥有age / 9件自造物品(武器)
+男性>16岁，女性>14岁，媒婆处结婚
+男性，18-26岁，give 胭脂 to 黄山采茶女获得云雾茶,给罗达成获得marks/玉石加工
+女性，13-26岁，魅力>26，经验>300k，荒园，解梅花盗
+26-28岁，宿命A/天山_流星
+<25岁，华山，marks/再见方少璧，imbue
+20-22岁，宿命A/泰山_流星，"夜幕笼罩，周围渐渐隐入了黑暗中 - 夜幕低垂，四周一片暗灰"
+20-80岁，宿命B/常春_海潮
+<12岁，无法过tieflag仙女阵
+<13岁，宿命B/武当_枫叶
+<30岁，经验>300k，风尘简
+16-60岁，怀孕
+
+
+  
+宿命B/泰山_日出
+riddle义助小马
+riddle义助卜鹰
+
+宿命A/天山_流星
+黯然销魂剑法的pfm
+
+宿命B/武当_枫叶
+riddle取得蛰龙赤丹
+
+宿命B/常春_海潮
+拜谢晓峰
+
+宿命B/黄山_瀑布
+riddle取得凝露黄石
+
+宿命B/桃源_晨雾
+riddle义救方少璧
+riddle天上白玉京
+quest item华山十八盘上获得一小册子
+
+宿命A/桃源_流星
+黯然销魂剑法的pfm
+
+宿命B/桃源_核桃
+riddle取得天灵翡翠
+快活林弟子的「天魔解体大法」(cut)
+
+
+宿命A/泰山_流星
+黯然销魂剑法的pfm
+
+宿命B/黄山_云海
+riddle取得碧海蓝心
+riddle义救林太平
+
+宿命B/黄山_日出
+riddle有关离别
+
+宿命B/华山_鸟粪
+riddle天上白玉京
+
+宿命B/黄山_佛光
+riddle少林弟子达摩洞面壁领悟
+
+宿命A/风云_蝴蝶
+蝶恋花剑法pfm增加伤害
+燕十三剑法领悟
+
+[宿命]风云四宿命大全V1.0版
+
+宿命A/泰山_流星
+     泰山－月观峰；20=<age=<22;秋天；210>dayTime>1260；在流星没入对面山峦前，你默默的在心中许了个愿
+宿命B/泰山_日出
+     泰山－日观峰；240<dayTime<290；你迷失在这五彩的世界里/厚厚的白云被染上了五色光彩，光彩不停的流动变换，你深深的沉迷在这变幻着的光的世界中
+     对解小马的谜题有用
+宿命B/黄山_瀑布
+     黄山－观瀑亭；夏秋季；sitdown;look waterfall;你抬手抹去脸上的水滴
+宿命B/黄山_日出
+     黄山－清凉台；春冬天；sitdown、getup；你迷失在这五彩的世界里/满天的色彩映着山上白色的积雪，有一种说不出的带着妖异的美
+     对解杨铮的谜题有用
+宿命B/黄山_云海
+     黄山－天都峰；春夏秋季；660<dayTime<900；晴；突然间白云象海潮一般涌来，转眼四周都是白茫茫的雾
+     对解林太平的谜题有用
+宿命B/黄山_佛光
+     黄山－光明顶；春夏季；840<dayTime<960；cps>10,jump或者cps<10&kar>18；你感到下坠的趋势顿了一下
+     对达摩面壁有用
+宿命A/天山_流星
+     新疆-天池；26=<age=<28;春季；210>dayTime>1260；看到流星的一瞬间，你默默的在心中许了个愿
+宿命B/华山_鸟粪
+     华山_祠堂前院；春夏季；白天；look tree；忽然间一坨鸟粪落下刚好砸到$N的头上
+     对解白玉京的谜题有用
+宿命A/风云_蝴蝶
+     城西小路；春夏季；720<dayTime<900；蝴蝶群迅速的散去
+     拜燕十三有用，蝶恋花剑法的perform有用
+宿命B/常春_海潮
+     神水_沙滩；
+     大旗谷_礁石；20=<age=<80;
+     拜谢晓峰有用
+宿命B/桃源_晨雾
+	桃源e,e,s山林，春天或冬天，时间是“东方的天空中逐渐出现了一丝鱼肚白。”，“东方的天空浮着一丝淡白色”
+	的时候进入，weather 是晴，随机产生
+	“乳白色的晨雾，弥漫了林间大地，在阳光的照耀下闪烁着迷人的紫色。”
+	即可获得该宿命
+     
+宿命A/武当_枫叶
+     拿蛰龙赤有用
+宿命A/桃源_晨雾
+     对解白玉京的谜题有用
+     十八盘拿小册子
+     与于一飞有关
+宿命A/桃源_流星
+宿命A/桃源_核桃
+     加2点才智
+ 
+时辰："子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"  中第(date / 120) % 12个
+
+书
+literate: 清平的书（76）。 
+unarmed: 少林的西来堂志善碑（51）。 bat 赵刚 掌法进阶 (71) wudang (51)
+move: 蝙蝠岛的竹片（40）,  清平练梅花桩 (100,超慢,运气<20 不用去了)
+dodge: 少林寺的足印 (50) 
+parry: 刘老农的过招要旨（61）。 
+force: 古玉牌（181）, 兴国的jinbook(MAX 91),tx的force book(140)
+magic: 阳经（41）。 
+spells: 阴经（41）。 
+sword: 清风十三式（51）。 
+yoga: 火龙赤皮（71）。华严血经 100(1m可读，要fanwen.只有dazhao.shaolin 
+2m前可以享受 ) 
+incarnation: 少林缅甸白玉佛（100）。 
+doomforce：万梅山庄残棋（31）。 
+xiaochengforce：兴国寺达摩石像（51）。 
+bolomiduo：泰山经石屿经文（40）。 
+jiayiforce：锦册（75）。 
+iceheart：冰心决（11）。 
+buddhism：少林藏经阁的涅磐经（199）。 战袍(51), 还有jade seller那里卖的
+玉像(51)
+essencemagic：箫曼风的玄武战袍（6）。 
+changelaw：老刀把子的易经（11）。 
+daode：少林僧监铁栏（50）。 
+stealing：妙手空空之技（31）。 
+dabei-strike：少林观武碑（51）。 
+puti-steps：少林的大唐天后御制诗书碑（51）。 
+xingyi-stick：少林紧那罗，（50）。××好像是10级 
+meihua-shou：铁雪山庄的一剪梅花手秘芨（51）。 
+deisword：铁雪山庄的蝶恋花剑法秘芨（51）。 
+qidaoforce：铁雪山庄的棋道秘芨（51）。 
+fall-steps：铁雪山庄的秋风步法秘芨（51）。 
+shortsong-blade：铁雪山庄的短歌刀法秘芨（41）。 
+taiji-quan：老刀把子的太极拳谱（11）。
+three-sword：老刀把子的三才剑谱（11）。***这个没有了。  
+five-steps：老刀把子的五行身法图(11）。 
+taiji-force：老刀把子的太极内功入门（11）。 
+ill-quan：朱藻的石墙（50）。 
+foreknowledge：叶雪的占卜入门（30）。 
+chanting：少林藏经阁的贝叶经（100）。 
+xisui：少林藏经阁的洗髓经（100）。  
+tigerstrike：泰山的虎山（200）。 
+wuzheng-force：蝙蝠岛的薄绢（40）。
+hammer :wolf man身上有进阶(51)
+spear :富贵酸梅汤那里，扫地拣到的盒子里有枪法 (51)
+staff :红莲花的进阶(51)
+throwing :老老妇人的进阶 (51)
+
+yue-script:strategy (81)
+yumeiren:charm，(50)
+树枝/梅枝：燕13-sword.  (100)
+xuezhan-spear:霸王枪谱 (51)和霸王枪谱同时得到的有本枪法书 study spear to 101 level. 
+
+query_skill(*, 1) - basic skills
+query_skill(*) - enable skills
+
+QUEST
+带血纱衣		千金楼
+油皮袋			帝王谷，白水湖
+缅玉镯			沉香镇，郑甲
+蓑衣			桃源
+紫花瓣儿		淳于
+石榴裙			千金楼
+破旧不堪的长衣	沉香镇，清波公子
+大理石			沉香镇，王石匠
+砍柴刀			沉香镇，农具店老板
+鬼牙玄冥杖		帝王谷，黑石道路，shixiang
+丫环			千金楼
+米酒			桃源
+
+
+
+┌───────────────┐　风云Ⅳ使命榜　┌───────────────┐
+└───────────────┘～～～～～～～～└───────────────┘
+【葛伦的『天竺佛珠』(fozhu)】                【黄麻子的『红包』(hongbao)】                
+【王仁德的『考题』(kaoti)】                  【寒梅先生的『梅牌』(meipai)】               
+【常胜将军的『武穆遗书』(yue-script)】       【青竹先生的『竹牌』(zhupai)】               
+　阿发的『阿发日记』(afrji)　                　表哥的『巴山图』(bstu)　                   
+　赤松的『大昭密文』(dzmwen)　               　石观音的『天缺古月寒』(guyuehan)　         
+　红娘子的『五罗轻烟帕』(handkerchief)　     　兴国大师的『鸿孤遗托』(hgyituo)　          
+　林仙儿的『金红散花衣』(huaqun)　           　雪蕊儿的『流星蝴蝶剑』(hudie-sword)　      
+　小马的『护花铃』(huhualing)　              　班察巴那的『五花神弓』(iron-bow)　         
+　铁传甲的『铁甲袍』(ironrobe)　             　天机老人的『觇玉软靴』(jade-boots)　       
+　天机老人的『觇玉发簪』(jade-pin)　         　天机老人的『觇玉戒指』(jade-ring)　        
+　淳于怀太的『极乐丹』(jiledan)　            　李霞的『金牙箍』(jygu)　                   
+　郝生意的『太平灯笼』(lantern)　            　瞎老爹的『夜明珠』(lighting-pearl)　       
+　农具店老板的『砍林刀』(lindao)　           　阿毛的『鲁班尺』(lubanchi)　               
+　逍遥侯的『逍遥紫袍』(magrobe)　            　金灵芝的『沧海明月心』(moonheart)　        
+　良家妇女的『卖身契』(msqi)　               　箫王孙的『暴雨梨花针』(needle box)　       
+　南宫十三郎的『南宫家谱』(ngjiapu)　        　枯梅大师的『凝碧剑』(ningsword)　          
+　柳无眉的『千年温玉』(old jade)　           　楚留香的『踏月飘香扇』(pxshan)　           
+　黑袍公的『棋盘』(qipan)　                  　古丽娜的『曲蔓』(quman)　                  
+　木拉提的『英吉沙快刀』(sharp dagger)　     　百晓生的『神兵谱』(shenbingpu)　           
+　朱笔判官的『生死簿』(shengsibu)　          　心湖的『方丈手谕』(shouyu)　               
+　齐小燕的『弹弓』(slingshot)　              　孤松先生的『松牌』(songpai)　              
+　孙天灭的『三清宫规』(sqgonggui)　          　酒肉和尚的『三字经』(szjing)　             
+　白水娘娘的『天一神水』(tianyi poison)　    　铁中棠的『铁血大旗』(tiexue-flag)　        
+　朱五太爷的『搏浪锤』(wave-hammer)　        　郭大路的『猴儿酒』(wine-hulu)　            
+　丁鹏的『出跸刀』(wood-wandao)　            　谢长勤的『武当录』(wudanglu)　             
+　西门吹雪的『无剑心法』(wujianxinfa)　      　石雁的『太极五行牌』(wuxingpai)　          
+　连城璧的『侠义无双令』(xiayiling)　        　丁白云的『降魔道法』(xmdaofa)　            
+　朱藻的『仙笑歌』(xxge)　                   　快活王的『夜光杯』(yeguangbei)　           
+　方玉飞的『银钩牌』(yingoupai)　            　殷正廉的『知府印章』(yinzhang)　           
+　苏蓉蓉的『白玉美人』(yumeiren)　           　陆小凤的『指环儿』(zhihuan)　              
+
+┌───────────────┐　　　　　　　　┌───────────────┐
+└───────────────┘～～～～～～～～└───────────────┘
+skills对应能力提升
+chanting-诵经-cps-定力，系数：9/5
+charm-媚术-per-魅力，系数：9/5
+damoforce-达摩易筋经-con-体质，系数：10/4,usage:force,1
+dormance-修养术-tol-气量，系数：9/5，179,189,199加50内力
+force-内功心法-con-体质，系数：9/5
+foreknowledge-占卜学-kar-运气，系数：9/5
+ghosty-force-无坎真阴，减age，100以上，每10，1岁
+herb-药道-resistance-抵抗能力，100以上，9/10，189,199而外
+incarnation-修仙术-spi-灵性，系数：9/5
+iron-cloth-铁布衫-fle-韧性，系数：9/5
+jinhong-steps-金虹步, usage:dodge,1;move,1
+literate-读书识字-int-悟性，系数：9/5，limit:149,int30
+longlife-force-苍生诀，减age，80以上，每20，1岁
+move-基本轻功-agi-速度，系数：9/5
+nine-moon-claw-九阴白骨爪，add bellicosity 100,逢10加500
+strategy-兵法-cor-勇气，系数：9/5
+unarmed-扑击格斗之技-str-力量，系数：9/5
+yoga-瑜珈-dur-耐力，系数：9/5
+
+guanwai:
+原始森林：n;e;e;见独孤美
+
+		f2
+		|
+f6 - forest - f5
+		|
+		f1
+
+	f2
+	|
+f5 - f1 - f6
+	|
+	f5
+
+	f5
+	|
+f6 - f2 - f3
+	|
+	f7
+
+	f5
+	|
+f5 - f3 - f4
+	|
+	f6
+
+sleep hua gua fu;
+ask biaoge about mission;
+accept yes;
+
+tell dog 狗郎君;
+give sword(白剑) to ye xue;
+
+qianfo:
+千佛山：red-heart,white-lung,yellow-stomach,green-liver,black-kidney
+#5 smile;
+push luowang;
+look langlan;push button;
+
+ask fengqing about leg;
+ask fengjing/fengling about road;
+ask yunliu about yiren/tanqin;
+ask yunhai about fomen;
+
+ask laoshi about silk;fight laoshi;
+
+fy
+风云城：
+force_factor >= 100 open curtain;meet lixunhuan
+move bamboo;kill cockroach;
+look bed;look bell;
+
+ask shaonian about sword;ask wang about sword;ask fatman about sword;ask yahuan about fatman;
+search;
+
+小山坡顶
+look tree;get tree;make
+风云雅阁
+open curtain;north;
+
+jinan
+牢房：listen sound;yell help;accept yes
+
+chenxiang:
+kill moman;get all from corpse;give special coin to medman;give special coin to xian;
+wanmei:
+chop;get 21 tree
+give tree to huying
+kill huo ji;push coffin
+
+shaolin:
+掖门: give 5 gold to monk;
+碑林,少林观武,息庵禅师道行之碑大唐天后御制诗书碑,: study guanwu;study xilaitang;study daoxingzhibei/daoxing;study shishubei
+洗髓25小时刷新一次
+
+wolfmount，狼山:
+kill rabbit at taoyuan;fry rabbit corpse with kaolu at qianfo
+give fried meat to fighter wolf
+get 虎骨 at 虎穴
+野狼坡: look grass;get ye guo from grass;look cave;crawl up->狼窝:look cave;crawl down
+鹰愁涧: look fountain;fill water;
+客栈后院: look brook;swim;
+浣花溪；blow conch;
+force>50,每吹次，force-40,busy(3)
+见小马，cure xiao ma;accept yes
+太阳湖，dodge > 100，可以charge center
+ask laopi about xiaoma;ask laopi about friend
+如果有(宿命B/泰山_日出),则answer yes/no(good),否则accept yes/no(normal)
+白云深处：非狼山弟子要给30 gold,give 30 gold to oldman;
+狼山弟子给3 gold
+天梯：kar < 20，掉下去
+
+quicksand:
+
+ds0..ds5(random) - dsentry
+		ds1
+		|
+ds3 - ds0 - fy_entry
+		|
+		ds2
+		
+		ds2
+		|
+ds5 - ds1 - ds7
+		|
+		ds0
+		
+		gy_entry
+		|
+ds6 - ds2 - ds8
+		|
+		ds1
+		
+		ds5
+		|
+ds4 - ds3 - ds0
+		|
+		ds6
+		
+		ds7
+		|
+ds0 - ds4 - ds3
+		|
+		ds8
+		
+		ds6
+		|
+ds7 - ds5 - ds1
+		|
+		ds3
+
+		ds3
+		|		
+ds8 - ds6 - ds2
+		|
+		ds5
+		
+		ds8
+		|
+ds1 - ds7 - ds5
+		|
+		ds4
+		
+		ds4
+		|
+oasis - ds8 - ds6
+		|
+		ds7
+		
+		loulan
+		|
+ds9 - oasis - ds7
+
+		ds1
+		|
+ds10 - ds9 - oasis
+		|
+		cx
+		
+gy_entry - ds10 - ds9
+
+
+		ds6
+		|
+		qs6
+		|(sink 5 times)
+		chensha
+		|
+		sandriver
+
+bat:
+combat_ext > 2.5M，可以和master chu (qiecuo), 给master 宋甜儿的"斜阳倚翠红袖招"就可以qiecuo
+from seaside, east;look bush;dash bush;
+succeed only if str >= 30, force >= 500. and then force -> 0
+ask wei xing long about book;fight wei xing long;
+east;ask master chu about bat island; (only if not fighting)
+if female player "look master chu", she got unconcious.
+give qing feng book to ding feng;got onto the boat;look wave
+once got to bat island, every npc is killer, BE CAREFUL !
+e;洞口;dash;open leftdoor->冷箭，最高2250的伤害
+open rightdoor->东三娘
+丹房，get all from case->bat drug可解蝙蝠毒
+书房，旧竹片, 39lev move;铁手掌, 39lev parry;蝙蝠岛文学篇, 50lev literate;薄绢, 59lev wuzheng-force
+ask wenshi about maze,似乎是左右后前右左后。(实际为右左前后左右前，e,w,n,s,w,e,n)
+赵刚，10%的机会有unarmedbook
+黑洞:
+		d1
+		|
+d1	-	d1	-d2
+		|
+		d1
+		d2
+		|
+d3	-	d2	-d2
+		|
+		d2
+		d4
+		|		
+d3	-	d3-d3
+		|
+		d3
+		d4
+		|
+d4	-	d4-d4
+		|
+		d5
+		d5
+		|
+d6	-	d5-d5
+		|
+		datin
+		d6
+		|
+d6	-	d6-d7
+		|
+		d6
+		dungeon
+		|
+d7	-	d7-d7
+		|
+		d7
+dungeon
+	|
+	d5
+储藏室，look woodcase,bat drug
+有凤来仪,open ping feng
+拜原随云需要杀湖铁花
+say 我来过，活过，爱过！
+
+baiyun
+南海, ask old fox about baiyundao
+ask old fox about 狐狸窝
+未完成
+
+bawang，饿虎岗
+老山东的馒头店
+要带老山东的面具和老山东的“脏布衣”，同时给大楼罗烧鸡
+ask baili about guidongjing
+
+xinjiang 新疆
+shake blade
+ask old woman about whom
+白杨沟，dig,当运气低于30，可拿到smonk, 49lev puti-steps
+在冰川用盐水pour 10次，可解冻
+天山，get all from snow;yong 天山雪莲，疗伤
+天池，26-28岁之间，晚上看到流星，加“宿命”
+ask xie changqing about mei shanmin(梅山民)
+
+resort 铁雪
+
+biancheng 万马堂
+
+taishan 泰山
+配天门，道士，小竹拂尘
+雨花道院，可以灌水
+配寝殿，study shenfei，90lev incarnation
+look huabei;get all from huabei;东岳神的睡像(Shuixiang)
+
+oldpine 老云寨
+小石桥，look waterfall;look vine;hold vine
+dodge > 5时可见逍遥候(Xiaoyao)（叫杀）
+#3 s;climb cliff;climb up
+只有通过coin出pine
+
+华山
+密林----ML
+山间小道----xd
+		ML
+		|
+		xd
+		
+		ML	
+		|
+ML2	-	ML-ML
+		|
+		xd
+		ML2
+		|
+ML	-	ML2-ML
+		|
+		ML1
+		ML1
+		|
+ML	-	ML1-ML3
+		|
+		ML2
+		ML1
+		|
+ML	-	ML3-ML2
+		|
+		ML3
+
+fugui 富贵山庄
+(过蚂蚁必须全部完成才有success mark)
+红蚂蚁 - 胭脂(temp) [fy - buy from 芳儿] - 烂瓦罐(极品女儿红)(eternal) [fg - give 10 gold to 奎元馆伙计]
+白蚂蚁 - 风云马褂(temp) [fy - 考生] - 秋风步法秘笈(eternal) [resort - 黑袍公,e]
+银蚂蚁 - 舍利子(天竺佛珠)(temp) [guanwai - 护寺喇嘛] - 9-ring staff(eternal) [master gelun]
+金蚂蚁 - 寒玉短剑(凝碧剑)(temp) [fy - 无聊少年] - 长生剑(eternal) [red girl in tiefalg]
+fugui 密林
+white(金)->blue(水)->green(木)->red(火)->yellow(土)->white(金)(正循环到tomb)
+white(金)-<green(木)-<yellow(土)-<blue(水)-<red(火)-<white(金)(负循环到whiteant)
+
+dqg 大旗谷
+运气大于19才可拔离别钩(leavehook),否则被剑气所伤
+ask yin bin about man
+ask zhu zao about 过阵(test)
+红室 practice any skills, redgile give 长生剑
+黄室 ask girl about 孔雀图, give girl 孔雀图(real), give girl 49 纯金叶子
+青室 open picture;s get out of it
+紫室 tell girl 天南地北双飞客,得多情环
+黑室 到方舟，accept no可以得到force+3
+
+                       RED GIRL 
+          cyan girl               black 
+
+     yellow girl      ZHU  ZAO      green girl 
+
+          blue girl               mag girl 
+                     ORANGE GIRL  
+
+
+as mentioned before, a simpler nmenonic: 
+东南西北:红橙黄绿 
+then starting from northwest, counterclockwise:青蓝紫黑 
+
+
+palace 帝王谷
+
+holeopen - dkhole
+
+			dkhole3
+			|
+dkhole2 - 	dkhole	- dkhole1
+			|
+			dkhole4
+			
+			dkhole3
+			|
+dkhole2 - 	dkhole1 - dkhole
+			|
+			dkhole4
+			
+			dkhole3
+			|
+dkhole - 	dkhole2 - dkhole1
+			|
+			dkhole4
+			
+			dkhole
+			|
+dkhole2 - 	dkhole3 - dkhole1
+			|
+			dkhole4
+			
+			dkhole3
+			|
+dkhole2 - 	dkhole4 - dkhole1
+			|
+			dkhole
+			
+KHL - 快活林 - 楼兰
+从孔雀河出look sandstream;wade sandstream 随机进入4佛塔
+
+东佛塔 - 韩伶 (酒使)- give 孔雀开屏才可过
+调配孔雀开屏: 用精制酒壶(winepot)[熊猫儿] mix 七种酒(古城烧[关外吕恭], 狼酒袋[狼山郝生意], 竹叶青酒袋[富贵伙计], 绍兴女儿红[富贵伙计], 高粱酒袋[杏花村], 剑南春酒袋[沉香卖面年轻人], 董酒[千佛山的卖牛肉那个])可调配。
+
+南佛塔 - 江左司徒 (色使) - give 阴阳和合散才可过
+调配阴阳和合散: 富贵韩掌柜，晚上去(四周一片黑暗，同湖上女)，得到耳语greeting"脸上浮起了一种诡异的笑容。"，之后给他《金瓶梅》(fy读千里)，在晚上(同上)给他30+random(30) gold 可得阴阳和合散。
+
+西佛塔 - 金无望 (财使) - give 100 gold可过
+
+北佛塔 - 独孤伤 (气使) - fight
+
+
+【圆月弯刀】 
+奖励 100max_force and moonblade 
+晚上在毛女洞听音乐——四更，等吧，自动提示。听到后，沿着音乐走到玉女峰，会见到青青，ask her about 弯刀，然后 l stone,climb stone,多爬几次，爬上石头会看见一朵花，摘了之后，会出来一个老人，它让你把花给他，如果同意，他会给你100 max_force。其他回答其它结果，没什么用 
+
+【有关离别】 
+奖励：每个站的第一个解谜人可以学xiaohun-sword（系数2.5），后来的只能学除了这个的其他技能。 
+这个谜题首先要拿到天山雪莲，在新疆。具体是，先买几个wineskin(不知道马桶行不行？),拿着桃园的铁锹，到新疆李豹处dig,会挖出盐块来，pour it in wineskin.得到盐水，然后到冰川（从新疆城门南到头）。pour wineskin. 直到冰融化，然后就会出一条向南的路。进去沿路看，l snow.会看到天山雪莲，get it from snow,等着拿两个。第一步完成。一个羊皮酒袋可以进去多次，雪莲大概1天刷新一个。 
+然后到风云的东南无名镇，到小虎子(xiao huzi)处，由于小虎子一有人到就会死掉，最好在他南一步打好heal xiao huzi，这样就会听到他说一句话然后死掉。接着到老于(old yu)处，问他ask him about 杨铮。接着往北一步到屋里，他会给你一封信，拿着信到master lan yichen,把信给他，他会跟你说一通话。然后你到老张头(old zhang)处，买他的三样热菜，回到master lan yichen, 往北，他会让你进去，你会见到吕素文(lu suwen), 接着l table,l 纸笺,l lu suwen,wake lu suwen.她会对你说一些话，给你一本书，没用的（：。这一步完成。（注意要快，否则热菜会变凉菜，可以出来重新买） 
+接着就要去找杨铮回来了。首先去大旗谷拔出离别钩。然后回到无名镇，到磨刀老头处，把离别钩给他，他会对你说一通话。然后再到小虎子处，用雪莲再heal他一次（需要update),他会又说一些话。然后到悦来客栈二楼，到狄青麟(Di qinglin)处，等着吧，杨铮会把他干掉。结束后，谜题就解的差不多了。 
+接着回到吕素文处，会看到他们夫妻俩死掉，背着他们的尸体，往南走，会看到黄土，dig 黄土,挖出delve, 把两个尸体放进去，bury delve.。ok,finish le,goto master lan yichen learn ba. 
+（版本2，次序有所不同：接着就要去找杨铮回来了。首先去大旗谷拔出离别钩。然后再到小虎子处，用雪莲再heal他一次（需要update),他会又说一些话。然后回到无名镇，到磨刀老头处，离别钩会自动给他，他会对你说一通话。然后到悦来客栈二楼，到狄青麟(Di qinglin) 处，等着吧，杨铮会把他干掉。最好再带一把离别构，杨出来后就给他，杨需要离别钩才能杀死狄青麟。结束后，谜题就解的差不多了，接着回到吕素文处，会看到他们夫妻俩死掉，背着他们的尸体，往南走，会看到黄土dig 黄土,挖出delve, 把两个尸体放进去，bury delve. 
+ok,finish le,goto master lan yichen learn ba.） 
+
+【Spear Book】 
+最简单，拿到 大旗谷的霸王枪（怎么拿？和fy3一样），把枪给ehg的王若兰，ok！她给两本书，一本读基本spear to 101,不能给人，可以pawn。另一本读xuezhan-spear to 51，可以给人，可以pawn。 
+
+【义助卜鹰】 
+先拿到birdcase( tj,n,n,n,give fatman 3 gold)，gw（关外） skylark（云雀）, catch skylark（碰运气的，可能运气越高越容易，当然需要一定基本doge, move，），then 到齐小燕，给他birdcase,后面就照着提示做，见到卜鹰后，对歌得到魔眼剑，给小方（bancha的上面，need 100 move, climb tree)可以加自造武器的属性，小心wield,好像wield错的话，奖励就没了 
+
+【拜柴玉关】 
+穿上fang xinqi的斗篷，去master chai那里有提示，照着做。。。然后到shenlang那里，bai feifei会走，然后ask shen lang about 朱七七，shenlang 给你一块玉壁，给了zhu qiqi，然后去喜娘的那个地方，假的baifeifei会杀你，杀掉他，把地下的那个箱子拿起来，给快活王，他会给你一本无敌保健，ok了。 
+你知道fight赢dugu shang就能拜master chai了 
+
+【梅山民】 
+需要冬天。。。准备old jade。 
+杀了历鹗，再那里等一会，会出现一个晕倒的文士（radom），看到他之后立刻cure wenshi，他会醒来，他会问你知不知道他是谁，回答随便没什么影响。然后杀了chi yang,ku an,li e,ask xie changqing about 梅山民，ok le。 
+在fy城外的竹林, north, north,push bamboo,会看到两条路，向northeast走就行了。 
+补充一下需要exp>4m,then,你的那一项基本=200才能学。 
+
+【拜谢晓峰】 
+梅枝 
+look meizhi，看到可以study，study 梅枝，sword>120 
+给一尘，回答no，打yan13回答yes，去找yan13，ask yan13 about fight，answer no。等到 晚霞将西方的天空映成一片火红，向w，夕阳红如血，竹林也红如血，天地间充满。。。 
+yan13死后，answer 毒龙，然后就可以拜了,exp>2M。 
+概率15%，要看过海潮(举目望去，海上波涛山立，巨浪汹涌。一条白浪向海岸疾驰而来， 势若奔雷。瞬间即到，拍击海岸。但见乱石崩云，惊涛裂岸，激起重重白色的 
+水雾如堆雪般在轰鸣声中向岸上蔓延。 
+
+【碧海蓝心】 
+这东东就是嵌到武器上，像天灵翡翠一样，可以加5点灵性。有谣言说是5点灵性或5点运气，不知道了，谁知道的言语一声。 
+条件：要求2M以上，能杀千年大章鱼，杀不了，找人帮忙吧 
+先到神水方灵玉那，listen 海涛声，answer dunno,得到一件装备，水下道具，wear之。然后climb window,跳到海滩上，dive，就到章鱼那了，杀了他（尸体里面有个claw，好像类似short sword，可以装备）。then dive，到了最海底，search，看到sea shell, pull, 跑出来两个白鲨，杀之。再pull,看地上有了，去嵌吧。 
+
+【殉鹰记】 
+奖励：能够spy某个人，知道对方在那里。对pk比较有用。 
+首先要从公冶长那里学animal-train和animal-talking，好像要都要200级，这个没有试过。跟公冶长学功夫要解一个小谜，就是跑到公冶长那儿，他有时候会说一些话，如果没有说，就反复n,s.然后follow craw, 乌鸦会带你到一个地方，你随便拿个东西chop,就能摔到崖底,search会看到死狼，拿回来给公冶长，他就会让你学了;并且给你wolfmeat。 
+然后从华山樵夫那里拿到woodaxe，然后到hawk那儿，首先要干掉hawk trainer或让他走，一种办法是做个公冶长的mask，让dummy戴上走过去，他就会跟着走，然后就可以往下继续了。另外我听人说，用shetong可以干掉他。可是zhu tong到哪儿拿阿，找了半天，好像在danfan那里，可就是不知道怎么拿。 
+然后feed hawk with wolfmeat,提示你有chain. 然后wield woodaxe, chop chain,get chain.多敲几次feed hawk with wolfmeat,直到hawk飞到你身上，然后chain hawk, 然后train hawk,多train几次直到不能train。ok 了，这样有一个缺点，由于没有hawk trainer的装备，hawk的利爪会持续伤你的kee。但是hawk trainer用普通方法太难杀了 
+
+【富贵永久Mark】 
+red ant,　give jx huoji 10 gold，得到poor pot，give red ant poor pot 
+white ant, fall-steps book 
+silver ant 9ring-staff 
+golden ant longlife sword 
+
+【义助袁姬】 
+exp限制1.5m。 
+ask qingbo（清波公子） about yuanji（袁姬） 
+ask yuanji about qingbo 
+ask qingbo about 十五月圆 
+get yin (戴手环，去法场见到谷慧儿，然后去城隍庙，ask jiuye about yin) 
+give gu huier yin, ask gu huier about 死而复活 
+get botao,wear botao 
+来到田膨郎 ask tianpeng about yaofang，连续几次，他会被人暗杀，并掉下一个蜡丸，把蜡丸给yuanji，迷题就over了。 
+奖励好像是随机的，5-30点，灵力，内力，法力，都有可能把。mirror不知道做什么用，好像可以wear有加属性吧。 
+被杀的话，加的东西多点把。 
+至今发现三种解的方法， 
+一个是不戴botao，给杀。 
+一个是戴botao，把那个lawan给yuanji 
+一个是戴botao，把那个lawan吃掉 
+都可以加。 
+不知道是不是随机加的。 
+总之死掉加的最多。 
+给yuanji加的最少。 
+吃的话只能够吃一次。 
+
+
+【天上白玉京】 
+（Version I）先要拿到藏宝图： 
+杀了门口站岗的三个家伙，往北一步，再杀那个姓方的。然后pull picture，e。杀了里面的青龙会弟子，打开大铁箱，拿到1张thousand-cash和藏宝图。read map，就象afrji一样，走啊走啊走，终于“你一弯腰，从『藏宝图』所指示的地方挖出孔雀图！”真的孔雀图到手了。 
+去大旗谷，到red girl的房间practice（任何功夫都行），red girl会随机给你长生剑。拿到longlife sword, 不停的look sword,直到有提示turn sword，拿出假的孔雀图，然后把假的给门口的三个，进去之后give sword to bai yujing，“白玉京颤抖着双手，挣扎着想接过宝剑，但‘噗通’一声，摔倒在地，宝剑也落到地上。这绝代剑客，竟连自己的宝剑都拿不稳了。”然后把真的孔雀图给白玉京，然后“白玉京对你缓缓道：为了一张孔雀图，尔虞我诈！人间可还有真情在？你可否告知我袁姑娘究竟是爱我还是恨我？（answer love/hate）”就需要作出选择了。回答之后，袁紫霞和卫天鹰就过来了。根据你做出的选择，会有不同的情节出现。如果你看过有关的原码，应该知道各种选择会产生什么结果。 
+
+（Version II）先要拿到藏宝图，dig 真的孔雀图。去大旗谷，拿到longlife sword, 不停的look sword,直到有提示turn sword，拿出假的孔雀图，然后give 假的 门口的三个，进去之后give sword to bai yujing，等议会他们就过来了，然后回答hate ,love... 
+
+【征服珠峰】 
+到班查巴那那里，sw到冰原，经过迷宫到了山底，一直up，小心被活活砸死， 
+到了山顶，fight过前一个第一人就可以了，好像没有奖励，5555 
+
+【梦捣黄龙】 
+ask master yin about 岳飞，然后去大明湖l bei，wield lindao，clean bei，然后按提示去做，再一次ask master about 岳飞后east去书房study手稿，然后去岳飞那里不停的hi 岳飞，然后就会出现岳飞问你拜师的事情，直接拜就是了。 
+
+【力斩凶魔】 
+到血头陀那里enter，south到头，就到了蚩尤秘窟，pull staff，会被砸死or砸晕？蚩尤出来啦，kneel or reject，kill 蚩尤会随机掉一些东西的,tiger soul,jade shield, shred claw... 
+
+【尚方宝剑】 
+ask shaonian about sword,ask wang about sword, 
+ask fatman about sword,ask yahuan about fatman 
+search就拿到了，把sword给master yin就可以了 
+
+【巧破大盗案】 
+是不是凤栖吾那个？麦老广show yaopai，进去杀了凤栖吾，l 灶台，get tieguo from 灶台，然后就系统自动了。 
+
+【智探饿虎冈】 
+是不是见王若兰啊？ask baili about 归东景就进去了。 
+
+【铁杵磨成针】 
+wd必作，一直磨就可以了，需要耐性， 
+
+【罗刹牌】 
+give lixia 10 gold,在神秘冰洞（sw方向的）bomb出steel tube，get luosha from steel tube，这是假的，到黄麻子那里n，open picture，w，n，give luosha to xiang，他会给你真的，可以从罗刹牌study到乾坤无形，可以enable到magic上面。 
+
+【暗闯底舱】 
+kill 打更的，pull curtain，down，见到3个恶魔，里面就是妇女了。 
+
+【勾魂使者】 
+accept test, tell ghost no face 
+
+【独闯老云寨】 
+到泰山小石桥hold vine，＃3 south，climb cliff，climb up，到老云寨就easy了 
+
+【武当掌门的秘密】 
+ask 过长逊 about 老掌门，杀之，就可以拿到mask＋衣服，然后弄到七星剑，穿上衣服加面具，wield sword，去见石雁吧 
+
+【神水的进法】： 
+1.首先要在桃源村拿到的火褶子到老屋东边山洞的最西北角，摸索(search)几下，可以摸到一个铜灯，然后用火褶子点亮(use lighter)。就进了洞里，在洞里走一下，中间有个大石，上面写有一首缺了三个字的诗。填上缺的三个字"write 絮春春"，就可以进入白水宫了,进入白水湖方法之三完成(共一步)。不过别人就要等很久才能进来了。因为如果已经有人写了字，要隔很久才能再写。 
+
+2.先到清平山庄的大厅去look 屏风，然后到清平后院，n的墙上，得到风筝（kite），到长白山的湖边，放风筝(play kite)，最好带两个风筝，因为一半机会风筝会断线。只听一阵清悦的哨音从高空传过！来了一只小船，下去船里，船不开，用sail划船，船开到了湖中间，这里没有任何出路。怎么办，跳(dive)湖！不远处有一个石洞，洞上用珍珠拼成四个字"水宫之门"!下面不用说了吧，当然是进去(enter)啦。进来以后，一直走到溶洞尽头，touch 钟乳石后，就掉到艳洞了。刚才好似天堂，现在你却似身在地狱，四周是昏黄发红的光线，你不由觉得好热，而且越来越热，似乎有火在煎熬着你，看上图就知道只要走两步就接近出口了，你左摇右晃，但是还是坚持着没有晕倒。这里输入faint，你脚下一个踉跄昏倒在地上，然后就真的昏了! (faint，什么解法)忽然头顶滴下几滴水滴把你从无比的烦燥与昏热中解救出来原来上边有一洞口。一个完全赤裸的…………正拿着水壶往下滴水。你暗中已经记住了洞口的方位。然后就朝这个方向跳(jump up)就可以进入了。 
+
+3.在清平山庄的后花园爬老槐树(climb tree)，必须轻功有效等级70以上才能爬到顶。上去树顶后search，发现鸟巢(nest)，里面有鸟蛋和钥匙。下来用jump跳到院墙上，再jump跳回花园。在花园东的池塘push stone，可以得到蚯蚓，然后put qouyin on Fish pole，去northeast的池塘climb tree爬上垂柳，运气要好，不行就多爬几次。之前要到桃源村弄到鱼杆，然后就可以钓鱼(fishing)了。运气好的话，你会注意到桥头雪白的石头上似乎有一块黑斑。然后去拱桥。在桥上search，你发现桥头的一块石头上凹进去了一块，在凹进去的地方有一个小孔。bingo!钥匙有用了！use key，平静的池塘水面上似乎起了一个小小的漩涡，不仔细是看不出来的。似乎什么地方的机关开了。回去上面的池塘爬垂柳，掉下水去，然后尝试爬上岸(up)，但是水草缠上了你，只好下到水底了。水底有个石头(stone)，这时推push stone就能开了，但你也会摔昏，醒来一看，哇，怎么到了白水宫了！这种方法是有条件的，你的运气必须大于15。 
+
+【三清宫】 
+进入三清宫要爬山，爬上爬下的，最后进门要敲门(knock door)，孙天灭会出来让你进去，出来的时候要自己拉开门(pull door)，如果门是关着的话。踢门(break door)也可以，这样门会坏掉，孙天灭会出来带几个小道士杀你，不杀了他就进不去，杀了他以后门就一直开着，直到系统很久以后更新。 
+
+【清平】 
+拿到蚯蚓后去northeast的池塘climb tree爬上垂柳，运气要好，不行就多爬几次。之前要到桃源村弄到鱼杆，然后就可以钓鱼(fishing)了。运气好的话，你会注意到桥头雪白的石头上似乎有一块黑斑。然后去拱桥。在桥上search，只要你灵力19以上，你就发现桥头的一块石头上凹进去了一块，在凹进去的地方有一个小孔。cool!鸟巢的钥匙有用了！use key，平静的池塘水面上似乎起了一个小小的漩涡，不仔细是看不出来的。似乎什么地方的机关开了。 
+
+【古玉牌】 
+要取得古玉牌，必须从湖上八娇处分别得到八块玉壁。然后把八块玉壁合并成一块古玉 
+牌，玉壁的取得方法： 
+　　 a、水玉壁只要把湖上水杀掉，就可搜到。 
+　　 b、酒玉壁给个装满酒的酒袋给湖上酒。 
+　　 c、花玉壁在徐娘那get pin from flower，可得到黑玉发簪pin给湖上花。 
+　　 d、草玉壁从附近的采菱女处购到嫩藕，给湖上草。 
+　　 e、月玉壁要在风云城的苏红儿那买到生烧扒翘，然后给湖上月。 
+　　 f、柳玉璧给110两黄金给湖上柳。 
+　　 g、雪玉璧你要在风云城做个花满城的面具（print huaman），然后戴(wear)上， 
+随便给样东西给湖上雪。 
+　　 h、女玉璧要在“夜幕低垂，满天繁星”的那个时辰随便给样东西(除了钱)给湖上 
+女。 
+　　 得到八块玉壁，你可以Look shuiyu，然后… 
+
+【运镖】 
+ask 查猛 about mission，就可以运镖了。条件是有一定存款和武功。运镖时会自动移动，中途会出现许多山西劫匪，都是阿铁的亲戚，所以武功不差，所幸没有enforce，所以金刚不坏就大有用处。运镖的目的地是沉香镇钱庄。奖励大约一千多经验，潜能若干，和一个好task差不多。 
+
+【劫镖】 
+由于运镖太累，镖银太多，奖励太少，所以玩家往往监守自盗，自己杀掉李镖头，独吞 
+镖银。open cart and get all from cart。 
+
+【嵩阳铁剑（郭嵩阳）】 
+郭嵩阳被关在金钱帮的水库里。从广场去是：s，s，w， w，n，w，open tiao，wd。从白水草丛里找到断剑，id是guo sword的就是嵩阳铁剑，拿来给郭嵩阳，不用拜师他也会教你基本剑法，可以到100级，另外还有40级dodge。 
+
+【送饭换书】 
+小镇的厨房有个老妇人，ask woman about 饭，她就给个饭篮(basket)让你送去给她老公，到庄稼地把饭篮给老头，老头会给一本书你，「轻功入门」", "「内功简介」", "「拳法入门」", "「剑术简介」",都可学到31级。 
+
+【武当后院】 
+后院不许非武当弟子进入，一进就会被当小贼打昏，多没面子，大侠被人当小贼。杂货店有个火工道人彭长净，去城里找芳儿做个彭长净的面具戴上，然后亲手杀了彭长净，就能进去了。杀一次只能进一次。里面有谢长勤。在厢房和练武厅还有书架和兵器架，有兵器，后院有口井。 
+
+【石观音】 
+石观音武功极高(经验99999999)，enforce 又很大(400)，直接是不可能杀死的。在巨大的镜子那里有个镜魂(mirror soul)，是鬼魂，杀了它，石观音的经验就跌到10000，一点气，一碰就死。 
+
+【守经楼】 
+到大雄宝殿见圆灭，ask master about 见方丈，然后回答 answer 重要事。见了方丈ask 他 about 守经楼 然后回答不怕，得到手谕，然后用（wave）它才可以上藏经楼。上到藏经阁的四楼，过一会神秘的人物(mysterious figure)，杀了他就完成了。 
+
+【义助丐帮前任帮主夫人】 
+去大漠风沙找到黑珍珠(Black pearl)然后ask black pearl about letter得到云素密函(Secret letter)到中岳庙open door,向北，见到天枫十四郎(tian feng 14 lang)接受他的测试，一招不减气血就可向北到青童峰见到 「前任帮主夫人」叶淑贞(Ye shuzhen)，give letter to ye,OK! 
+
+【智平武林风波】 
+先完成义助丐帮前任帮主夫人，然后去方丈退居见到「妙僧」无花(Master wu)，之前要先见方丈，这样你才能去方丈退居，无花就会自杀，你就算完成了智平武林风波。 
+
+【智取洗髓经】 
+洗髓经(Xisui)在藏经楼的最高层，一铁(Master yi)在守着，而且不能战斗，但是只要whisper 开饭了！,他就会离开，你就可以上6楼的到洗髓经，可学到100级，条件是必须会梵文。 
+
+【巧进少林寺】 
+进少林寺是不是很麻烦？其实也不需要穿少林僧服什麽的从少林的西掖门给和尚5两黄金就可自由出入了，hehe，和尚四大皆空，还贪财，林子大了，啥鸟都有呀！ 
+
+【救小娟】 
+从风云广场出发，7 east，ne，n，n，n，talk跟小娟谈话；当小娟被抓后，n，u，e，u，e，e，u，e就到达黑松堡正门。正门向东或向西都能用climb wall爬进堡内,从西边爬墙进去后，两步东，然后pull rope就会把你带到地牢。从摔落处向北两步，向东一步，就是黑松堡主淳于怀太的作恶地方，只要你能在刑室坚持十秒钟，就能把小娟带离刑室。从刑室向北一步，连续push rock直到石板松开，露出出口向上。然后去找刘家小房找刘老农，可得到一定的奖励，还有一把銮鱼衡冰和一本过招要旨(parrybook)，可以读到61级parry。 
+
+【进入帝王谷】 
+此处机关重重，搞不好还会在这里面中剧毒，因此千万小心。从风云广场开始，一直向东，2步eastup，ne，e。一过独木桥，一路向南， 在鬼域，输入“east”可到风穴，再向东（east）五步，可到坑道边， 然后"down"，下到坑道touch statue(恶人像)，east，east，east，opendoor，再向东就是带着传厅色彩的帝王谷了。最好用连续命令过，路上有疯老头、怪兽、花大姑见人就杀。 
+
+【危崖】 
+如果你的技能move（基本轻功）有70级，你可以"climb 危崖"，到达"白石"，然后step黑色印痕，enter，enter，到山洞里，north可拿到3本书("法华经", "金光明经", "法句", "泥恒", "法海藏"随机，在当铺可买卖变化），可以读大乘佛法到15级，多search就能回到危崖,不过要想拿出来只能飞了。如果你手里有lighting-pearl（task的那个），search几次就会到帝王谷得大厅。 
+
+【焦都驿】 
+马老四(Max)买的南瓜是地狱最有用的秘密，吃个几次南瓜，然后爬墙（dash），就能进入地狱了。不行就吃多几口，买的牛皮酒袋（jiudai）drink jiudai就可还阳（不管里面是不是还阳酒）。 
+
+【孟婆驿】 
+孟婆汤是地狱最基本的秘密，ask mengpo about soup，然后得到大海碗(hiwan)，drink hiwan就可以还阳。 
+
+【桃源村水井】 
+中间小院可以用fillwater skin来装水，西边小院有个水井(well)，靠近(approach)几次就会掉下去。(可以用climb up爬上来)，待一分钟左右就会冲到地下暗道，在这里可以search，search可以找到一个头盖骨(skull)，这就是武当老掌门的头骨，give skull to master yin恭喜你！你破了武当掌门的秘密！得到1000评价。search多几次可以回到井里。 
+
+【地下暗道】 
+在上面桃源村的地下暗道可以使用(use pearl)夜明珠来照明，照亮了地道，look vine上面写着“武当禁地，擅入者死”，简直就是叫我进去，dive 跳下水，就到了武当内院的井里。危险，先爬出去再说。倒是进入武当内院的好办法，(不用扮老彭)。 
+
+【北边草地】 
+从草地输入north，进入树后草地，有蚯蚓和鱼杆的话可以钓鱼(fishing) 
+
+【荡秋千】 
+在正厅东边的草地有秋千，去玩玩，swing 秋千，忽然发现正厅有蓝光一闪，赶快去找找(search) ，果然找到了一个水晶球(crystal ball)，有什么用？ 
+
+【黑瓷药瓮】 
+在卖鱼的那买鲜鱼一尾，在中药店，把可以买到的五种中药每种买一样，然后就在那输入指令"cook"就行了。 
+
+【开档裤】 
+在见到穿开档裤的小孩时，ask boy about开档裤，他就会脱下来给你了。 
+
+【小面馆的地契】 
+给卖面的老人10两银子，小面馆的地契就到手了。 
+
+【舍利子】 
+ask 胭松 about 舍利子，ask 胭松 about 真舍利子 可以得到真舍利子的线索。然后去沙漠，从黑珍珠那里e,n,look sand，里面有一副骸骨(skeleton)，get skeleton from sand，骸骨里面有一条蛇和一个舍利子，这就是了。 
+
+【赤松】 
+从山路向南走到绝崖，有两个波斯奴，从那里climb down可以爬到死谷，见到赤松。把真舍利子交给他，他就会教你功夫了。（先改为要亲手杀死葛伦，给赤松staff？） 
+
+【七仙女阵】 
+此阵是七个绝色少女，武功虽不高，但也不弱，她们七人将你围在中央，一面脱衣，一面动手脱你的衣服，等她七人衣服脱尽，而你的衣服未被她们脱下一件，这一阵便算你赢了。ask 朱藻 about 过阵，条件是十六岁以上，如果事先脱光衣服，马上就算过了阵。过了阵才可以离开。 
+
+【石棺】 
+打开黑门(open black)，走进去见到卓三娘，拒绝帮忙(answer no)，这时会来个神斧力士，一拳把你打到飞起来(这一下最多可以打掉1250气)，一直飞入方舟，在那里可以见到无名夫人。她会增加你的内功心法三级。就可看到石棺，在石棺里可以拿到霸王枪，另外无名夫人身上有嫁衣神功(Book)，可以学到５０级的嫁衣神功。你也可以见了朱藻直接ask zhu zao about jiayi,就会见到无名夫人，不过不会加你的内功了。 
+
+【长生剑】 
+到七仙女阵里的红房间找红衣少女，在那里练习武功(practice)就可以了。 
+
+【孔雀翎】 
+找黄衣少女，ask girl about 孔雀翎，ask girl about 孔雀图，再拿到长生剑，turn sword得到孔雀图给她，最后拿四十九片纯金叶子给她就可以拿到了。 
+
+【离别钩】 
+在青室open hua，再向南到藏宝室，pull sword。 
+
+【多情环】 
+找紫衣少女，tell girl 天南地北双飞客。 
+
+【碧玉刀】 
+到黑松堡拿黑松厨子的刀就是。 
+
+【锦册】 
+雅室见到水灵光，然后ask shui about 铁中棠，她就会给你一个silk　book 
+
+【进幽灵】 
+从大昭城门往南，进入原始森林后，s,n,e,e，见到孤独美，同意帮忙(agree to help)，然后按他的指示走，中途见到叶孤鸿，等到他要杀你，粉燕子出来以后，leave gu du mei，这时叶会杀死粉燕子，然后放你走，继续走到悬崖边，从石头下面拿到一个哨子(get pipe from rock)，然后吹哨(blow pipe)，就看到进幽灵山庄的路了，接勾魂使者一招，不减气血就可以进入。 
+
+【叶雪的占卜入门】 
+把白剑给叶雪就可得到，可学30级的占卜入门。 
+
+【狗郎君】 
+见到黑狗时，tell dog 狗郎君。 
+
+【神妃】 
+在西边的配寝殿有神妃(shenfei)，可以读(study shenfei)到91级的修仙术。 
+
+【破天宗】 
+ask lian about 天宗，问五次，等他问你是否加入时回答join yes，如果他说道：＂〔天宗〕极邪，极毒，如果你加入〔天宗〕， 我决不放过你！就可以了，然后去黄山百丈泉见厉青锋，等他问你是不是萧十一郎的朋友，然后回答是或者不是都行。最后到黄山文殊院找冰冰，听她说说天宗的秘密，最后去莲花峰见萧十一郎，等他说到底谁是天宗的新主人时，answer lian就算是破了天宗了。 
+
+【拿树叶】 
+找酒肉和尚ask drink monk about meat，他会进小门，open door,跟进去，pull 小柜，发现阴宾，等到她走，然后到山下找小贩，ask 小贩 about leaf，然后给他十两金子，就得到了树叶。树叶是进大旗谷的钥匙。 
+
+【莽林走法】 
+从任何方向的莽林边缘进入莽林，只能向同一方向走两步!第三步有凶残的野兽等着你。然后climb tree爬上树，爬上去后look vine，看看树枝，然后把树枝转向(turn vine)你想去的方向。然后抓着树枝象人猿泰山一样荡(swing vine)过去，再转一次树枝到同一方向，荡第二次，就能从那个方向出来了。 
+
+【火沼泽】 
+装备上砍林刀，到沼泽边缘，砍藤条ｃｈｏｐ　ｂｕｓｈ，边砍边走，南、南、东、南、西、西、南、南，好了，ｃｈｏｐ　ｗｏｏｄｓ，就到了火沼中心。 
+
+【宿命/泰山看日出】 
+版本I： 
+shake ghoststone 
+夏天日观峰，早上看到系统提示“东方的天空中逐渐出现了一丝鱼肚白。”然后离开这个地方再回来，比如s，#wa 5000，n，然后等到下一个系统提示“东方的天空越来越亮，渐渐出现红色。”前就有可能触发，这是一个场景触发系统，在你进入的时刻判断有否可能看到，一般即使失败也会有提示比如“四周一片云雾茫茫，空气湿的似乎可以拧出水来，你什么都看不清楚。”means fail 
+if ok，have 2 kinds of提示。1：一弯红色的光芒刚刚探出灰黑色的地平线，霎时间万道霞光洒满了天空。山峦的顶部都被染成红色。桔红色的太阳缓缓的从地平线上升起，整个大地忽然之间亮了起来。山间的虫鸟止住了叫声，似在恭迎新的一天的到来。太阳终于跃出了地平线，大地万物都被渡上了一层淡淡的金色。2：厚厚的云层似凝冻著的海浪在你的脚下。东方远处云天相连的地方，好像有一丝红光透现，天空是一片暗蓝。转眼间天边出现了一道淡紫色的霞光，霞光不停地变换着紫色、粉紫色、浅红、桔红的色彩。太阳也露出了红彤彤的小半边脸，红的似火，却没有光亮。太阳似乎负着重荷似地一步一步、慢慢地努力上升，到了最后，终于冲破了云霞，跳出了云层，颜色红得非常可爱。一刹那这个可爱的红色圆球，突然发出耀眼的光亮。 
+现在的问题不在于看到这个mark,而是听说已经被wiz改过了，变成其他mark了，郁闷不敢解了，反正也无所谓这点才智了，就是好玩。 
+
+版本II： 
+泰山日出并非如同sailor所说的那样，大家千万不要被他误导。 
+观看泰山日出的必要条件： 
+1。地点：泰山日观峰 
+2。季节：秋冬 
+3。时间：一定要在出现“东方的天空中逐渐出现了一丝鱼肚白。”的提示时进入日观峰，非此时间进入无效。 
+4。其他：有关RPWT，运气不好只能看到“四周一片云雾茫茫，空气湿的似乎可以拧出水来，你什么都看不清楚。”呵呵，你只好明天再来了。 
+5。重要性：有关小方的迷题结果——重要程度5颗星。 
+在秋天会看到： 
+桔红色的太阳缓缓的从地平线上升起，整个大地忽然之间亮了起来。山间的虫鸟止住了叫声，似在恭迎新的一天的到来。一轮红日映着天边的彩霞缓缓地从东方升起。太阳终于跃出了地平线，大地万物都被渡上了一层淡淡的金色。山下的枫叶林也渡上了淡淡的金色，火红的枫叶似霞光流动，变幻着五彩的颜色，你迷失在这五彩的世界里。 
+在冬天会看到： 
+厚厚的云层似凝冻著的海浪在你的脚下。东方远处云天相连的地方，好像有一丝红光透现，天空是一片暗蓝。转眼间天边出现了一道淡紫色的霞光，霞光不停地变换着紫色、粉紫色、浅红、桔红的色彩。一轮红日映着天边的彩霞缓缓地从东方升起。太阳似乎负着重荷似地一步一步、慢慢地努力上升，到了最后，终于冲破了云霞，跳出了云层，颜色红得非常可爱。一刹那这个可爱的红色圆球，突然发出耀眼的光亮。厚厚的白云被染上了五色光彩，光彩不停的流动变换，你深深的沉迷在这变幻着的光的世界中。 
+
+【一点才智】 
+黄山西南部过了太白逸，没到小庙，有个南北出口的地方，是个院，描述“小院 -青砖铺地的院落当中是一棵巨大的松树，松树巨大的树冠覆盖了大半的庭院，没有人知道树有多老，似乎当初建松谷庵的时候就已有了，而松谷庵则因它起名。院落中松树的四周开辟着几个花坛，里面种植着一些花草，整个院落干净整洁。院子两侧各有几间禅房，当中是一个佛堂。” climb tree会看见一个鸟，等一会，鸟会唱歌，然后catch bird，再等等。（这里需要80 level move才能爬上树。）棕嗓鹛惊叫了起来，它挣扎了几下，没有挣脱。它偏着头，带着惊恐的眼神看了你一会儿。棕嗓鹛忽然说起话来，声音就像是一位少女：“我不是一只一般的鸟。我是有神奇能力的精灵。”你从来没听过这样悦耳的声音，看着手里的棕嗓鹛一时有点发呆。棕嗓鹛接着说：“因为我有神奇的能力，所以我可以给你两个对你永远有用的忠告，只求你能放了我。”你心中一动，对棕嗓鹛点了点头。 
+你身上带著下列这些东西(负重 7%)： 
+棕嗓鹛(Music bird) 
+棕嗓鹛说：“第一条忠告是：如果你认为不可能的事，别人怎么说你也不要相信。”她接着说：“第二条忠告是：无论什么事，你做了以后都不要后悔。”你听了以后，觉得深有所感。棕嗓鹛银铃般的声音似乎还回旋在耳边。你回想以往的经历，不由长叹一声，松开了手。棕嗓鹛一展翅膀，飞上高处的松枝。侧头看了看你，发出一阵轻脆的笑声：“你真是错过了千载难逢的好机会。我这么聪明，是因为我嘴里含了一块天灵翡翠，是它赐予我智慧，才骗过你的。真可惜如此宝物，你失之交臂。”棕嗓鹛咯咯娇笑起来。然后直接下树,等一下即可才智加1。 
+
+【加2点才智】 
+到夏天，从黄山下wu;wu;wd;n然后反复"ne;search;sw"，一会就会看见绿毛小乌龟。catch it .然后去翡翠池release。“翡翠池 - 在松谷溪边，星罗棋布着六个池潭。平时潭水清澈平静，每当微风吹动，涟漪微荡，好似龙鳞，所以叫龙潭。依照水色分为赤，青，乌，白，老，更有一潭，水深形美，所以被称为翡翠池。四周石桌，石栏，悬崖题刻，应有尽有，别有风味。据说闻名天下的龙化剑便是依此五潭悟出，也不知真假。”一会地上会有个木盒子，拿起来。去桃源村有棵核桃树的地方，必须是早晨辰时左右反复laydown;get up,一会树上会掉下个小核桃。拿起来,open box,会得到天灵翡翠（jade) box和核桃都没用了。把jade给一个无名镇的磨刀老头就行了,他会把jade为你镶到武器上。 
+
+【武当枫叶】 
+获得条件：age<=13 
+获得方法：wash or jump can get a maple leaf，然后到武当庄稼地 老农(Old farmer) north一格连续走动出现：阵阵微风拂过，如果将什么树叶之类的抛(throw)在空中的话，一定会随风飘去吧。throw leaf你将一片枫叶抛在风中，慢慢的飘走了。 
+
+【凝露黄石 五彩灵石 黄山 瀑布】 
+#include 
+inherit __DIR__"no_killing_place"; 
+void create() 
+{ 
+set("short", "厨房"); 
+set("long", @LONG 
+厨房里光线很好，靠近窗口有一张很大的案板，案板上收拾得非常干净，右手 
+边是一个黄土胚搭成的灶台，灶台下的麦杆还闪着暗红色，灶台上放着一口铁锅。 
+整个屋里飘动着浓郁的葱香和淡淡的炊烟。 
+LONG 
+); 
+set("exits", ([ 
+"west" : __DIR__"cyard", 
+]) ); 
+
+set("objects", ([ 
+__DIR__"obj/oven" : 1, 
+__DIR__"obj/pot" : 1, 
+]) ); 
+
+set("no_magic", 1); 
+set("coor/x",220); 
+set("coor/y",-20); 
+set("coor/z",0); 
+setup(); 
+} 
+void reset() 
+{ 
+object *inv; 
+object con, item; 
+int i; 
+
+::reset(); 
+con = present("pot", this_object()); 
+inv = all_inventory(con); 
+if( sizeof(inv) != 4) { 
+for(i=sizeof(inv)-1; i>=0; i--) destruct(inv); 
+item = new(__DIR__"obj/bing"); 
+item->move(con); 
+item = new(__DIR__"obj/bing"); 
+item->move(con); 
+item = new(__DIR__"obj/bing"); 
+item->move(con); 
+item = new(__DIR__"obj/bing"); 
+item->move(con); 
+} 
+con = present("oven", this_object()); 
+inv = all_inventory(con); 
+if( sizeof(inv) != 4) { 
+for(i=sizeof(inv)-1; i>=0; i--) destruct(inv); 
+item = new(__DIR__"obj/scallion"); 
+item->move(con); 
+item = new(__DIR__"obj/caidao"); 
+item->move(con); 
+item = new(__DIR__"obj/lighter"); 
+item->move(con); 
+item = new(__DIR__"obj/candle"); 
+item->move(con); 
+} 
+} 
+
+void burn_notify(object ob) { 
+object me; 
+
+me = this_player(); 
+if(me->is_fighting()││ me->is_busy()) { 
+return notify_fail("你正在忙！\n"); 
+} 
+message_vision(RED"$N把碎石放在灶台下的火上烘烤。\n"NOR, me); 
+if(me->query("宿命B/黄山_瀑布") && !ob->query("stone_mark/ystone")) { 
+message_vision(HIY"\n石片外面象粉一样松落。露出一块晶莹明澄的黄石。\n"NOR, me); 
+destruct(ob); 
+if(!me->query("m_success/凝露黄石")){ 
+me->set("m_success/凝露黄石",1); 
+me->add("score",3000); 
+} 
+ob->set("stone_mark/ystone", 1); 
+ob = new("/obj/special/stone/ystone"); 
+ob->move(me); 
+} else { 
+tell_object(me, "\n石块被烤得滚烫。\n"); 
+} 
+} 
+> l yantai 
+
+你吃了一惊：砚台上雕刻的流泉图竟然跟眼前景色完全相合。 
+只是砚台上画的琴岩似乎比泉水冲击下的琴岩多了旁边的一个棱角。 
+这是一方罕见的月黄色砚台。 
+砚体温润莹洁，边上按照石头的纹理色泽雕刻了一幅流泉图，好像在哪里见过似的。 
+> search 
+你仔仔细细的在泉边崖壁上搜寻。 
+你发现岩石的一角有些松动。 你用力一扳，竟脱落下来。 
+> burn suishi 
+你把碎石放在灶台下的火上烘烤。 
+
+石片外面象粉一样松落。露出一块晶莹明澄的黄石。 
+> i 
+你身上带著下列这些东西(负重 1%)： 
+凝露黄石(Topaz) 
+> l topaz 
+这是五金之英聚成的凝水石。看来柔润晶莹，触手却丝丝寒气刺肤如割。 
+细细的水珠凝在石面，拂而再聚。 
+
+【宿命/桃源晨雾】 
+获得条件：春天或冬天，晴天，寅时4刻-卯时1刻之间 
+获得方法：桃源小猴子north一个进入后等待会出现 
+冬天，晴。 
+time 
+> 现在是壬戌年十一月十四日寅时四刻。 
+north 
+> 乳白色的晨雾，弥漫了林间大地，在阳光的照耀下闪烁着迷人的紫色。 
+
+
+
+标题：小方(加2才智)源码 
+版本：4.0 
+作者：Soil 
+点击次数: 2759 
+加入时间：2003-07-01 
+来源：风云四土土分站 
+搜索关键字：小方 才智 义助卜鹰 日出 泰山 宿命 
+
+
+#include 
+inherit NPC; 
+void create() 
+{ 
+set_name("小方", ({ "xiao fang","fang" }) ); 
+set("gender", "男性" ); 
+set("long", 
+"一个流浪塞外、漂泊异乡的孤独浪子。\n" 
+); 
+set("title", HIW"浪子"NOR); 
+set("attitude", "peaceful"); 
+
+set("age", 2; 
+set("str", 40); 
+set("cor", 36); 
+set("agi", 60); 
+set("per", 30); 
+
+set("combat_exp", 5000000); 
+
+set("max_gin", 5000); 
+set("max_sen", 5000); 
+
+set("force",3000); 
+set("max_force",3000); 
+set("force_factor",100); 
+set("no_busy",4); 
+set("class","fighter"); 
+
+set("chat_chance", 1); 
+set("chat_msg", ({ 
+"小方远望着着窗外的圣母雪峰，哑着嗓子道：卜鹰……我一定会找到\n你，找到一个好好活着的你……\n", 
+}) ); 
+set_skill("unarmed", 200); 
+set_skill("parry", 200); 
+set_skill("dodge", 300); 
+set_skill("sword", 300); 
+set_skill("doomforce", 150); 
+set_skill("lingxi-zhi", 200); 
+set_skill("doomsteps", 200); 
+set_skill("doomsword",150); 
+
+map_skill("unarmed", "lingxi-zhi"); 
+map_skill("sword", "doomsword"); 
+map_skill("dodge", "doomsteps"); 
+map_skill("parry","doomsword"); 
+set("chat_chance_combat", 30); 
+set("chat_msg_combat",({ 
+(erform_action,"sword.hunranyijian", 
+})); 
+
+setup(); 
+carry_object("/obj/armor/cloth")->wear(); 
+carry_object(__DIR__"obj/icesword")->wield(); 
+} 
+int accept_object(object me, object obj) 
+{ 
+if(obj->query("name") == BLU"魔眼剑"NOR && obj->query("owner") == me->query("id")) 
+{ 
+message_vision("$N紧紧握着魔眼剑，眼中泪光闪烁，苍白的脸上泛出了血色。\n", this_object()); 
+message_vision("$N向$n感激地点了点头：卜大哥还活着，我早知道他还活着。\n",this_object(),me); 
+if(!me->query("imbue/xiaofang")){ 
+call_out("imbue_event", 2, me); 
+} 
+if(!me->query("m_success/义助卜鹰")) 
+{ 
+me->set("m_success/义助卜鹰",1); 
+me->add("score",200); 
+} 
+return 1; 
+} 
+else 
+{ 
+write("小方拱手道：“君子不夺人所爱，在下不能接受您的东西。”\n"); 
+return 0; 
+} 
+} 
+void imbue_event(object me){ 
+object weapon, *inv, obj; 
+string prop; 
+int i; 
+if(!interactive(me) ││ environment(me) != environment(this_object())) { 
+return 0; 
+} 
+obj = me->query_temp("weapon"); 
+if(objectp(obj) && obj->query("owner")) { 
+weapon = me->query_temp("weapon"); 
+} else { 
+inv = all_inventory(me); 
+for(i=0; i if(inv->query("weapon_prop") && inv->query("owner")) { 
+weapon = inv; 
+break; 
+} 
+} 
+} 
+if(!objectp(weapon)){ 
+if(!objectp(obj)){ 
+message_vision(HIC"\n欣喜的泪水一滴一滴掉落在地上。。。\n"NOR, me); 
+} else { 
+message_vision(HIC"\n欣喜的泪水一滴一滴掉在$N的" + obj->name() + HIC"上又滑落到地上。\n", me); 
+} 
+}else { 
+message_vision(HIC"\n欣喜的泪水一滴一滴掉落在$N的" + weapon->name() + HIC"上，不一会便凝成了晶莹闪亮的冰珠儿。。 \n"NOR, 
+me); 
+message_vision(HIC"冰珠儿在" + weapon->name() + HIC"上散发出五彩的光芒，可是转瞬间又消失无痕。\n"NOR, me); 
+if(weapon->query("weapon_prop")) { 
+prop="weapon_prop/"; 
+} 
+if(weapon->query("equipped") == "wielded") { 
+weapon->unequip(); 
+if(random(me->query("宿命B/泰山_日出"))==9 ) { 
+weapon->add(prop+"karma", 5); 
+weapon->add(prop+"intelligence", 2); 
+weapon->add(prop+"damage", 10); 
+weapon->add("base_damage", 10); 
+} else { 
+weapon->add(prop+"karma", 2); 
+weapon->add(prop+"personality", 2); 
+} 
+weapon->wield(); 
+} else { 
+if(random(me->query("宿命B/泰山_日出"))==9 ) { 
+weapon->add(prop+"karma", 5); 
+weapon->add(prop+"intelligence", 2); 
+weapon->add(prop+"damage", 10); 
+weapon->add("base_damage", 10); 
+} else { 
+weapon->add(prop+"karma", 2); 
+weapon->add(prop+"personality", 2); 
+} 
+} 
+weapon->save(); 
+me->set("imbue/xiaofang", 1); 
+me->save(); 
+return; 
+} 
+me->set("imbue/xiaofang", 2); 
+me->save(); 
+return; 
+}　 
+
+
+泰山的日出,在日观峰,夏天,一年出现一次,发呆观看. 
+黄山的日出,在hongying那里,也是夏天,一年一次,发呆观看. 
+桃园晨雾,小猴子n,季节忘记了,不算少出现,一年有几次吧,我看到过一次. 
+桃园流星,在拿青核桃那里,躺下的时候随机看到,注意:最佳观看年龄10-12岁,有许愿情节出现.传说影响很多其他迷题的结果. 
+天山流星,在新疆雪莲那里northup,我不知道是等待还是某种命令.22-24岁会出现许愿情节. 
+华山鸟粪,在ask jin about pearl进取的里面,随机出现. 
+黄山瀑布,某季,黄山山脚有个有瀑布描述的地方,可以sitdown,然后look 瀑布,无数次之后可见. 
+蝴蝶,tj 7 w n,据说影响夺命15剑的迷题,据说tx女弟子的pfm有变化. 
+海潮,在ccd海边某处.我没看过..... 
+
+【义结郭大路】 
+1. ask cai shu about mission,accept mission（花费1k gold） 
+2. give letter to jin dashuai 
+3.然后开始运镖,drive cart to ....去fg 
+4.路上的强盗要全部杀光，一路走一路杀 
+5.在gold ant 的nu 的强盗千万不可打死，别下kill, enforce 0,enable unarmed none,打他俩下他会投降，forgive yes,然后把cart里的silver 给他。（编者注：可以见面就forgive yes，然后给银子） 
+6.去见guo,给kaoya, shaoskin,和huo ji哪儿10 gold 换的wine pot,然后jiebai with guo 
+
+A.看运气，如果5的强盗没出来就没戏了，打死了也没戏了 
+只有一次机会，中途如果npc refresh有可能会refresh掉cart,也完蛋。所以一定要rf后马上去做。 
+
+【梅花盗】 
+找一个女id条件:魅力query_per>26,13300k 
+进千金楼-荒园 
+过程1：等一会出现：荒园里寒鸦凄厉，落叶疏萧，一种危险的预感让你觉得非常不安。再等一会出现：枯木林中忽然卷起一阵阴冷的风，寒飕飕的自你脸上刮过。你霎了霎眼，突然觉得....然后你被抓走了关到地下室，晕倒。 
+过程2：醒来后，动不了了，然后另外一个人出去找afei 
+> rescue <女id> 
+你张张惶惶地对阿飞喊：飞剑客，不好了！土土被梅花盗劫走了。 
+阿飞关切地看了林仙儿一眼，对你说：你先去荒园好好搜寻一下，我马上就到。 
+过程3: 然后到荒园 
+> search 
+d 
+荒园里寒鸦凄厉，落叶疏萧，一种危险的预感让你觉得非常不安。你拨开枯叶，发现地面有一个洞口。梅花盗听到铁门响动，猛的转过头来，眼中犹在闪着野兽的光芒。梅花盗阴狠冷鹫的眼神在你身上扫了扫，道：你可是想来分－－话未说完，就忽然有一蓬乌星自他嘴里向你直射出来！看起来梅花盗想杀死你！ 
+（…………..fight with 梅花盗……..） 
+阿飞忽然从上面一跃而下！。 
+阿飞对梅花盗说：“我不能再让你活下去！”。 
+剑光闪动，阿飞已经出手！ 
+（…………..Afei kill 梅花盗……………) 
+阿飞挥了挥手，转身匆匆离开。 
+土土忽然觉得一股暖流传入体内，霎时内息流畅，活动自如。 
+梅花盗死了。 
+--------------------- 
+然后后来那个叫afei帮忙的人就有了一个mark 
+过程4：杀了qiu du,到yiku那yiku对你自动叫杀，撑几招afei会过来帮忙 
+阿飞走了过来。阿飞皱了皱眉，对伊哭道：这是我的朋友，今天我却不愿杀人，你走吧。伊哭看了一眼阿飞，狞笑道：你就是林仙儿身边的那个少年？阿飞目中突然射出了刀一般锐利的光，道：你若再叫她的名字，我只得杀你了。伊哭道：为什么？阿飞道：因为你不配。伊哭格格的笑了起来，道：我不但要叫她的名字，还要跟她睡觉，你又能怎样！阿飞的脸突然燃烧了起来，他的手已因愤怒而发抖，剑已刺出！伊哭的青魔手已雷电般击下，只听叮的一声，剑已被架开。伊哭的大笑声刚发出，出手稍慢，突有剑光一闪。 
+（………………..阿飞kill伊哭……….） 
+阿飞的目光如寒冰，瞪着伊哭一字字道：谁侮辱她，谁就得死。 
+伊哭死了。 
+然后get devil hand from corpse, give devil hand to linxian，你递给林仙儿一只青魔手。 
+林仙儿对你嫣然道：“我早就知道，你不会让我失望的。” 
+（可以向林仙儿学魅术了。） 
+阿飞恶狠狠地瞪了你一眼。 
+阿飞的脚似乎动了动，你只觉得后面一疼，自不眠阁顶乘云驾雾般飞了出去．．． 
+
+云雨舟甲板 
+这里明显的出口是 south 和 east。 
+魔手追魂 邱独(Qiu du) 
+
+只见一条身影破窗而出，你好似熟透了的柿子一样坠落，随着水花四溅的 
+「扑通」一声落入湖中，惊得船上红男绿女大呼小叫起来。你湿淋淋的从湖里爬了起来．．．学的时候会被提出来，搞笑！ 
+
+另一个方法就简单了杀了原随云 
+你从原随云的尸体身上搜出一柄瀚海云烟。 
+你从原随云的尸体身上搜出一件金丝软甲。 
+你递给林仙儿一件金丝软甲。 
+林仙儿对你嫣然道：“我早就知道，你不会让我失望的。” 
+
+【宿命/桃源流星】 
+条件：10<=age<=12,夏天,晚上 
+方法：桃源核桃树下#10 {getup;laydown}多来几次就可以看到 
+过程：你从大石上爬了起来。 
+灿烂的星空是那么的迷人，你不禁悠然神往。 
+突然之间一道闪亮的银光划过夜空，消失在南边的天际。 
+你在流星落前的刹那间许下了一个愿望！！ 
+你默默地站了起来 
+
+【宿命/桃源看雾】 
+桃源村： 
+山林 - 
+山林茂密，你脚下的柔软细草恰可没足，耳边有 编 鸟语，鼻中又嗅着花草幽 香，透过林间，隐约可见北方农家的炊烟，远远的好象有上十余只猴儿在林间跳跃 相戏，真是一片人间仙境。 春天，晴。 
+东方的天空浮着一丝淡白色。 
+这里明显的出口是 south、north 和 east。 
+东方的天空越来越亮，渐渐出现红色。 
+//看到这个提示，s,n 
+山林 - 
+山林茂密，你脚下的柔软细草恰可没足，耳边有 编 鸟语，鼻中又嗅着花草幽 香，透过林间，隐约可见北方农家的炊烟，远远的好象有上十余只猴儿在林间跳跃 相戏，真是一片人间仙境。 春天，晴。 
+红霞在东方的地平线上浮动。 
+这里明显的出口是 south、north 和 east。 
+//春天，晴，随机会出现这个mark： 
+> 乳白色的晨雾，弥漫了林间大地，在阳光的照耀下闪烁着迷人的紫色。 
+
+【华山救美】 
+条件：1.春天、晴、get fate from taoyuan first（桃源看雾），then go huashan。 
+2.目前我只知male id can solve this riddle，好象female也有办法，但我不知。 
+奖励：1.忘了看score啦，真笨te，另外不知是否更完美的解法(其实这种riddle最怕的是只解一半，普通解法一般都是很简单）。 
+2.另外，有了这个fate，可以在cx;n;nw;ne;nw;nw;ne;nd;nw;w;w;#3 s;su;#3 wu;se;sw;l jingji;get book from jingji得到小册子(2m左右quest)。 
+
+仰天池 - 
+仰天池在华山南峰绝顶，池为岩石上一天然石凹，呈不规则形，水深约一米， 水色清澈，略带绿色。池水涝不盈溢，旱不耗竭，令人叹为奇异。站在池边，仰首 望晴天似近在咫尺，触手可及。 春天，晴。 
+正午到了，忙碌的世界似乎安静了一些。 
+这里唯一的出口是 south。 
+「地绝剑」于一飞(Yu yifei) 
+于一飞抬头打量了一下你，说道：“这位老前辈可愿一同游山？” 
+（ａｃｃｅｐ 　ｙｅｓ／ｎｏ） 
+accept yes 
+你朗声说道：“好，既是有缘何妨一同游山。” 
+你决定开始跟随于一飞一起行动。 
+于一飞往南离开。 
+雁落峰 - 
+此为华山最高峰，站在峰顶四处观望，只见山峦起伏，苍苍茫茫。传说由于这 里山太高，大雁到这里也飞不过去，必须在这里歇息，故取名雁落峰。峰顶更有金 天宫，大殿全为大片铁瓦，内塑有神像，院前大门边还建有钟鼓楼。 春天，晴。 
+正午到了，忙碌的世界似乎安静了一些。 
+这里明显的出口是 eastdown、north 和 westdown。 
+「地绝剑」于一飞(Yu yifei) 
+只见一个少女飞奔而来，你一个躲闪不及被撞倒在地。 
+你感觉到压在身上的是一个极柔软而温暖的身躯，而且刚好与你面对着面， 娇喘依依，都吹在你脸上。(ｇｅｔｕｐ) 
+getup 
+你站起身来，伸手扶起发鬃零乱的少女。 发鬃零乱的少女鬓发凌乱，衣衫不整，丰满的胸膛急剧地起伏着，哀声道对你：“救救我！” 你想起方才的情景，脸上又是一热，不由得心猿意马。 发鬃零乱的少女话音未落，只见一道白影掠过，发鬃零乱的少女的身影已然消失不见。 只听于一飞道：“江里白龙。。”话音未落人也不见了。 
+雪花洞 - 
+崖壁上是一个人工凿刻的山洞，洞不大，没有人知道当初为什么要凿这山洞。 洞内凉风习习，即使在最炎热的夏季，只要一入洞口，暑意尽消。向外望去，青柯坪尽在眼内；向上看，洞顶石纹斑点光 示 莹，似雪花向下飘落。 
+这里唯一的出口是 southwest。 
+「江里白龙」孙远超(Sun yuanchao) 
+发鬃零乱的少女(Girl) 
+//这里本来好象有个提示的： 
+//发鬃零乱的少女原本黯然忧伤的眼神看到你猛然一亮，继而闪过一丝错综复杂的光芒。发鬃零乱的少女想跑到你身前却被孙远超所阻，只得叫道：“救我！” 哀怨的声音让人心生不忍。 
+(ｒｅｓｃｕｅ　ｎｏ／ｙｅｓ) 
+rescue yes 
+你对著孙远超喝道：「臭贼！今日不是你死就是我活！」 
+看起来孙远超想杀死你！ 
+孙远超死了。 
+发鬃零乱的少女道：“多谢着位大侠救命之恩。” 言毕少女转身向洞外离去。 一点白色的荧光从洞顶缓缓飘落在你的天外流星上。。。 荧光刚一接触天外流星一道耀眼的光芒乍起，迅速一切又回归平静。 
+cor+2,cps+2 OR cor+2,per+2
+
+【幽灵山庄的秘密】 
+背景：5k时，应殷正廉要求，破解尚方宝剑(royal sword)和武当掌门的秘密(skull)。 
+当前:4M EXP。 
+幽灵山庄： 
+地窖 - 
+地窖里寒冷而潮湿，泥土的墙壁上挂着一盏油灯。昏暗的灯光下， 这里更显得阴森可怖。地窖中有一把椅子，椅子上端端正正的坐着一个人。 
+这里唯一的出口是 down。 
+幽灵山庄 第三代弟子 表哥(Biao ge) 
+ask biao ge about 事 
+我乃巴山剑客的弟子＂顾云飞＂，家师派我来幽灵山庄卧底。 我已在这里一年有多，但还不知老刀把子的真面目。 我已把这一年多的所见所闻都记了下来，但一直没有机会送出去。 我希望你能把这份秘函送到武当掌门石雁的手中。(accept yes/no?) 
+accept no 
+顾云飞笑道：我是在试你，看来你不是奸细。 现在我送你去见老刀把子。 表哥在椅子上按了一下，你的脚下裂开了一个大洞， 你大叫了一声，掉了下去。 
+石屋 - 
+曲折蜿蜒的小路尽头，是一栋形式古老的石屋，里面的陈设也同样古朴，甚至带着种阴森森的感觉。正面靠墙是一个黄幔低垂的神龛， 其他什么东西都没有。 
+这里唯一的出口是 south。 
+幽灵山庄 庄主 老刀把子(Master lao dao) 
+幽灵山庄 第三代弟子 叶雪(Ye xue) 
+apprentice master lao dao 
+你想要拜老刀把子为师。 
+老刀把子说道：好！你把武当的镇山七星宝剑拿来给我，再将 那石老儿杀了，不用拜师，我也传授你一身武功！ 
+桃源村： 
+小院 - 
+阳光斜斜的照在上面，更加的晶莹剔透。 萄架下是?口水井，水井上是一个木头轱辘，摇起来发出咿咿呀呀的声音。 秋天，晴。 
+夜幕低垂，四周一片暗灰。 
+这里唯一的出口是 east。 
+approach well 
+你走近水井探头向里望去。 水井深不见底，不过你似乎可以听到底下流水的声音。 你走近水井探头向里望去。哎呀！一不小心掉了进去！ 
+水井中 - 
+水井很深，冰凉的井水浸得你骨头都发麻，一只随你一快儿掉下来的水桶一起一伏，在水中荡漾。一线天光从你头顶上射下来，那样微弱，你都不知道还有没有生还的机会．．． 这里没有任何明显的出路。 
+你突然发觉井里的水居然在流动！ 
+水流好象带着你从井底的一个暗道里涌出．．． 
+你陷入一片完全的黑暗之中，心中充满了恐惧．．． 
+地下暗道 - 
+周围一片漆黑，冰冷的水足有半腰深，耳边阵阵阴风，吹得你毛骨悚然。又好象有爬行动物的悉悉索索的声音，愈发的显得幽深恐怖。水流带着你不知要通向何处。你的双手胡乱地摸索着，心中充满了恐惧，有个救命稻草也好呀。你不禁懊恼身边为什么没带些照明的东西．．． 这里没有任何明显的出路。 
+use lighting-pearl 
+你掏出一个夜明珠。夜明珠发出的光照亮了地道。 
+浸满水的冰冷地下暗道 – 
+透过暗淡昏黄的光线，齐腰深的水中竟然有几棵枯枝．树皮已经泡烂，横七竖八地立着．水冰冷彻骨，但在缓缓流动．一根枯枝歪歪斜斜地垂在你的右上方，上面好象有刀刻过的痕迹． 这里没有任何明显的出路。 
+l 枯枝 
+一根粗粗的树枝，还没有完全枯死，上面模模糊糊地刻着几个小字： 武当禁地　擅入者死！ 
+dive 
+你心一横，一个猛子扎入冰冷刺骨的水中！ 
+水井中 - 
+在水井中睁眼四望，四周井壁滑不留手。你心里后悔不及，不知如何才能出去。井中灰朦朦的，象是什么都没有。如果四周搜索一下，也许有所发见。 这里没有任何明显的出路。 
+你眼前突然一亮！ 
+search 
+你仔细的查看四周的井壁，搜遍了各个角落。 
+你觉得胸口越来越闷，大概在井里已呆不了很久。 
+climb up 
+你使出吃奶的力量，顺着井壁向上爬去。 
+后院 - 
+院子四角各种著一株参天松树，中央是一口水井。青石板铺成的地面，没有任何杂草落叶。院子左面是一排厢房，右面是练武厅。不时可以听到阵阵的拳风声从里面传出来。 秋天，晴。 
+正午到了，忙碌的世界似乎安静了一些。 
+这里明显的出口是 south、out 和 north。 
+武当派 第五十八代弟子 过长逊(Guo changxun) 
+你从水中湿淋淋的爬了出来。 
+enter jing 
+你向四周看了一看，趁没人注意，深吸一口气钻进了井里。 
+水井中 - 
+在水井中睁眼四望，四周井壁滑不留手。你心里后悔不及，不知如何才能出去。井中灰朦朦的，象是什么都没有。如果四周搜索一下，也许有所发见。 这里没有任何明显的出路。 
+search 
+你仔细的查看四周的井壁，搜遍了各个角落。 
+你找到了一个长方铁盒，放进了怀里。 
+好样的，你得到150点评价，900点潜能，5000点经验！ 
+不过，还是快离开这里吧。 
+你觉得胸口越来越闷，大概在井里已呆不了很久。 
+climb up 
+你使出吃奶的力量，顺着井壁向上爬去。 
+后院 - 
+院子四角各种著一株参天松树，中央是一口水井。青石板铺成的地面，没有任何杂草落叶。院子左面是一排厢房，右面是练武厅。不时可以听到阵阵的拳风声从里面传出来。秋天，晴。 
+正午到了，忙碌的世界似乎安静了一些。 
+这里明显的出口是 south、out 和 north。 
+武当派 第五十八代弟子 过长逊(Guo changxun) 
+你从水中湿淋淋的爬了出来。 
+ask guo changxun about 老掌门 
+你向过长逊打听有关『老掌门』的消息。 
+过长逊说道：看来你知道得真不少！！ 
+看起来过长逊想杀死你！ （注意，很难杀） 
+过长逊死了。 
+武当派掌门弟子，着一身藏青色的道袍。 然而，他已经死了，只剩下一具尸体静静地躺在这里。 他的相貌吗... 都已经死了，还有什么好看的！这里面有： 
+藏青色的道袍(Cloth) 
+面具(Mask) 
+青锋剑(Sword) 
+get mask from corpse 
+你从过长逊的尸体身上搜出一件面具。 
+get cloth from corpse 
+你从过长逊的尸体身上搜出一件藏青色的道袍。 
+open box 
+你小心地想要把铁盒打开．．．。只听到＂咯＂的一声，接着从铁盒里射出几只黑色的银针，正打在你的脸上！你中了针上的毒！ 
+open box 
+你小心地想要把铁盒打开．．．。 
+你终于把铁盒打开了。 
+get all from box 
+你从铁盒中拿出一把七星剑。 
+l 7*sword 
+这是一把剑鞘上镶着七块宝石的宝剑。 
+wield 7*sword 
+你从噩鱼皮鞘中抽出一把闪闪发光的七星剑握在手中。 
+wear mask 
+你装备面具。 
+wear cloth 
+你穿上一件藏青色的道袍。 
+//goto see master shi 
+紫霄宫 - 
+殿顶由四根八丈高的红柱撑著，地板则是由白玉石铺成。左右墙上挂著几幅字画，正面的墙上高高地挂著一块金匾，上书“紫霄宫”三字。匾下是一张供台，一尊太上老君像正坐其中。像前摆著各式水果和两具烛台。 
+这里唯一的出口是 west。 
+武当派 第五十八代弟子 道士(Taoist) 
+武当派 第五十七代掌门人「五行真人」石雁(Master shi) 
+石雁说道：天哪！这，这，这是，是，老，老帮主么？ 
+石雁突然一口鲜血喷了出来，惊吓得六神出窍，脸色土黑。。。一头栽倒在地下。 
+石雁死了。 
+Goto 幽灵山庄： 
+石屋 - 
+
+曲折蜿蜒的小路尽头，是一栋形式古老的石屋，里面的陈设也同样古朴，甚至带着种阴森森的感觉。正面靠墙是一个黄幔低垂的神龛，其他什么东西都没有。 
+这里唯一的出口是 south。 
+幽灵山庄 庄主 老刀把子(Master lao dao) 
+幽灵山庄 第三代弟子 叶雪(Ye xue) 
+give 7*sword to master lao dao 
+你递给老刀把子一把七星剑。 
+老刀把子用力拍著你的背，一副「好小子！干的好」的表情。老刀把子说道：你想要武功秘籍，还是向我学武？(accept book/teach?) 
+accept teach 
+老刀把子说道：从今天开始，你可以同我学武了。 
+
+条件：1.经验4M 和 perception 100级。 
+2.要是从桃源村进武当后院，要先找到lighting-pearl(task)。 
+3.当然，如果带上彭长净的面具，用以前的老办法也能进武当后院。 
+4.一定要穿上过长逊身上的mask and cloth，同时还要 wield 7*sword。 
+
+【浪人的悲哀】 
+武当山 
+天柱峰 - 
+过了金殿阁，就已来到武当最高峰--天柱峰。你仿似置身于仙境之中。山风拂来，仿佛要乘风而去一般。这里云雾缭绕，有如陆海奔潮。众峰争奇，千壑幽深的武当群山被浩淼千里的云海淹没，云随阳光、风向变化，忽而狂涛翻腾，忽而巨浪奔涌，气象万千，惊人心魄。春天，小雨。东方的天空浮着一丝淡白色。 
+这里明显的出口是 eastdown、westdown 和 northdown。 
+「伊贺忍侠」天枫十四郎(Tianfeng) 
+fight tianfeng 
+你对著天枫十四郎说道：小女子流星，领教老爷子的高招！ 
+天枫十四郎长吸一口气,霍然睁开双眸，目光如电盯着你，冷冷道：你，出招！ 
+（打赢他） 
+你哈哈大笑，说道：承让了！ 
+天枫十四郎死灰般的眼睛突然亮了起来，双手将乌鞘长刀交给你，双膝跪地肃然道：你，好汉。此刀请你转交给我子灵儿。。拜托了。。 
+济南府 
+舜耕山庄 - 
+这便是赫赫有名的舜耕山庄，舜耕山又称历山，传说是舜—虞重华的出身地。是真是假已不得而知，但这里的房子确实千金难求。能在此有一处房产是许多人一生的梦。而丐帮褴褛衣衫之下，其实是富甲天下，因此好大喜功的现任帮主南宫灵一掷千金在此建立了奢华的丐帮总堂。这里明显的出口是 north 和 east。 
+丐帮 第七代龙头帮主「神掌」南宫灵(Master nangong) 
+give black blade to master nangong 
+你递给南宫灵一把乌鞘长刀。 
+南宫灵一把抹干眼泪，连声道：好好好，待我干完这杯，就和大哥一起去把他老人家接回来。 
+
+南宫灵将乌鞘长刀还给你。 
+南宫灵轻声说道：劳烦帮我通知大哥无花，他现在少林出家为僧。 
+南宫灵并不要你的乌鞘长刀。 
+少林寺 
+方丈退居 - 
+这是前任方丈让位后的住所，到这里的方丈多以妙悟禅机，佛法造诣，武学修为必都上参天理，学究天人，可惜多爱游历，穷山水之乐，据说只有每年正月期间，藏经阁说法之后才会在这里住上一段时间。这里唯一的出口是 east。 
+少林寺 第十六代大师「妙僧」无花(Master wu) 
+少林寺 第十五代大师「前任方丈」天峰(Master tian) 
+give black blade to master wu 
+你递给无花一把乌鞘长刀。 
+无花嘿嘿冷笑道：“那老鬼和那家伙都该死，谁阻了我和我母亲的霸业，都得死。你也得死。” 看起来无花想杀死你！ 
+无花并不要你的乌鞘长刀。 
+（逃走） 
+石峰深处 
+精致卧房 - 
+没有妆台，没有绣被，没有锦帐流苏，也没有任何华贵的阵设，糜奢的珍玩，眩目的珠宝。这屋子的精致，正如天生丽质，若搽脂粉，反而污了颜色。 
+这里唯一的出口是 southdown。 
+「芳华永驻」石观音(Shi guanyin) 
+give black blade to shi guanyin 
+你递给石观音一把乌鞘长刀。 
+石观音抽出长刀，凝神伫立半晌，脸色变幻不停，似乎苍老了许多。。。石观音突然嫣然一笑道：一夜夫妻百日恩，唉，就劳烦这位姑娘把这瓶清酒送于他，就算奴家报答当日情了。 
+你身上带著下列这些东西(负重 6%)： 
+酒瓶(Wine bottle) 
+武当山 
+天柱峰 - 
+过了金殿阁，就已来到武当最高峰--天柱峰。你仿似置身于仙境之中。山风拂来，仿佛要乘风而去一般。这里云雾缭绕，有如陆海奔潮。众峰争奇，千壑幽深的武当群山被浩淼千里的云海淹没，云随阳光、风向变化，忽而狂涛翻腾，忽而巨浪奔涌，气象万千，惊人心魄。春天，小雨。夜幕笼罩，周围渐渐隐入了黑暗中。 
+这里明显的出口是 eastdown、westdown 和 northdown。 
+「伊贺忍侠」天枫十四郎(Tianfeng) 
+give wine bottle to tianfeng 
+你递给天枫十四郎一个酒瓶。 
+天枫十四郎双手紧握这瓶清酒，如获重宝。 
+天枫十四郎颤抖着捧起清酒，老泪纵横，一仰而尽。突然天枫十四郎浑身颤抖，大汗淋漓，凄然道：菊子，你。。你。。唉。。 这位姑娘，吾身中奇毒，即便能逼出，也必功力尽废，但有一事想求，不知你可否答应？ （answer yes/no） 
+answer yes 
+你神色凝重地点了一下头。 
+天枫十四郎仰天狂笑道：好，我今日约战了中原一点红，你就代我一战吧。大恩必当涌泉相报。天枫十四郎给你一件装束。 
+你身上带著下列这些东西(负重 6%)： 
+乌衣(Dark cloth) 
+ed 
+飞升崖 - 
+飞升崖一峰突起，三面绝壁，山脊上有一条小路直达峰巅，跃顶眺望。离天柱峰已然不远。 春天，小雨。东方的天空浮着一丝淡白色。这里唯一的出口是 westup。 
+剑下一点红 中原一点红(Yidian hong) 
+wear dark cloth 
+你装备乌衣。 
+fight yidian hong 
+你对著中原一点红说道：小女子天枫十四郎，领教壮士的高招！ 
+中原一点红深深吸了一口气,冷冷道：好！东洋武士，拔刀！ 
+（打赢他） 
+中原一点红咬咬牙，凄然长笑一声：伊贺忍侠果然名不虚传，在下佩服。 
+wu 
+天柱峰 - 
+过了金殿阁，就已来到武当最高峰--天柱峰。你仿似置身于仙境之中。山风拂来，仿佛要乘风而去一般。这里云雾缭绕，有如陆海奔潮。众峰争奇，千壑幽深的武当群山被浩淼千里的云海淹没，云随阳光、风向变化，忽而狂涛翻腾，忽而巨浪奔涌，气象万千，惊人心魄。春天，小雨。百鸟开始此起彼伏地啼鸣，已经到上午了。 
+这里明显的出口是 eastdown、westdown 和 northdown。 
+「伊贺忍侠」天枫十四郎(Tianfeng) 
+天枫十四郎睁开无力的双眼，微微笑道：好，好，你不愧是仁义武者。我虽中毒已深，命在旦夕，但这番中原之行心愿已了，却也无憾。我有几门打基础的武功,你可以随便学。沉默片刻天枫十四郎又道，你我有缘，我可传你一门扶桑武功，你可愿意？（accept yes or no） 
+accept yes 
+你长身一揖：得前辈指点,小女子终身受益！ 
+天枫十四郎道:以下这几门武功,你可以任选一样.... 陆奥圆明流拳术(enmeiryu), 无坎真阴(ghosty-force), 太虚幻步(ghosty-steps), 一刀流剑术(ittouryu), 忍术(ninjitsu). (choose 武功) 
+choose enmeiryu 
+天枫十四郎点了点头说:好,陆奥圆明流乃一刀流第一代家督所创，讲究的是一个快字，拳法瞬息多变,令对手防不胜防.你好好练吧.不过,扶桑武功只传有缘之人,即使是夫妻手足也不例外,切记! 
+skills tianfeng 
+天枫十四郎目前共学过十二种技能： 
+基本刀法 (blade) - 出神入化 140/ 0 
+纵跃闪躲之术 (dodge) - 出神入化 140/ 0 
+＊陆奥圆明流拳术 (enmeiryu) - 出神入化 150/ 0 
+内功心法 (force) - 一代宗师 180/ 0 
+＊无坎真阴 (ghosty-force) - 深不可测 300/ 0 
+太虚幻步 (ghosty-steps) - 深不可测 200/ 0 
+＊一刀流剑术 (ittouryu) - 登峰造极 160/ 0 
+读书识字 (literate) - 豁然贯通 140/ 0 
+法术 (magic) - 出类拔萃 100/ 0 
+＊忍术 (ninjitsu) - 深不可测 200/ 0 
+拆招卸力之法 (parry) - 出神入化 140/ 0 
+扑击格斗之技 (unarmed) - 出神入化 140/ 0 
+
+条件：1.经验2.5m 和 评价2w(传说用kill的话，可以不要2w评价) 
+奖励: 1.可以任意学他的basic skill(其实就magic有用). 
+2.如果accept no，自造武器加3力量和10点伤害。 
+3.如果 accept yes,可以选一个高级技能学，只能选一个，并且不能从老婆/老公那里学。 
+
+【猴儿酒的小秘密】 
+拿到wine-hulu后看描述知道可以drink.drink wine-hulu之后会看到一段描述.其实它的功能就是----------解毒.在snowfrog有人robot的情况下,我最喜欢带个wine-hulu 下地下城.中了几种毒,拿好了slayed corpse后再出来喝一口,就解毒了.顺便再还给guo,涨点exp.只能喝一口，而且还随机加攻击力和防御力 
+
+【浴血天牢】 
+条件：经验2M，带上yinzhang(task) and eighthammer(tj,#4 n,w,buy) 
+奖励：can learn skills from lu and 1 tenthousand-cash 
+带很多竹叶青酒袋，知府印章，hammer 
+give zhuskin to jiang 
+你递给江重威一个竹叶青酒袋。 
+江重威一把抓过你手中的竹叶青酒袋，一饮而尽，大着舌头道：不过瘾，不过瘾，再来，再来。。。 
+…………………………………………………………………………………………………… 
+你从红木大柜中拿出一个竹叶青酒袋。 
+你递给江重威一个竹叶青酒袋。 
+江重威一把抓过你手中的竹叶青酒袋，一饮而尽，大着舌头道：不过瘾，不过瘾，再来，再来。。。 
+江重威醉眼朦胧，还想拿起酒袋往嘴里灌，却一个 怎模 摔倒在地。一张文谍从江重威衣袖里掉了下来。 
+西厢房 - 
+这里是衙门中衙役捕头们日常划拳行酒的厢房，房中几个大通铺可供差役们休息，几张红木桌子摊满了喝空的酒袋酒坛，残羹冷炙．杯盘狼籍，一股浓烈的酒气四处弥漫．平日里知府衙门的江师爷也喜欢在这里喝酒闲聊．常常是不醉不归，众衙役把他抬回家里也成了每日例行的公事．这里唯一的出口是 east。 
+密令(Secret order) 
+衙门师爷 江重威(Jiang) 
+风云小衙役(Yayi) 
+风云小衙役(Yayi) 
+get secret order 
+你捡起一张密令。 
+l secret order 
+一道提押犯人上堂的密令，还未盖知府大印。 
+seal secret order 
+你对知府印章呵了口气，在密令上小心翼翼地盖上一个印章。 
+l secret order 
+一道提押犯人上堂的密令，上面盖了一个知府大印。 
+大牢外 - 
+这是一座用巨石建成的大牢，高耸的围墙是一般围墙的三四倍之高，即使最好的轻功也难一越而入。青黑色的大石头给人一种肃穆的感觉，东面是两扇厚厚的木门，让人难窥究竟。冬天，微风。东方的天空浮着一丝淡白色。 
+这里唯一的出口是 northwest。 
+狱卒(Yuzu) 
+狱卒(Yuzu) 
+give 5 gold to yuzu//need night can in 
+你递给狱卒一些黄金。 
+狱卒低声说道：“快去快出。” 
+e 
+咣铛一声，大门又关上了。 
+大牢 - 
+这里是关押犯人的地方，从台阶上走下来是一条通道，通道两旁是石墙及木栅栏隔成的小房间，里面关押着一些轻刑待审罪犯。甬道的东头又有阶梯通向下面。不知从那里飘来的腐臭之气充斥着整个牢房。这里明显的出口是 south、eastdown、north 和 west。 
+ed 
+血色通道 – 
+这是条通往天牢的通道，一路上血迹遍地，机关门户，重重叠叠，当真是插翅难飞。一道铁门后，便是一道钉满了棉絮的木门，其后又是一道铁门，又是一道钉棉的板门。通道边是一间间牢房，通过 饧 斑驳的铁?你可以看到一个个被折磨得不成人形的囚犯，凄厉的惨叫不时入耳。。。这里明显的出口是 westup 和 east。 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫沉声道：天牢重地，闲人莫入！ 
+show prison guard 
+你把密令出示给天牢守卫看。 
+天牢守卫仔仔细细看了看密令，神色凝重道：犯人就在里面。 
+天牢守卫打开铁门上的大铜锁，拱手示意道：大人，请往里走。 
+e 
+血色通道 – 
+这是条通往天牢的通道，一路上血迹遍地，机关门户，重重叠叠，当真是插翅难飞。一道大铁门后，有一道钉满了棉絮的木门通往地牢，另一道钉棉的铁门东首便是天牢重地。通道边是一间间牢房，通过 饧 斑驳的铁?你可以看到一个个被折磨得不成人形的囚犯，凄厉的惨叫不时入耳。。。这里明显的出口是 southdown 和 west。 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+show prison guard 
+你把密令出示给天牢守卫看。 
+天牢守卫仔仔细细看了看密令，神色凝重道：犯人就在里面。天牢守卫打开铁门上的大铜锁，拱手示意道：大人，请往里走。 
+血色通道 - 
+这是条通往天牢的通道，一路上血迹遍地，机关门户，重重叠叠，当真是插翅难飞。一道大铁门后，有一道钉满了棉絮的木门通往地牢，另一道钉棉的铁门东首便是天牢重地。通道边是一间间牢房，通过 饧 斑驳的铁?你可以看到一个个被折磨得不成人形的囚犯，凄厉的惨叫不时入耳。。。这里明显的出口是 southdown、west 和 east。 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+e 
+天牢 - 
+这里便是衙门中令人心惊胆战的天字号牢房，约莫两丈见方的一间大石屋，墙壁都是一块块粗糙的大石所砌，地下也是大石块铺成，已经很多年没有清扫，所以地上遍地尽是碎草屑，泥垢，污水。墙角一头放着一只粪桶，鼻中闻到的尽是臭气和霉气。这里唯一的出口是 west。 
+绣花大盗 金九龄(Jin) 
+金九龄挣扎着抬起头看了你一眼，断断续续呻吟着：救我。。。救（ｒｅｓｃｕｅ） 。。。 我。。。 
+金九龄长叹一声黯然道：我实在是低估了陆小凤那厮。。。 
+l jin 
+金九龄本是六扇门下第一神捕，高贵富有，但实为连犯数件大案的绣花大盗。陆小凤历尽艰辛方才将其绳之于法，现被关押在济南天牢中。他看起来约二十多岁。他长身玉立，面如冠玉。他体格刚健英武，武功看起来好象所向披靡，出手似乎很轻。他遍体鳞伤，只剩下最后一口气了。 
+他身穿浸满血渍的锦服(Cloth) 
+右手拿着黑色的绣花针(Needle) 
+不用兵器看来没办法砸开枷锁。 
+wield eighthammer 
+你拿出一把八角锤，试了试重量，然後握在手中。 
+rescue jin 
+你拿起八角锤，用尽全力把枷锁砸开。 
+金九龄理了理散发，仰面大笑：哈。。哈。。陆小凤，我会找你算清这笔帐的！金九龄低着眼睛扫了你一眼：也亏得你来救我，这一万两银票给你算做酬谢。金九龄挥了挥衣袖，大笑中踪影皆无。 
+l 
+天牢 - 
+这里便是衙门中令人心惊胆战的天字号牢房，约莫两丈见方的一间大石屋，墙壁都是一块块粗糙的大石所砌，地下也是大石块铺成，已经很多年没有清扫，所以地上遍地尽是碎草屑，泥垢，污水。墙角一头放着一只粪桶，鼻中闻到的尽是臭气和霉气。这里唯一的出口是 west。 
+w 
+血色通道 - 
+这是条通往天牢的通道，一路上血迹遍地，机关门户，重重叠叠，当真是插翅难飞。一道大铁门后，有一道钉满了棉絮的木门通往地牢，另一道钉棉的铁门东首便是天牢重地。通道边是一间间牢房，通过 饧 斑驳的铁?你可以看到一个个被折磨得不成人形的囚犯，凄厉的惨叫不时入耳。。。 这里明显的出口是 southdown、west 和 east。 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫(Prison guard) 
+天牢守卫沉声道：天牢重地，闲人莫入！ 
+sd 
+地牢 - 
+这里是济南百姓闻风丧胆的地牢，别说是普通强盗小贼，就算你有天大的本领，到了这地牢，也只有等死的命。地牢积了齐胸高的水，冰冷刺骨，更加上常年犯人的血水、排泄物已经恶臭不堪。牢中暗无天日，只有耳边一丝丝微弱痛苦的呻吟。。。 这里唯一的出口是 northup。 
+十二连环坞 总瓢把子 鹰眼老七(Laoqi) 
+鹰眼老七挣扎着抬起头看了你一眼，断断续续呻吟着：救我。。。救（ｒｅｓｃｕｅ） 。。。 我。。。 
+l laoqi 
+鹰眼老七本是声名显赫，雄霸一方的霸主，但因为他所辖的镖局丢了现今太平王世子宫九押保的贡品，所以被收押大牢，本来一个很健壮的汉子，现在却已浑身血迹，奄奄一息。他看起来约十多岁。他相貌平平。他长的不胖不瘦，武功看起来好象所向披靡，出手似乎不重。 他如风中残烛，随时都可能断气。 
+他身穿浸满血渍的锦服(Cloth) 
+rescue laoqi 
+你拿起八角锤，用尽全力把枷锁砸开。 
+鹰眼老七挣扎着站起身，长揖到地道：谢谢这位姑娘救命之恩，我先走一步，还得去找陆小凤找出真凶。。就此一别。鹰眼老七 怎怎孽 消失在黑暗之中。。。 
+l 
+地牢 - 
+这里是济南百姓闻风丧胆的地牢，别说是普通强盗小贼，就算你有天大的本领，到了这地牢，也只有等死的命。地牢积了齐胸高的水，冰冷刺骨，更加上常年犯人的血水、排泄物已经恶臭不堪。牢中暗无天日，只有耳边一丝丝微弱痛苦的呻吟。。。 
+这里唯一的出口是 northup。 
+nu;w;wu;w;w 
+大牢外 - 
+这是一座用巨石建成的大牢，高耸的围墙是一般围墙的三四倍之高，即使最好的轻功也难一越而入。青黑色的大石头给人一种肃穆的感觉，东面是两扇厚厚的木门，让人难窥究竟。 冬天，微风。红霞在东方的地平线上浮动。 
+这里唯一的出口是 northwest。 
+狱卒(Yuzu) 
+狱卒(Yuzu) 
+
+万梅山庄： 
+右边小洞 - 
+这间小洞的空间却很大，好象也因此明亮一些。仔细看时，里面长满了大大小小，高高低低的石笋，有一些显然是从上面吊下来的。石笋发出的幽幽的光使这里显得格外阴森恐怖。这里没有任何明显的出路。 
+心有灵犀一点通 陆小凤(Lu) 
+陆小凤说道：多谢相救鹰眼老七. 
+陆小凤说道：无以为报，如不嫌弃，教你些功夫吧。 
+陆小凤看了看你道：“只是我的武功非极有恒心及天赋者不能练成。“ 
+陆小凤说道：你还是好好想一想吧，比我强的名师还有很多。 
+skills lu 
+陆小凤目前共学过四种技能： 
+内功心法 (force) - 一代宗师 180/ 0 
+＊灵犀指 (lingxi-zhi) - 出神入化 150/ 0 
+拆招卸力之法 (parry) - 出神入化 150/ 0 
+扑击格斗之技 (unarmed) - 出神入化 150/ 0 
+
+【华山拜师】 
+这包括两个riddle：枯梅的阴谋和听琴毛女洞，不过好象这两个riddle都没解全。 
+枯梅的阴谋： 
+青砖甬道 - 
+两侧是一人多高的白布帐幔，大青砖铺成的甬道笔直的通向前方，甬道旁种植着一些奇花异草，有的开得正芬芳，再往前甬道微微拐了一个弯，使你看不到前面的景物，只见转弯之处迷迷蒙蒙浮着层水汽。春天，小雨。正午到了，忙碌的世界似乎安静了一些。 
+这里明显的出口是 north 和 southeast。 
+「火凤凰」金灵芝(Jin lingzhi) 
+ask jin lingzhi about pearl 
+你向金灵芝打听有关『pearl』的消息。 
+金灵芝一双大眼睛看着你:“有个贼偷了我的珠子，跑进玉泉池了。这位姑娘陪我壮壮胆，进去把他抓出来好不好？”(answer yes/no) 
+answer yes 
+你红着脸，偷偷笑了起来：反正那里面也没见识过。。。 
+你说：“好！我们进去抓贼！” 
+你决定开始跟随金灵芝一起行动。 
+金灵芝往北离开。 
+玉泉池 - 
+这里是一眼温泉，四周围以白 幛幔，旁边还摆放着…周的岩石被水冲洗的光洁干净，泉水蓝中透着绿色，从泉上不断冒出的白色水雾把这里笼罩在一片迷蒙之中。春天，小雨。正午到了，忙碌的世界似乎安静了一些。 
+这里唯一的出口是 south。 
+「火凤凰」金灵芝(Jin lingzhi) 
+妙绝天下 裸体男人(Nakedman chu) 
+无拘无束 裸体男人(Nakedman) 
+金灵芝一双大眼睛转来转去，水池里的每个男人都被她瞪得头皮发痒。 
+金灵芝对裸体男人大叫道：“你这个偷珠子的贼，还我珠子！” 
+裸体男人笑嘻嘻道：“姑娘真是好胆量，可惜还差一点。姑娘若敢也跳到这水池来，才算是有胆子、有本事。”金灵芝的脸都气黄了，突然伸手一拉腰上束着的紫金带。只听“呛”的一声，金灵芝手里已多了柄精光四射的紫金软剑。金灵芝对裸体男人喝道：臭贼！今日不是你死就是我活！” 
+金灵芝使出“清风十三式”中第八式“风动千铃”直指裸体男人而去。剑光点点流动，如风铃此起彼伏，却分不清到底哪一处在响！ 
+就在这时，突见人影一闪，一个人自门外斜掠了进来!这人来得好快! 
+只听“拍”的一声，金灵芝的剑竟被他的两只手夹住! 
+丁枫微笑着道：“多日不见，金姑娘的剑法精进了，这一招‘柳絮飞雪’使得当真是神完气足，意在剑先，就连峨媚派还珠大师只怕也得认为是青出于蓝。” 
+你不由疑惑道：金灵芝方才使出的明明是“清风十三式”中第八式“风动千铃”，丁枫为何偏偏要指鹿为马呢? 
+丁枫又道：“这位朋友，在下是认得的，但望金姑娘看在下薄面，放过了吧。” 
+金灵芝虽然满面怒容，但居然忍了下来。和丁枫一起转身就走。 
+金灵芝往南离开。 
+丁枫往南离开。 
+青砖甬道 - 
+两侧是一人多高的白布帐幔，大青砖铺成的甬道笔直的通向前方，甬道旁种植着一些奇花异草，有的开得正芬芳，再往前甬道微微拐了一个弯，使你看不到前面的景物，只见转弯之处迷迷蒙蒙浮着层水汽。春天，小雨。正午到了，忙碌的世界似乎安静了一些。 
+这里明显的出口是 north 和 southeast。 
+「玉树临风」丁枫(Ding feng) 
+「火凤凰」金灵芝(Jin lingzhi) 
+金灵芝和丁枫向东边荒凉的小径走去，很快消失了。 
+青砖甬道 - 
+两侧是一人多高的白布帐幔，大青砖铺成的甬道笔直的通向前方，甬道旁种植着一些奇花异草，有的开得正芬芳，再往前甬道微微拐了一个弯，使你看不到前面的景物，只见转弯之处迷迷蒙蒙浮着层水汽。春天，小雨。树荫似乎开始偏往东方了。 
+这里明显的出口是 north、east 和 southeast。 
+//马上east，否则east这个方向会被封掉。 
+#4 e 
+荒废的祠堂 - 
+祠堂里积满了灰尘，一些牌位凌乱地堆在神台上，两只烛台孤零零的立在神台上。神龛里空空的，上面结满了蛛网，神龛后面是厚厚的幔布。这里似乎新近有人来过，地面上印有很多杂乱的脚印。这里唯一的出口是 west。 
+open curtain 
+你试着掀开幔布。 
+忽然幔布动了一下，你面前如鬼魅般出现一个黑衣人。黑衣人冷笑一声：“你居然能跟到这里来了。黑衣人似乎在打量你。突然你听到黑衣人用冷森森的声音对你说：“你知道了太多的秘密，恐怕不能再让你活着走出这里。你要指望活下去，只有拜入我门下，严遵师令，不可泄露半点机密。”（ａｃｃｅｐ 　ｙｅｓ／ｎｏ） 
+accept no 
+//接master kumei一个摘心，中了必死，所以尽量把防御力和dodge有效等级提高一点。 
+你退了一步，摇摇头说：“我拜得天，拜得地！怎么能拜你这样鬼鬼祟祟的人为师！？” 
+黑衣人狞笑道：“好！看招！！” 
+看起来黑衣人想杀死你！ 
+黑衣人面色变得惨白如纸，双手提起，指尖发出莹莹的光芒。黑衣人忽然用一种奇幻的身法闪到你面前，双爪电击般抓向你心口！你连忙收招封住黑衣人手腕，在森森爪影下旋身急退，躲开了黑衣人的致命一击。 
+黑衣人不可置信地看着你道：“你竟能躲过我这一招！！她一定是瞒下了心法要诀。。。好，今天就暂且放过你。”黑衣人哼了一声，双足一点，飞掠而去。” 
+#3 w;open curtain;w;se;wu;se;su 
+
+听琴毛女洞： 
+毛女洞 - 
+毛女洞传说是毛女隐遁栖身处。毛女为秦始皇宫女，因避骊山殉葬之灾，负琴与秦宫役夫相携逃入华山。后业经高士指点，饥食松柏籽，渴饮清泉水，致使体生绿毛，行步如飞。据说山客猎师世代都有人看见过她，而当夜深人静时，仍然可以听到毛女洞如泣如诉的琴声。 
+这里唯一的出口是 northdown。 
+//时辰：夜幕低垂，四周一片暗灰。大概丑时左右。 
+//会有提示： 
+一阵悠悠的琴声不知从何处传来，你凝神聆听（ｌｉｓｔｅｎ），想找出声音的来源。 
+//这个提示共有两次，male id listen过后，可以在玉女峰见到青青。 
+//只有female id listen过后，才会在玉女峰出现华真真。 
+listen 
+幽远的琴声在夜色中如泣如诉，你循着琴声仔细寻找，发现声音似乎从洞顶传来。 
+…………………………………………………………………………………………………… 
+苍龙岭 - 
+刀形的山 钩什院 色，石路长?百米，宽不足三尺，两侧深渊千尺，每当山风吹过、云雾飘来，上面行人似站云端，又似乘风飞去，让人不由得心旌神摇，惊险异常。有诗道：“岭下望岭上，….，始敢纵横施。惊魂 坠魄，往往随风吹。 ”春天，小雨。东方的天空浮着一丝淡白色。 
+这里明显的出口是 westdown、southup、eastdown 和 northup。 
+华山派 第十七代弟子 高亚男(Gao yanan) 
+幽幽的琴声时断时续，有时如夜阑轻语，有时如滴水落檐，不时从山顶飘下来。 
+su 
+玉女峰 - 
+一路行来风景秀丽，峰上更是林木茂密，环境清幽。巨石边，小溪侧奇花异草多不知名。绝崖边沿长有一棵松树，树干光洁，树身乘半凌空远出崖外，成舍身扑崖之势。密林中一角飞檐探出树梢，似空中的巨鹰，透过林间缝隙，可以看到一座小院坐落林中。春天，小雨。东方的天空浮着一丝淡白色。 这里唯一的出口是 northdown。 
+琴声戛然而止。黑暗中，似乎有人叹了一口气。 
+玉女峰 - 
+一路行来风景秀丽，峰上更是林木茂密，环境清幽。巨石边，小溪侧奇花异草多不知名。绝崖边沿长有一棵松树，树干光洁，树身乘半凌空远出崖外，成舍身扑崖之势。密林中一角飞檐探出树梢，似空中的巨鹰，透过林间缝隙，可以看到一座小院坐落林中。春天，小雨。东方的天空浮着一丝淡白色。这里唯一的出口是 northdown。 
+华山派 第十七代弟子 华真真(Hua zhenzhen) 
+apprentice hua zhenzhen 
+//解“枯梅的阴谋”时，假如给抓死，经验再次达到1.2m，同样可以拜。 
+你想要拜华真真为师。 
+华真真盯着你看了一会儿，叹了口气说：“也许真的有一天，你能发扬光大华山派。” 
+华真真决定收你为弟子。 
+你跪了下来向华真真恭恭敬敬地磕了四个响头，叫道：「师父！」 
+恭喜您成为华山派的第十六代弟子。 
+华真真转身走到绝壁边，回身向你示意跟过来。华真真身影一晃，竟然从绝壁边消失了。 
+你惊讶地走到绝壁傍边。突然，耳边传来一声轻笑，一只手把你一拉，竟然把你拉进石壁。 听华真真道：“这是华山密洞，是本派前辈设计开凿的。 
+下次可以推开山壁（ｓｌｉｄｅ　ｒｏｃｋ），就能进来了。” 
+华山密洞 - 
+这是一个在天然洞穴基础上而建造的密洞，洞不算很大却很高，这里的空气也不沉闷，可见另有通气的地方。洞内的石壁上挂着几盏水晶灯把洞内照耀得如同白昼，紧靠石壁放着几个彩色锦垫。一面的洞壁似乎可以打开。这里没有任何明显的出路。 
+华山派 第十七代弟子 华真真(Hua zhenzhen) 
+
+【宋甜儿的佳肴】 
+这个嘛,还是挺有意思的东西,...来看一下要求。。。 
+那太好了， 嗯，那听好了，我需要这些材料「五彩小鱼」、「狼肉脯」、「绍兴女儿红」、「水蜜桃」、「嫩藕」、「葱花」、「百合花」，""嗯，还有便是趵突泉的泉水 ，这就不劳您大驾了。 
+五彩小鱼,这是这?/span>
+
+进出神水的方法
+
+进神水有3种方法，出来有2种。
+进神水的方法：
+1、2进去后里面的girl不会对你叫杀
+3进去后会对你叫杀并且杀不光，还会拼命那个招式。不过如果用1或2进去后就得了个mark，再用方法进去就可以了。我就是这样做的。
+方法1：
+get lighter from oven
+你从灶台上拿起一个火摺子。
+
+这里明显的出口是 west 和 east。
+收破烂的(Scavenger)
+> 闹市街
+这里明显的出口是 west、north、east 和 south。
+> 闹市街
+这里明显的出口是 west、north、east 和 south。
+> 神秘冰河
+这里明显的出口是 west、northwest、north、southwest、east 和 south。
+> 神秘冰河
+这里明显的出口是 west 和 east。
+> 山洞秘道
+这里明显的出口是 west 和 north。
+
+> 山洞秘道
+这里明显的出口是 west、north 和 east。
+> 山洞秘道
+这里明显的出口是 north 和 south。
+> 山洞秘道
+这里明显的出口是 west、north、east 和 south。
+> 山洞秘道
+这里明显的出口是 north 和 east。
+> 山洞秘道
+这里唯一的出口是 south。
+> 你掏出一个火摺子打了几下。
+你用火摺子点燃了墙壁上的灯。
+
+> 山洞秘道
+这里明显的出口是 west、north 和 northeast。
+write 絮春春
+你略一沉吟，提笔在空格上填了几个字，又把笔放了下去。
+你只觉得后脑勺似乎被什么东西叮了一下。
+
+你的眼前一黑，接著什麽也不知道了....
+
+> 卧室 - 
+白水宫招待贵宾的所在，由于白水宫向来不许男人进入，而行走江湖的
+偏又多是男子，所以这里一般是没有人住的，现在为了你的到来，已经特意
+打扫了一番，屋中陈设华美，床上被褥齐全，到此可以卧枕安眠了。
+这里唯一的出口是 west。
+神水宫弟子 张小燕(Girl)
+拂尘的女子(Housework girl)
+
+方法2
+你从土墙上拿起一个小钩子。
+
+east
+村居
+这里明显的出口是 west、north、east 和 south。
+农夫(Farmer)
+south
+> 青青石板路
+这里明显的出口是 west、north、east 和 south。
+west
+> 青青石板路
+这里明显的出口是 west、north、east 和 south。
+north
+> 渔家
+这里唯一的出口是 south。
+渔家女 彩儿(Cai er)
+get string from basket
+> 你从针线篮中拿出一条鱼线。
+pick bamboo
+> 你折了一根青青的竹子，小心的放在怀里。
+make
+> 你用灵巧的双手造成了一个别致的小鱼杆。
+south
+> 小厅
+这里明显的出口是 north 和 up。
+兰儿(Laner)
+l bajiao
+> 窗外的芭蕉开的正热闹，你注意到芭蕉下的土似乎被松过。
+
+north
+后花园
+这里明显的出口是 west、north、east 和 south。
+燕儿(Yaner)
+east
+> 池塘
+这里明显的出口是 west、eastup、northeast 和 southeast。
+
+
+push stone
+> 你伸手推了推太湖石，石边的土松动了，露出了两条胖胖的蚯蚓。
+get all
+> 你捡起一条蚯蚓。
+你捡起一条蚯蚓。
+Ok。
+southeast
+> 池塘
+这里明显的出口是 northwest 和 east。
+小宝儿(Baoer)
+
+> 你身上带著下列这些东西(负重 8%)：
+蚯蚓(Qiu yin)
+蚯蚓(Qiu yin)
+钓鱼杆(Fish pole)
+风筝(Kite)
+六十一两银子(Silver)
+二两黄金(Gold)
+√豹牙手环(Shouhuan)
+大箱子(Woodcase)
+六十五文钱(Coin)
+南瓜(Pumpkin)
+火摺子(Lighter)
+扫把(Saoba)
+龙凤双环(Longfeng)
+羊皮酒袋(Wineskin)
+冷月葬花魂(Baoyu)
+
+get all from ground
+> 你从土地中拿出一条蚯蚓。
+
+northwest
+> 池塘
+这里明显的出口是 west、eastup、northeast 和 southeast。
+put qiu yin in pole
+> 你将一条蚯蚓放在钓鱼杆上。
+
+northeast
+> 池塘
+这里明显的出口是 southwest 和 southeast。
+climb tree
+> 
+
+你沿着树干慢慢爬了上去，坐到了横在湖面的柳树干上。
+柳树上
+这里唯一的出口是 down。
+
+l
+> 柳树上 - 
+柳树很大，由于树横卧在水面上，所以并不高。坐在这里，你的脚几乎可以碰
+到水面，微风袭来，柳条轻佛着你的面颊，好似情人的手一般得温柔。几条锦鲤在
+树下的水中悠闲地游来游去，不远处的小桥倒映在水中，从这里看去别有一番景致。
+春天，小雨。
+夜幕笼罩，周围渐渐隐入了黑暗中。
+这里唯一的出口是 down。
+
+
+wield baoyu
+> 你拿出一根冷月葬花魂握在手中。
+put qiu yin in pole
+> 你将一条蚯蚓放在钓鱼杆上。
+hp
+> 精力 ： 2125/ 2125 (100%) 食物： 98%
+气血 ： 5480/ 5480 (100%) 饮水： 13%
+心神 ： 1939/ 1939 (100%) 评价： 22415
+灵力 ： 325/ 325 ( 0) 杀气： 1702
+内力 ： 1630/ 1295 ( 103) 潜能： 11724
+法力 ： 225/ 225 ( 0) 经验： 2409428
+drop fish
+> 你丢下一条大锦鲤。
+
+
+fishing
+> 你掏出一个钓鱼杆。
+你坐在树干上静静的开始垂钓。 
+无聊中你注意到桥头雪白的石头上似乎有一块黑斑。
+> 你很快又扯动了一下鱼杆, 什么都没钓上来 , 鱼饵却被鱼吃了 !! 
+
+d
+> 池塘
+这里明显的出口是 southwest 和 southeast。
+southwest
+> 池塘
+这里明显的出口是 west、eastup、northeast 和 southeast。
+west
+> 后花园
+这里明显的出口是 west、north、east 和 south。
+燕儿(Yaner)
+climb tree
+climb tree
+> 你身手矫健地爬上了老槐树。
+槐树上
+这里唯一的出口是 down。
+> 你毫不费力得往上爬去。
+槐树上
+这里没有任何明显的出路。
+麻雀(Bird)
+get key from 鸟窝
+（抱歉鸟窝不刷新了我没拿到）
+
+> 拱桥 - 
+一座小巧精制的拱桥横跨在池塘上，池塘就这样被一分为二。池塘里的水
+碧绿清澈，上面浮着些盛开的睡莲，透过睡莲的缝隙隐约可见几尾红色金鲤在
+水中悠闲地缓缓游动。远处靠墙窗下的一丛芭蕉，火红的花朵开的正热闹，给
+这宁静的池塘带来无限生机。
+search
+你凭着对黑斑地点的印象，仔仔细细地查看了一遍桥边的石头。 你发现桥头的一块石头上凹进去了一块，在凹进去的地方有一个小孔。
+use key
+你把钥匙插入石孔，左右转了几下
+平静的池塘水面上似乎起了一个小小的漩涡，不仔细是看不出来的。
+> 池塘
+这里明显的出口是 southwest 和 southeast。
+climb tree
+你沿着树干小心翼翼地往前爬，．．．
+
+
+突然脚下一滑，扑通一声掉进了水里。
+
+池塘里
+这里没有任何明显的出路。
+up
+水下
+这里唯一的出口是 up。
+push stone
+你伸手向石头推去，石头随着你手上的力道向一边滑开
+湖中的水突然向石后的空洞涌去！你的头被水流带动，狠狠地撞在了石头上
+你的眼前一黑，接著什麽也不知道了....
+
+> 卧室 - 
+白水宫招待贵宾的所在，由于白水宫向来不许男人进入，而行走江湖的
+偏又多是男子，所以这里一般是没有人住的，现在为了你的到来，已经特意
+打扫了一番，屋中陈设华美，床上被褥齐全，到此可以卧枕安眠了。
+这里唯一的出口是 west。
+神水宫弟子 张小燕(Girl)
+拂尘的女子(Housework girl)
+如果再要进去就不用钓鱼了直接来push stone
+这种方法需要高点的运气来钓鱼得到mark,并且每次进都会晕。
+第一种方法也会晕并且一个小时左右才能做一次。
+
+进的方法三（也是我常用的）
+先在清平得到这个mark
+大厅
+
+清平山庄 三弟子 公孙不智(Buzhi)
+
+l pingfeng
+> 只见那群山之间，云雾缭绕之中似乎有个白色的湖泊，在湖的东北方
+似乎有一淡淡的印痕，不仔细是觉对发现不了的。 
+> 书房
+这里唯一的出口是 south。
+清平山庄 第二代弟子 中年书生(Shu sheng)
+get all from wall
+你从墙壁上拿起一个风筝。
+
+> 闹市街
+这里明显的出口是 west 和 east。
+> 闹市街
+这里明显的出口是 west、north、east 和 south。
+> 闹市街
+这里明显的出口是 west、north、east 和 south。
+乞丐(Beggar)
+> 神秘冰河
+这里明显的出口是 west、northwest、north、southwest、east 和 south。
+> 神秘冰河
+这里明显的出口是 west 和 east。
+> 山洞秘道
+这里明显的出口是 west 和 north。
+> 什么？
+north
+> 山洞秘道
+这里明显的出口是 west、north 和 east。
+north
+> 山洞秘道
+这里明显的出口是 north 和 south。
+north
+> 山洞秘道
+这里明显的出口是 west、north、east 和 south。
+east
+> 山洞秘道
+这里唯一的出口是 west。
+push stone
+> 什么？
+get lighter from basket
+> 你从大竹筐中拿出一个火摺子。
+i
+> 你身上带著下列这些东西(负重 9%)：
+火摺子(Lighter)
+四百零八两银子(Silver)
+五两黄金(Gold)
+方丈手谕(Shouyu)
+√七彩丝缎带(Silk)
+龙凤双环(Longfeng)
+大竹筐(Big basket)
+南瓜(Pumpkin)
+扫把(Saoba)
+羊皮酒袋(Wineskin)
+冷月葬花魂(Baoyu)
+search
+> 你在黑暗中四处乱摸。
+你没有任何发现。 
+search
+> 你在黑暗中四处乱摸。
+你没有任何发现。 
+search
+> 你在黑暗中四处乱摸。
+你没有任何发现。 
+search
+> 你在黑暗中四处乱摸。
+你没有任何发现。 
+search
+search
+> 你在黑暗中四处乱摸。
+你没有任何发现。 
+> 你在黑暗中四处乱摸。
+你没有任何发现。 
+search
+> 你在黑暗中四处乱摸。
+你没有任何发现。 
+search
+> 你在黑暗中四处乱摸。
+你摸到了一块大石，摇了摇似乎有些松动。
+push stone
+> 你运力于双臂，使出浑身的力气向大石推去！
+out
+north
+northeast
+northup
+east
+east
+play kite
+黑暗中只见有一丝光透过，光束越来越大，慢慢露出个洞口！ 
+> 洞口
+这里唯一的出口是 north。
+> 谷地
+这里明显的出口是 northeast 和 south。
+> 迷雾天梯
+这里明显的出口是 northup 和 southwest。
+> 迷雾天梯
+这里明显的出口是 east 和 southdown。
+> 谷地
+这里明显的出口是 west 和 east。
+> 白水湖
+这里明显的出口是 west、southwest、south 和 southeast。
+棕熊(Bear)
+> 什么？
+get kite from basket
+> 你从大竹筐中拿出一个风筝。
+play kite
+> 你掏出一个风筝。
+突然一阵微风拂过风筝缓缓的升了起来，越来越高。
+
+一阵劲风吹过，你手中的线断了，风筝越来越高，慢慢的不见了。 
+tune new
+> 打开 new 频道。
+get kite from basket
+> 你附近没有这样东西。
+tune new
+> 关闭 new 频道。
+i
+> 你身上带著下列这些东西(负重 9%)：
+火摺子(Lighter)
+四百零八两银子(Silver)
+五两黄金(Gold)
+方丈手谕(Shouyu)
+√七彩丝缎带(Silk)
+龙凤双环(Longfeng)
+大竹筐(Big basket)
+南瓜(Pumpkin)
+扫把(Saoba)
+羊皮酒袋(Wineskin)
+冷月葬花魂(Baoyu)
+get kite from basket
+> 你附近没有这样东西。
+l basket
+> 一个手工编制的大竹筐。
+里面有：
+豹牙手环(Shouhuan)
+哈达(Hada)
+罗刹牌(Luosha)
+hp
+perform dodge.wuwuwuwo baoyu
+> 精力 ： 2125/ 2125 (100%) 食物： 99%
+气血 ： 5480/ 5480 (100%) 饮水： 17%
+心神 ： 1939/ 1939 (100%) 评价： 22443
+灵力 ： 325/ 325 ( 0) 杀气： 1942
+内力 ： 1295/ 1295 ( 103) 潜能： 9420
+法力 ： 225/ 225 ( 0) 经验： 2420426
+> 你摒除心中所有杂念，只感到灵台一片明净，霎时间身轻似无物。
+play kite
+> 你掏出一个风筝。
+突然一阵微风拂过风筝缓缓的升了起来，越来越高。
+(风筝有一半机会会断，所以要多搜集风筝）
+贾宝玉手中的风筝越飞越高。 
+只听一阵清悦的哨音从高空传过！ 
+> 过了半晌，一叶小舟缓缓地从雾中荡出，靠到了湖边。
+什么？
+> 什么？
+> 白水湖 - 
+走近来看，原来水色还是青青绿色，只是倒映天上白云，所以远远望来，
+便是一片白色。湖边不见草木，水中鲜见游鱼，显得甚是奇怪，更兼微风轻拂
+之下，竟然不见水面晃动，令人不由暗暗生奇。
+春天，小雨。
+东方的天空浮着一丝淡白色。
+这里明显的出口是 down、west、southwest、south 和 southeast。
+棕熊(Bear)
+> 渔船中
+这里唯一的出口是 up。
+> 什么？
+> 一阵微风拂过，小船荡离了岸边。
+渔船中 - 
+一叶小舟漂浮在湖面上，四周群山环绕，风景十分优美。小舟很小，仅可
+乘坐一人，但建造的十分精致并且牢固，舟上横放着一对浆。
+春天，小雨。
+东方的天空浮着一丝淡白色。
+这里没有任何明显的出路。
+> 你抄起船浆轻盈地把小船划向湖的东北方。
+dive
+你站起身来，深吸一口气，一个猛子扎到了湖里。
+
+白水宫门
+这里明显的出口是 up 和 enter。
+enter
+> 水池
+这里唯一的出口是 up。
+u
+> 你的［无物无我］施展完毕，身形稳定了下来。
+溶洞
+这里唯一的出口是 north。
+north
+> 溶洞
+这里明显的出口是 west、north、east 和 south。
+touch stone
+> 
+
+你伸手向一个钟乳石上按去。
+你只觉得脚下一空，身子向下坠去，惊慌中你发出一声大叫。
+
+艳洞
+这里唯一的出口是 north。
+north
+> 艳洞
+这里明显的出口是 north 和 south。
+north
+> 
+你左摇右晃，但是还是坚持着没有晕倒。
+
+艳洞
+这里明显的出口是 north 和 south。
+faint
+> 你脚下一个踉跄昏倒在地上。
+
+你的眼前一黑，接著什麽也不知道了....
+
+(第一次进会晕，再进就不会晕）
+
+
+忽然头顶滴下几滴水滴 ....... 虽然只有几滴，却已把你从无比的
+烦燥与昏热中解救出来 ，仔细一看，原来上边有一洞口。一个完全赤裸的
+女孩正拿着水壶往下滴水。嘴边因微笑而荡起的梨涡使你心中不由一震。你
+暗中已经记住了洞口的方位。
+
+jump up
+你纵身轻盈地跳到了上面一层，眼前人影一晃，失去了女孩的踪影。
+火岩洞口
+这里明显的出口是 northup、down 和 southup。
+神水宫弟子 剑儿(Jian er)
+northup
+> 白水殿
+这里明显的出口是 west、northwest、northeast、east 和 southdown。
+侍女(Girl)
+侍女(Girl)
+侍女(Girl)
+神水宫 第十一代掌门「水母阴姬」白水娘娘(Master shenshui)
+这种方法是只有第一次进会晕，再进就不会如果做好triger进去只要10秒钟不到。但是风筝有时会断，要多搜集了。
+
+出来的方法1
+卧室 - 
+白水宫招待贵宾的所在，由于白水宫向来不许男人进入，而行走江湖的
+偏又多是男子，所以这里一般是没有人住的，现在为了你的到来，已经特意
+打扫了一番，屋中陈设华美，床上被褥齐全，到此可以卧枕安眠了。
+这里唯一的出口是 west。
+神水宫弟子 张小燕(Girl)
+拂尘的女子(Housework girl)
+> 你中的蛇毒发作了！
+west
+裨女卧室
+这里明显的出口是 southwest 和 east。
+southwest
+> 白水殿
+这里明显的出口是 west、northwest、northeast、east 和 southdown。
+侍女(Girl)
+侍女(Girl)
+侍女(Girl)
+神水宫 第十一代掌门「水母阴姬」白水娘娘(Master shenshui)
+sd
+> 火岩洞口
+这里明显的出口是 northup、down 和 southup。
+神水宫弟子 剑儿(Jian er)
+d
+> 
+你左摇右晃，但是还是坚持着没有晕倒。
+
+艳洞
+这里明显的出口是 north 和 south。
+south
+> 艳洞
+这里明显的出口是 north 和 south。
+
+south
+
+艳洞
+这里唯一的出口是 north。
+
+你中的蛇毒发作了！
+l pearl
+> 你要看什麽？
+l
+> 艳洞 - 
+刚才好似天堂，现在你却似身在地狱，四周是昏黄发红的光线，你不由觉得
+好热，而且越来越热，似乎有火在煎熬着你，走了几步四周景色没有改变，耳边
+不时传来少女低声的呻吟，和着周围火热的岩石，你不禁越来越烦燥。
+这里唯一的出口是 north。
+search
+> 你伸手在火热的石壁上摸索着。
+你什么都没找到。
+search
+> 你伸手在火热的石壁上摸索着。
+你什么都没找到。
+search
+> 你伸手在火热的石壁上摸索着。
+你的手在石壁上摸到了一个突出物，你顺手往上一按。 
+只听一阵绞索的声音，你头上裂开了一个洞口。 
+search
+> 轰隆一声，头顶上的出口又被挡住了。
+你伸手在火热的石壁上摸索着。
+你的手在石壁上摸到了一个突出物，你顺手往上一按。 
+只听一阵绞索的声音，你头上裂开了一个洞口。 
+u
+> 轰隆一声，头顶上的出口又被挡住了。
+这个方向没有出路。
+search
+u
+> 你伸手在火热的石壁上摸索着。
+你什么都没找到。
+> 这个方向没有出路。
+> 你中的蛇毒发作了！
+search
+u
+你伸手在火热的石壁上摸索着。
+你什么都没找到。
+> 这个方向没有出路。
+search
+u
+> 你伸手在火热的石壁上摸索着。
+你的手在石壁上摸到了一个突出物，你顺手往上一按。 
+只听一阵绞索的声音，你头上裂开了一个洞口。 
+> 溶洞
+这里明显的出口是 west、north、east 和 south。
+hp
+south
+eat pumpkin
+> 精力 ： 2125/ 2125 (100%) 食物： 3%
+气血 ： 5391/ 5392 ( 98%) 饮水： 21%
+心神 ： 1939/ 1939 (100%) 评价： 22427
+灵力 ： 325/ 325 ( 0) 杀气： 1757
+内力 ： 1295/ 1295 ( 103) 潜能： 12452
+法力 ： 225/ 225 ( 0) 经验： 2413790
+> 溶洞
+这里明显的出口是 west、north、east 和 south。
+> 你拿起南瓜咬了几口。
+south
+> 溶洞
+这里明显的出口是 west、north、east 和 south。
+> 【市井】小刀双手抱拳，作了个揖道：各位英雄请了！
+l pearl(第一次进要look)
+珍珠在石壁上组成各样的字句和图案，你看了几眼不觉面红耳赤心神荡漾。
+l pearl
+> 珍珠在石壁上组成各样的字句和图案，你看了几眼不觉面红耳赤心神荡漾。
+l pearl
+l pearl
+> 珍珠在石壁上组成各样的字句和图案，你看了几眼不觉面红耳赤心神荡漾。
+l pearl
+> 你看到石壁上有几粒珍珠似乎组成一个小箭头，箭尖对着东南方。
+> 珍珠在石壁上组成各样的字句和图案，你看了几眼不觉面红耳赤心神荡漾。
+l pearl
+> 你中的蛇毒发作了！
+珍珠在石壁上组成各样的字句和图案，你看了几眼不觉面红耳赤心神荡漾。
+
+southeast
+你向东南方走去。
+
+溶洞
+这里唯一的出口是 north。
+dive
+> 你走到池边，深吸一口气，跳到了池子里。
+
+水池
+这里唯一的出口是 up。
+dive
+> 你深吸一口气，一个猛子向下扎去。
+
+白水宫门
+这里明显的出口是 up 和 enter。
+u
+> 看起来毒蛤蟆想杀死你！
+看起来毒蛤蟆想杀死你！
+湖面
+这里没有任何明显的出路。
+毒蛤蟆(Bad frog)
+毒蛤蟆(Bad frog)
+> 
+毒蛤蟆扑上来张嘴往你的右肩狠狠地一咬！
+你一招「菩提本无树」轻轻巧巧地避了开去。
+毒蛤蟆正盯著你的一举一动，随时准备发动攻势。
+
+你身形旋转如飞，一招「玄机暗藏」，蓦地斜出一指，点向毒蛤蟆身体！
+结果「噗嗤」地一声，左手食指已在毒蛤蟆身体刺出一个血肉模糊的血窟窿！
+( 毒蛤蟆已经陷入半昏迷状态，神智全失，看来身上并无丝毫伤痕。 )
+你中的蛇毒发作了！
+q
+
+你现在的任务是杀『毒蛤蟆』。
+任务已经开始了五分二十一秒。
+> 
+毒蛤蟆扑上来张嘴往你的小腹狠狠地一咬！
+你左足一点，一招「何处惹尘埃」腾空而起，避了开去。
+
+毒蛤蟆死了。
+
+q
+任务被你完成，你被奖励了：
+一百二十八点实战经验
+二十一点潜能
+一点评价
+四十两银子
+
+你力透指尖，一招「沙含大千」，缓缓向毒蛤蟆的身体戳去！
+结果「噗嗤」地一声，右手食指已在毒蛤蟆身体刺出一个血肉模糊的血窟窿！
+毒蛤蟆不求自保，奋力抢攻而上。
+毒蛤蟆扑上来张嘴往你的右脚狠狠地一咬！
+你身影微动，已经藉一招「滔滔遍九垓」轻轻闪过。
+( 毒蛤蟆已经陷入半昏迷状态，神智全失，看来身上并无丝毫伤痕。 )
+你现在没有任何任务！
+swim
+> 
+你奋力向湖边游去!你终于湿淋淋地爬到了岸上!
+
+白水湖
+这里明显的出口是 west、southwest、south 和 southeast。
+棕熊(Bear)
+west
+west
+sd
+southwest
+south
+push stone
+> 谷地
+这里明显的出口是 west 和 east。
+> 迷雾天梯
+这里明显的出口是 east 和 southdown。
+> 迷雾天梯
+这里明显的出口是 northup 和 southwest。
+> 谷地
+这里明显的出口是 northeast 和 south。
+> 洞口
+这里唯一的出口是 north。
+> 你运力于双臂, 使出浑身的力气向藤萝后的大石推去！ 
+enter
+west
+south
+south
+east
+south
+west
+west
+west
+west
+west
+west
+你大石慢慢向旁边滑去, 露出了一个洞口。 
+> 只听咯吱吱，石头又滑了回来挡上了洞口。
+
+southeast
+south
+south
+south
+south
+south
+south
+south
+south
+south
+south
+south
+south
+south
+south
+> 什么？
+> 什么？
+> 什么？
+> 什么？
+> 什么？
+> 什么？
+push stone
+> 你运力于双臂, 使出浑身的力气向藤萝后的大石推去！ （需要str>30)
+enter
+west
+south
+south
+east
+south
+west
+west
+west
+west
+west
+west
+你大石慢慢向旁边滑去, 露出了一个洞口。 
+> 山洞秘道
+这里唯一的出口是 west。
+> 山洞秘道
+这里明显的出口是 west、north、east 和 south。
+> 山洞秘道
+这里明显的出口是 north 和 south。
+> 山洞秘道
+这里明显的出口是 west、north 和 east。
+> 山洞秘道
+这里明显的出口是 north 和 south。
+> 山洞秘道
+这里明显的出口是 west 和 north。
+> 神秘冰河
+这里明显的出口是 west 和 east。
+> 神秘冰河
+这里明显的出口是 west、northwest、north、southwest、east 和 south。
+> 闹市街
+这里明显的出口是 west、north、east 和 south。
+> 闹市街
+这里明显的出口是 west、north、east 和 south。
+> 闹市街
+这里明显的出口是 west 和 east。
+> 闹市
+这里明显的出口是 east 和 southeast。
+醉汉(Drunk)
+醉汉(Drunk)
+农夫(Farmer)
+农夫(Farmer)
+毒蛤蟆是2M左右的任务，虽然不厉害不过新手还是不要用这个方法出来
+
+出来的方法2
+l
+> 白水殿 - 
+一座高大的殿堂，在山腹中有如此杰作，实在让人叹为观止，可见构思人的
+心机是多么的巧妙，工程是多麽的巨大。殿很大，中间却没有一根柱子，大殿的
+顶上镶满了各色珍珠和珊瑚，正中间是一张雕花椅，四周静静的站了几个侍女。
+这里明显的出口是 west、northwest、northeast、east 和 southdown。
+侍女(Girl)
+侍女(Girl)
+侍女(Girl)
+神水宫 第十一代掌门「水母阴姬」白水娘娘(Master shenshui)
+sd
+> 火岩洞口
+这里明显的出口是 northup、down 和 southup。
+神水宫弟子 剑儿(Jian er)
+southup
+> 软红山庄
+这里明显的出口是 northdown 和 south。
+south
+> 星星小楼
+这里唯一的出口是 north。
+方灵玉(Lingyu)
+
+
+listen 海涛
+> 你侧耳聆听海涛拍打岸边的声音。
+方灵玉微笑着对你道：“海是一个神秘的世界，不是吗？你可相信蛟人的存在？”
+（ａｎｓｗｅｒ　ｙｅｓ／ｎｏ／ｄｕｎｎｏ）
+answer no
+> 你拍手大笑说道：“那只不过是个哄小孩子的传说罢了。”
+
+方灵玉微微一笑说道：“是么？”，与此同时方灵玉的手似乎微微一动。
+
+只觉得一阵掌风袭来，你一个旱地拔葱向后闪开，然而脚下一空，你
+蓦然一惊，身形已从窗口翻了出去。
+你只觉的身子向下坠落，慌乱中你伸出右脚踏向一颗从岩缝中长出的小
+树，咔喳一声小树断了，你下降的势力也缓了缓，扑通一声你落入了水中。。
+
+崖底
+这里没有任何明显的出路。
+
+l
+> 崖底 - 
+石头是黑色的，浪似乎也是黑色的，浪头打到崖底的石头上溅起朵朵白色的水
+花，你用尽力气也挣脱不了浪头的束缚，只感觉到浪底的水流似乎比较平稳。大自
+然的力量还是人力所无法抗衡的。
+春天，晴。
+夜幕低垂，四周一片暗灰。
+这里没有任何明显的出路。
+
+
+突然一个大浪把你卷了出去！
+
+看起来水桶般粗细的大海蟒想杀死你！
+看起来水桶般粗细的大海蟒想杀死你！
+海上
+这里没有任何明显的出路。
+水桶般粗细的大海蟒(Sea snake)
+水桶般粗细的大海蟒(Sea snake)
+
+)
+
+水桶般粗细的大海蟒死了。
+
+
+swim
+
+你奋力向前游去!
+看起来水桶般粗细的大海蟒想杀死你！
+海上
+这里没有任何明显的出路。
+水桶般粗细的大海蟒(Sea snake)
+> 
+水桶般粗细的大海蟒扑上来张嘴往你的腰间狠狠地一咬！
+你身形蓦地消逝，一招「五蕴皆空」，一指解围。
+
+swim
+你在战斗中！
+
+
+水桶般粗细的大海蟒死了。
+
+
+swim
+> 
+你奋力向前游去!
+看起来水桶般粗细的大海蟒想杀死你！
+看起来水桶般粗细的大海蟒想杀死你！
+看起来水桶般粗细的大海蟒想杀死你！
+海上
+这里没有任何明显的出路。
+水桶般粗细的大海蟒(Sea snake)
+水桶般粗细的大海蟒(Sea snake)
+水桶般粗细的大海蟒(Sea snake)
+的周身大穴。
+l sea snake
+一条全身乌黑，布满黑斑水桶般粗细的大海蟒
+它看来呆头呆脑的。
+武功看起来好象略有大成，出手似乎不重。
+它看来身上并无丝毫伤痕。
+
+水桶般粗细的大海蟒死了。
+
+swim
+
+你奋力向前游去!
+远远的你似乎看到了一片陆地，你用尽所有的力气向那儿游去。
+你终于湿淋淋地爬到了岸上!
+
+碧蓝海边
+这里明显的出口是 north 和 south。
+> 【新手】在这一瞬间，张三影觉得小碗简直跟神一样。
+north
+你现在忙得很，不能移动。
+north
+> 海边路
+这里明显的出口是 west、north、east 和 south。
+渔夫(Fishman)
+l
+> 海边路 - 
+路面上的沙石越来越细，空气中弥漫着一股咸味，越往前走，咸味越明显。远处
+隐隐传来波涛拍岸的声音。偶尔走过去一两个满脸水纹的老渔夫，肩上扛着渔具，爽
+朗地大声谈笑。路边是一片的灌木丛，树木不高却很密，黑漆漆地看不清背后有没有
+路。
+春天，晴。
+东方的天空浮着一丝淡白色。
+这里明显的出口是 west、north、east 和 south。
+渔夫(Fishman)
+这个方法出来比较慢，不过略安全。
+
+
+勇探地牢
+(2010-01-31 18:33:52)	
+标签：
+游戏
+	分类： 谜题（riddle）
+  磨菜刀的(Moman)
+> kill moman
+get coin from corpse
+你从磨菜刀的的尸体身上搜出一枚铜钱。
+
+> give medman coin
+你递给中药店老板一枚铜钱。
+中药店老板看了你一眼，指了一下小火炉。
+你犹豫了一下，将身上的一文钱扔入小火炉中。
+铜钱上的裂痕中冒出一股绿烟，将整个铜钱染成碧绿！
+中药店老板并不要你的铜钱。
+
+  生死已卜 乙成仙(Fortune teller)
+> 乙成仙自言自语地说：我怎么会丢了师傅给的碧绿铜钱？
+give teller coin
+你递给乙成仙一枚铜钱。
+恭喜：你开始了一个新谜题：勇探地牢
+乙成仙道：好！你帮我找到了铜钱，我来真正给你算一卦！
+你真的是煞气冲天，你一定要在三天之内订口棺材，可能躲过这一劫！
+
+
+  棺材店老板 胡英(Hu ying)
+ask hu about coffin
+你向胡英打听有关『coffin』的消息。
+胡英道：乙成仙说你死，你一定会死的了，可是我这儿没有木材了！
+胡英道:你去砍些木材来我也许会给你做一个.
+
+#20 chop
+你砍了一棵梅树幼苗放在怀里。
+
+> give hu 20 tree
+你递给胡英一捆梅树幼苗。
+胡英指着墙角的红木棺材道：你认为那棺材的式样如何？
+你发现红木棺材的盖没有盖好，似乎可以推开（ｐｕｓｈ）。
+
+你对著安生店伙计喝道：「臭贼！今日不是你死就是我活！」
+
+看起来安生店伙计想杀死你！
+>
+安生店伙计死了。
+
+push coffin
+
+
+你用力推开棺材盖子，一个不小心，整个人栽了下去！
+
+小仓房 -
+    在昏暗的烛光下，你隐约可以看到这里堆满了东西，一麻袋一麻袋的无谷杂粮
+占据了小半个房间，一袋袋一直堆积到房顶，一些残破的桌椅板凳散放在另一个角
+落，旁边的几个大竹筐里堆放着一些新鲜蔬菜。
+    这里唯一的出口是 south。
+  大竹筐(Big basket)
+
+白玉魔 : 2M
+伊哭 : 6.5M
+关东豪客 : 3.2M
+松谷庵「守身如玉」小尼姑 : 2.3M   
+黄山派 第五代弟子 小慕容 : 2.5M
+「紫心剑客」盛存孝 : 1.75M
+司马镖师 : 2.8M
+天涯孤旅 幽怨妇人 : 1.2M
+蓝山剑宗 第三代宗主「神眼神剑」蓝一尘 : 10M
+葛伦 : 4.5M
+烈火孽龙 : 3M
+四面威风 银甲武士 : 3.5M
+算命的 瞎子阿鸣 : 3.5M
+寒枫堡 冷青霜 : 2M
+小厮 : 2M
+红教喇嘛 : 2.5M 杀神
+愤怒的 小马 : 3M
+天锤山庄 庄主「蓝大先生」蓝天锤 : 2M
+
+《铁雪任务》
+铁少看了你一眼说道：“你跟我学艺业已有成，今日有一事嘱托于你。（accept yes/no）
+accept yes
+铁少说道：数日前小翠路过嵩山，见几个番僧在山下挑衅，还打伤了几个少林门人。
+据说这几个僧人号称[恒河三佛]，很是嚣张。
+铁少说：你且代为师走一趟，把他们赶回西域去。
+fight赢恒河三佛后，完成黄山送信任务
