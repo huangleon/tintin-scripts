@@ -1,4 +1,6 @@
 #class {locate_tasks} open;
+
+#nop store list size in var tsize
 #list {taskobjs} {size} {tsize};
 #var {i} {0};
 #act {^start locate_tasks}

@@ -16,7 +16,7 @@
 {
 	team with nordic;
 };
-#ALIAS {gc}
+#alias {gc}
 {
 	get all from corpse
 }
@@ -31,17 +31,17 @@
 	put %0 in $bag_container;
 }
 {5}
-#ALIAS {lv}
+#alias {lv}
 {
 	look vine
 }
 {5}
-#ALIAS {tv}
+#alias {tv}
 {
 	turn vine
 }
 {5}
-#ALIAS {sv}
+#alias {sv}
 {
 	swing vine
 }
@@ -60,29 +60,21 @@
 	};
 }
 {5}
+#nop aliases for fight part
 #alias {ua} {unwield all} {5}
 #alias {wa} {wield all} {5}
 #alias {ga} {get all} {5}
-#nop #alias {su} {southup} {5}
-#nop #alias {sd} {southdown} {5}
-#nop #alias {nu} {northup} {5}
-#nop #alias {nd} {northdown} {5}
-#nop #alias {eu} {eastup} {5}
-#nop #alias {ed} {eastdown} {5}
-#nop #alias {wu} {westup} {5}
-#nop #alias {wd} {westdown} {5}
-#nop #alias {se} {southeast} {5}
-#nop #alias {sw} {southwest} {5}
-#nop #alias {ne} {northeast} {5}
-#nop #alias {nw} {northwest} {5}
-
 #alias {res} {use heiyu;hp} {5}
 
+#nop utility data structure for doing tasks.
+#nop taskobjs - task name in game
 #list {taskobjs} create {afrji;bstu;dzmwen;fozhu;guyuehan;handkerchief;hgyituo;hongbao;huaqun;hudie-sword;huhualing;iron-bow;ironrobe;jade-boots;jade-pin;jade-ring;jiledan;jygu;kaoti;lantern;lighting-pearl;lindao;lubanchi;magrobe;meipai;moonheart;msqi;needle box;ngjiapu;ningsword;old jade;pxshan;qipan;quman;sharp dagger;shenbingpu;shengsibu;shouyu;slingshot;songpai;sqgonggui;szjing;tianyi poison;tiexue-flag;wave-hammer;wine-hulu;wood-wandao;wudanglu;wujianxinfa;wuxingpai;xiayiling;xmdaofa;xxge;yeguangbei;yingoupai;yinzhang;yue-script;yumeiren;zhihuan;zhupai};
 
+#nop taskowners - task owner's name in game
 #list {taskowners} create {afa;biao ge;chi song;master gelun;shi guanyin;hong niangzi;master xing;huang;linxian;master xuerui;xiao ma;bancha bana;royal servant;tianji;tianji;tianji;chunyu;lixia;kaoguan;hao shengyi;laodie;owner;amao;xiaoyao;mei;jin lingzhi;funu;master xiao;nangong;master kumei;master liu;master chu;ºÚÅÛ¹«;eagle gulina;mulati;bai xiaosheng;panguan;master hu;qi xiaoyan;song;fighter;drink monk;master shenshui;master tie;master zhuwu;guo;ding peng;xie;master ximen;master shi;lian;master ding;zhu zao;master chai;fang;master yin;master yue;su rongrong;lu;zhu};
 
 #list {tasklocs} create {};
+#nop Return task item to its owner
 #alias {ret}
 {
 	#list {taskobjs} find {%0} {taskindex};
@@ -104,6 +96,8 @@
 	#showme start locate_tasks;
 }
 {5}
+
+#nop aliases for doing quests
 #alias {qobj}
 {
 	#var {items_count} {0};
@@ -144,11 +138,6 @@
 #CONFIG           {VERBATIM CHAR}  {\}
 #CONFIG           {VERBOSE}  {OFF}
 #CONFIG           {WORDWRAP}  {ON}
-#FUNCTION {f1}
-{
-	look;
-	#return
-}
 
 #PATHDIR          {d}  {u}  {32}
 #PATHDIR          {e}  {w}  {2}
@@ -170,10 +159,13 @@
 #PATHDIR          {wu}  {ed}  {24}
 
 #VARIABLE         {result}  {}
-#nop #VARIABLE         {woman}  {e;e;e;e;e;e;e;s;s;s;s;s;s;e;e};
-#nop #VARIABLE         {bath}   {n;n;n;w;w;n;w;w};
-#nop #VARIABLE         {fysouth}  {s;s;s;s;s;s;s};
+#function {f1}
+{
+    look;
+    #return
+}
 
+#nop variables for player info
 #var quest_player {};
 #var {weapon} {redblade};
 #var {bag_container} {qiankun dai};
@@ -182,28 +174,34 @@
 #list items_name create {};
 #list quests_obj create {};
 
+#nop utility data structure for map running alias
 #list tgt_desc create {woman;tj;gw;gl;tx;dwg;pa;th;taish;wd;wlp;yks;stage;tp;qj;sq;sl;dalu;aid;tf;zhu;hs;cl;lotus;ntm;wg;sy;ymg;bridge;bath;jx;cx;qf;xl;fg;js;laowu;begger;gy;lsd;eh;cf;shuaiy;gland;max;tower;bana;cq;mj;lan;erg;yuzhu;sg;libie};
 #list tgt_map create {fyall;fyall;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;cxgw;tieflag;tieflag;cxgw;cxgw;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;cxgw;fyall};
 #list tgt_pos create {300;4;201;220;243;562;530;331;585;313;289;87;151;162;166;465;213;256;281;1;12;124;131;149;615;624;184;195;636;55;228;5;366;98;266;504;432;35;385;305;645;22;353;192;501;669;254;77;552;482;301;415;107;114};
 
 #alias {to}
 {
-	#list tgt_desc find %1 i;
-	#if { "$i" != "0" }
-	{
-   		relocate $tgt_map[$i];
-	    #act {relocate_pos finish}
-    	{
-    		#unact {relocate_pos finish};
-			#map run $tgt_pos[$i];
-    		#map destroy;
-    	};
-	}
-	{
-		#showme <fac>Cannot find the target pos in the list;
-	};
+    #list tgt_desc find %1 i;
+    #if { "$i" != "0" }
+    {
+        relocate $tgt_map[$i];
+        #act {relocate_pos finish}
+        {
+            #unact {relocate_pos finish};
+            #map run $tgt_pos[$i];
+            #map destroy;
+        };
+    }
+    {
+        #showme <fac>Cannot find the target pos in the list;
+    };
 }
 {5}
+#nop {
+additional alias for map running from one map to another map
+    where there is random connections or hard for map connections
+    between these maps
+}
 #alias {tj2cx}
 {
 	#nop #class tj_ml read tj_ml.class;
