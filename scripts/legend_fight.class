@@ -1,5 +1,9 @@
 #class {legend_fight} open;
-#alias {pd} {perform duangechangmeng};
+#alias {pd}
+{
+    wield $weapon;
+    perform duangechangmeng;
+};
 #alias {pm}
 {
 	unwield $weapon;
