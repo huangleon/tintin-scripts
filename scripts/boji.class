@@ -7,4 +7,18 @@
 {
 	#delay {3} {use heiyu;hp;boji blade};
 };
+#act {^以你现在的状态，无法搏击。}
+{
+    chihe;
+    #delay {1} {dazuo};
+};
+#act {^chihe done.}
+{
+    dazuo
+};
+#act {^你从忘我的境界中回神敛气，睁开了眼睛。}
+{
+    hp;
+    boji blade;
+};
 #class {boji} close;
