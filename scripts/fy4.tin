@@ -49,15 +49,19 @@
 #alias {fr} {follow ring seller} {5}
 #alias {chihe}
 {
-	get pumpkin from $bag_container;
-	eat pumpkin;
-	put pumpkin in $bag_container;
-	#delay 2
-	{
-		get wineskin from $bag_container;
-		drink wineskin;
-		put wineskin in $bag_container;
-	};
+    get pumpkin from $bag_container;
+    eat pumpkin;
+    put pumpkin in $bag_container;
+    #delay 2
+    {
+        get wineskin from $bag_container;
+        drink wineskin;
+        put wineskin in $bag_container;
+        #delay 2
+        {
+            #showme chihe done.
+        };
+    };
 }
 {5}
 #nop aliases for fight part
@@ -175,6 +179,34 @@
 #list quests_obj create {};
 
 #nop utility data structure for map running alias
+#nop {
+    老妇人;
+    天机广场;
+    关外;
+    铁雪;
+    帝王谷;
+    pa;
+    唐槐停;
+    泰山;
+    武当;
+    乌拉泊;
+    迎客松;
+    stage;
+    太平客栈;
+    千金楼;
+    三清;
+    少林;
+    郭大路;
+    aid;
+    土匪;
+    zhu;
+    黄山;
+
+
+
+
+
+}
 #list tgt_desc create {woman;tj;gw;gl;tx;dwg;pa;th;taish;wd;wlp;yks;stage;tp;qj;sq;sl;dalu;aid;tf;zhu;hs;cl;lotus;ntm;wg;sy;ymg;bridge;bath;jx;cx;qf;xl;fg;js;laowu;begger;gy;lsd;eh;cf;shuaiy;gland;max;tower;bana;cq;mj;lan;erg;yuzhu;sg;libie};
 #list tgt_map create {fyall;fyall;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;cxgw;tieflag;tieflag;cxgw;cxgw;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;cxgw;fyall};
 #list tgt_pos create {300;4;201;220;243;562;530;331;585;313;289;87;151;162;166;465;213;256;281;1;12;124;131;149;615;624;184;195;636;55;228;5;366;98;266;504;432;35;385;305;645;22;353;192;501;669;254;77;552;482;301;415;107;114};
@@ -721,7 +753,7 @@ additional alias for map running from one map to another map
 	{
 		#class {boji} read boji.class;
 		wield $weapon;
-		boji $weapon;
+		boji blade;
 	};
 }
 {5}
