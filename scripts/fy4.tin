@@ -882,6 +882,11 @@ additional alias for map running from one map to another map
 	drop cloth;
 }
 {5}
+#alias {gtf}
+{
+	#forall {ribbon;boot;hat;belt;bangle;cloth} {get &0 from corpse;put &0 in $bag_container};
+}
+{5}
 #alias {loadfight}
 {
 	#class %1 read %1.class;
