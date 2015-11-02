@@ -887,3 +887,16 @@ additional alias for map running from one map to another map
 	#class %1 read %1.class;
 }
 {5}
+#alias {start_pour}
+{
+    #if { "%1" == "stop" }
+    {
+        #untick {pour_wineskin};
+        #class {pour_ice} kill;
+    }
+    {
+        #class {pour_ice} read pour_ice.class;
+        pour_ice;
+    }
+}
+{5}

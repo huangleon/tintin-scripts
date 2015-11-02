@@ -1,0 +1,92 @@
+#class {pour_ice} open;
+#var {pour_finish} {0};
+#var {target_dir} {};
+#list {dirs} create;
+
+
+#alias {pour_ice}
+{
+    #var {pour_finish} {0};
+    #list {dirs} clear;
+    look;
+    #tick {pour_wineskin} {pour wineskin} {1};
+};
+#alias {close_pour_ice}
+{
+    #untick {pour_wineskin};
+    #class {pour_ice} kill;
+};
+#act {这里唯一的出口是 %1。}
+{
+    #if { $pour_finish == 0 }
+    {
+        #list {dirs} add {%1};
+    }
+    {
+        #list {dirs} find {%1} {idx};
+        #if { $idx == 0 }
+        {
+            #var {target_dir} {%1}
+        }
+        {
+            #var {target_dir} {around}
+        };
+        #showme $target_dir;
+        $target_dir;
+
+        close_pour_ice;
+    };
+};
+#act {这里明显的出口是 %1 和 %2。}
+{
+    #if { $pour_finish == 0 }
+    {
+        #list {dirs} add {%1;%2};
+    }
+    {
+        #list {dirs} find {%1} {idx1};
+        #list {dirs} find {%2} {idx2};
+
+        #if { $idx1 != 0 && $idx2 != 0 }
+        {
+            #showme OOPS!!!;
+        };
+        #if { $idx1 == 0 && $idx2 == 0 }
+        {
+            #showme OOPS2 !!!;
+        };
+        #if { $idx1 == 0 && $idx2 != 0 }
+        {
+            #var {target_dir} {%1}
+        };
+        #if { $idx1 != 0 && $idx2 == 0 }
+        {
+            #var {target_dir} {%2}
+        }
+        #showme $target_dir;
+        $target_dir;
+
+        close_pour_ice;
+    };
+};
+#act {这里没有任何明显的出路。}
+{
+    #if { $pour_finish == 1 }
+    {
+        pour_ice;
+    }
+    {
+        #list {dirs} clear;
+    }
+}
+#act {^寒冰化开了一点！！}
+{
+};
+#act {^寒冰终于化开了一个小洞．．．}
+{
+    #untick {pour_wineskin};
+    #var {pour_finish} {1};
+    look;
+};
+
+#class {pour_ice} close;
