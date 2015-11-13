@@ -180,32 +180,60 @@
 
 #nop utility data structure for map running alias
 #nop {
-    老妇人;
-    天机广场;
-    关外;
-    铁雪;
-    帝王谷;
-    pa;
-    唐槐停;
-    泰山;
-    武当;
-    乌拉泊;
-    迎客松;
-    stage;
-    太平客栈;
-    千金楼;
-    三清;
-    少林;
-    郭大路;
-    aid;
-    土匪;
-    zhu;
-    黄山;
-
-
-
-
-
+    woman - 老妇人 - fyall - 300;
+    tj - 天机广场 - fyall - 4;
+    gw - 关外 - cxgw - 201;
+    gl - 葛伦 - cxgw - 220;
+    tx - 铁雪 - cxgw - 243;
+    dwg - 帝王谷 - fyall - 562;
+    pa - 神水宫 - fyall - 530;
+    th - 唐槐亭 - fyall - 331;
+    taish - 泰山 - fyal - 585;
+    wd - 武当 - fyall - 313;
+    wlp - 乌拉泊 - cxgw - 289;
+    yks - 迎客松 - cxgw - 87;
+    stage - 烽火台 - cxgw - 151;
+    tp - 太平客栈 - cxgw - 162;
+    qj - 千金楼 - fyall - 166;
+    sq - 三清宫 - fyall - 465;
+    sl - 少林 - fyall - 213;
+    dalu - 郭大路 - fyall - 256;
+    aid - 艾丁湖 - cxgw - 281;
+    tf - 铁旗 - tieflag - 1;
+    zhu - 朱藻 - tieflag - 12;
+    hs - 华山 - cxgw - 124;
+    cl - 苍龙岭 - cxgw - 131;
+    lotus - 莲花峰 - cxgw - 149;
+    ntm - 南天门 - fyall - 615;
+    wg - 无垢山庄 - fyall - 624;
+    sy - 嵩阳书院 - fyall - 184;
+    ymg - 玉门关 - cxgw - 195;
+    bridge -小石桥 - fyall - 636;
+    bath - 澡堂 - fyall - 55;
+    jx - 吉祥镇 - fyall - 228;
+    cx - 沉香镇 - fyall - 5;
+    qf - 千佛寺 - fyall - 366;
+    xl - 香菱 - fyall - 98;
+    fg - 富贵 - fyall - 266;
+    js - 珠宝商 - fyall - 504;
+    laowu - 老屋 - fyall - 432;
+    begger - 丐帮分舵 - cxgw - 35;
+    gy - 石观音 - cxgw - 385;
+    lsd - 老山东 - fyall - 305;
+    eh - 饿虎寨 - fyall - 645;
+    cf - 赤峰路 - fyall - 22;
+    shuaiy - 率意厅 - cxgw - 353;
+    gland - 绿洲 - cxgw - 192;
+    max - 马老四 - fyall - 501;
+    tower - 断塔顶 - fyall - 669;
+    bana - 班察巴那 - cxgw - 254;
+    cq - cxgw -77;
+    mj - 麻将 - fyall - 552;
+    lan - 蓝天锤 - fyall - 482;
+    erg - 恶人谷 - cxgw - 301;
+    yuzhu - 玉龙峰 - cxgw - 415;
+    sg - 松谷庵 - cxgw - 107;
+    libie - 离别 - fyall - 114;
 }
 #list tgt_desc create {woman;tj;gw;gl;tx;dwg;pa;th;taish;wd;wlp;yks;stage;tp;qj;sq;sl;dalu;aid;tf;zhu;hs;cl;lotus;ntm;wg;sy;ymg;bridge;bath;jx;cx;qf;xl;fg;js;laowu;begger;gy;lsd;eh;cf;shuaiy;gland;max;tower;bana;cq;mj;lan;erg;yuzhu;sg;libie};
 #list tgt_map create {fyall;fyall;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;cxgw;tieflag;tieflag;cxgw;cxgw;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;cxgw;fyall};
@@ -885,6 +913,11 @@ additional alias for map running from one map to another map
 #alias {gtf}
 {
 	#forall {ribbon;boot;hat;belt;bangle;cloth} {get &0 from corpse;put &0 in $bag_container};
+}
+{5}
+#alias {gflower}
+{
+        #forall {begonia;gardenia;daisy;lily;hyacinth} {get &0;put &0 in $bag_container};
 }
 {5}
 #alias {loadfight}
