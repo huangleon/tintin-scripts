@@ -486,6 +486,9 @@ shaolin:
 掖门: give 5 gold to monk;
 碑林,少林观武,息庵禅师道行之碑大唐天后御制诗书碑,: study guanwu;study xilaitang;study daoxingzhibei/daoxing;study shishubei
 洗髓25小时刷新一次
+黄山的和尚，给10 gold，消除vendetta/shaolin < 10，给30 gold，完全消除.
+vendetta/shaolin影响的地方(有和尚在，无法离开，被叫杀)：
+藏经阁,达摩院,长老院,内院门,甬路
 
 wolfmount，狼山:
 kill rabbit at taoyuan;fry rabbit corpse with kaolu at qianfo

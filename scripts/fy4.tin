@@ -227,17 +227,19 @@
     max - ÂíÀÏËÄ - fyall - 501;
     tower - ¶ÏËþ¶¥ - fyall - 669;
     bana - °à²ì°ÍÄÇ - cxgw - 254;
-    cq - cxgw -77;
+    cq - ¿àÖñÏª - cxgw -77;
     mj - Âé½« - fyall - 552;
     lan - À¶Ìì´¸ - fyall - 482;
     erg - ¶ñÈË¹È - cxgw - 301;
     yuzhu - ÓñÁú·å - cxgw - 415;
     sg - ËÉ¹ÈâÖ - cxgw - 107;
     libie - Àë±ð - fyall - 114;
+    kong - ÅÅÔÆÍ¤ - cxgw - 95;
+    djl - µî½ÇÂ¥ - fyall - 693;
 }
-#list tgt_desc create {woman;tj;gw;gl;tx;dwg;pa;th;taish;wd;wlp;yks;stage;tp;qj;sq;sl;dalu;aid;tf;zhu;hs;cl;lotus;ntm;wg;sy;ymg;bridge;bath;jx;cx;qf;xl;fg;js;laowu;begger;gy;lsd;eh;cf;shuaiy;gland;max;tower;bana;cq;mj;lan;erg;yuzhu;sg;libie};
-#list tgt_map create {fyall;fyall;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;cxgw;tieflag;tieflag;cxgw;cxgw;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;cxgw;fyall};
-#list tgt_pos create {300;4;201;220;243;562;530;331;585;313;289;87;151;162;166;465;213;256;281;1;12;124;131;149;615;624;184;195;636;55;228;5;366;98;266;504;432;35;385;305;645;22;353;192;501;669;254;77;552;482;301;415;107;114};
+#list tgt_desc create {woman;tj;gw;gl;tx;dwg;pa;th;taish;wd;wlp;yks;stage;tp;qj;sq;sl;dalu;aid;tf;zhu;hs;cl;lotus;ntm;wg;sy;ymg;bridge;bath;jx;cx;qf;xl;fg;js;laowu;begger;gy;lsd;eh;cf;shuaiy;gland;max;tower;bana;cq;mj;lan;erg;yuzhu;sg;libie;kong;djl};
+#list tgt_map create {fyall;fyall;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;cxgw;tieflag;tieflag;cxgw;cxgw;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;cxgw;fyall;cxgw;fyall};
+#list tgt_pos create {300;4;201;220;243;562;530;331;585;313;289;87;151;162;166;465;213;256;281;1;12;124;131;149;615;624;184;195;636;55;228;5;366;98;266;504;432;35;385;305;645;22;353;192;501;669;254;77;552;482;301;415;107;114;95;693};
 
 #alias {to}
 {
@@ -918,6 +920,11 @@ additional alias for map running from one map to another map
 #alias {gflower}
 {
         #forall {begonia;gardenia;daisy;lily;hyacinth} {get &0;put &0 in $bag_container};
+}
+{5}
+#alias {gwm}
+{
+        #forall {boots;ribbon;cloth;girth} {get &0;put &0 in $bag_container};
 }
 {5}
 #alias {loadfight}
