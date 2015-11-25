@@ -1,0 +1,16 @@
+#class {read_afrji} open;
+#nop 阅读阿发日记，获得宝藏
+#alias {start_read}
+{
+    read afrji;
+};
+#act {^有一批宝藏就在%w的方向！你可以用 %w %w 来寻找它。}
+{
+    #showme %2 %3;
+    %2 %3;
+    read afrji;
+};
+#act {^日记上记载着一批宝藏的位置，不过前几天这批宝藏就被人挖走了。}
+{
+};
+#class {read_afrji} close;
