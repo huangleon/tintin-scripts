@@ -848,6 +848,20 @@ additional alias for map running from one map to another map
 	ask master about bat island;
 }
 {5}
+#alias {2mengpo}
+{
+    #class {death} read death.class;
+    #act {^to dizang}
+    {
+        #map read death.map;
+        #map goto 1;
+        #map run 26;
+        #map destroy;
+        #unact {^to dizang}
+    };
+    conjure silent_sense;
+}
+{5}
 #alias {accept_obj}
 {
 	#if { "%1" == "stop" }

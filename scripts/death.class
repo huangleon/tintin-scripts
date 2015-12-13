@@ -1,0 +1,16 @@
+#class {death} open;
+#act {^可是什么事情都没有发生。}
+{
+    respirate 300;
+    dazuo;
+};
+#act {^你的周围一片寂静，你感觉身体不断的下沉。}
+{
+    #showme to death-god;
+};
+#act {^一阵冷风吹散了你的阴魂．．．}
+{
+    #showme to dizang;
+    #class {death} kill;
+};
+#class {death} close;
