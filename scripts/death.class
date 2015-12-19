@@ -2,7 +2,7 @@
 #act {^可是什么事情都没有发生。}
 {
     respirate 300;
-    dazuo;
+    #delay {1} {dazuo;}
 };
 #act {^你的周围一片寂静，你感觉身体不断的下沉。}
 {
@@ -12,5 +12,9 @@
 {
     #showme to dizang;
     #class {death} kill;
+};
+#act {^你从忘我的境界中回神敛气，睁开了眼睛。}
+{
+    conjure silent_sense;
 };
 #class {death} close;
