@@ -1,0 +1,11 @@
+#class {official_fight} open;
+#alias {pw}
+{
+    perform dodge.wuwuwuwo $username;
+};
+#alias {pz}
+{
+    wield $weapon;
+    perform zonghengtianxia;
+};
+#class {official_fight} close;

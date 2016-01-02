@@ -10,5 +10,5 @@ ericsson
 linch
 qfuren
 
-#forall {cypher;nordic;putty;salonpas;mingzhu;ckwuji;qualcomm;ericsson;linch;qfuren} {osess &0}
+#forall {cypher;nordic;putty;salonpas;mingzhu;ckwuji;qualcomm;ericsson;linch;qfuren} {osess &0 fy4.vmud.com 30004}
 #forall {cypher;putty;salonpas;mingzhu;ckwuji;qualcomm;ericsson;linch;qfuren} {team with &0}
