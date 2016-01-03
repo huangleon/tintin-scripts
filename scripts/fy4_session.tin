@@ -16,7 +16,7 @@
 #act {^请敲回车键［ＲＥＴＵＲＮ］．．．．．}
 {
 	#split;
-	#kill;
+#nop #kill;
 	#cr;
 	#read fy4.tin;
 	quest;
@@ -25,7 +25,7 @@
 #act {^您要将另一个连线中的相同人物赶出去，取而代之吗？}
 {
 	#split;
-	#kill;
+#nop 	#kill;
 	#send y;
 	#read fy4.tin;
 	quest;
@@ -34,7 +34,7 @@
 #act {^重新连线完毕。}
 {
 	#split;
-	#kill;
+#nop 	#kill;
 	#read fy4.tin;
 	quest;
 	start_idle

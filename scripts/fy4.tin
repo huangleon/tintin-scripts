@@ -249,10 +249,13 @@
     cxym - ≥¡œ„—√√≈ - cxgw - 46;
     xie - –ª≥§«⁄ - fyall - 320;
     shiyan -  Ø—„ - fyall - 315;
+    mlt - ƒæ¿≠Ã· - cxgw - 318;
+    srr - À’»ÿ»ÿ - fyall - 400;
+    qxy - ∆Î–°—‡ - cxgw - 215;
 }
-#list tgt_desc create {woman;tj;gw;gl;tx;dwg;pa;th;taish;wd;wlp;yks;stage;tp;qj;sq;sl;dalu;aid;tf;zhu;hs;cl;lotus;ntm;wg;sy;ymg;bridge;bath;jx;cx;qf;xl;fg;js;laowu;begger;gy;lsd;eh;cf;shuaiy;gland;max;tower;bana;cq;mj;lan;erg;yuzhu;sg;libie;kong;djl;cs;lixia;jlz;huang;afa;amao;fyym;cxym;xie;shiyan};
-#list tgt_map create {fyall;fyall;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;cxgw;tieflag;tieflag;cxgw;cxgw;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;cxgw;fyall;cxgw;fyall;cxgw;fyall;cxgw;fyall;fyall;fyall;fyall;cxgw;fyall;fyall};
-#list tgt_pos create {300;4;201;220;243;562;530;331;585;313;289;87;151;162;166;465;213;256;281;1;12;124;131;149;615;624;184;195;636;55;228;5;366;98;266;504;432;35;385;305;645;22;353;192;501;669;254;77;552;482;301;415;107;114;95;693;264;677;118;96;70;187;425;46;320;315};
+#list tgt_desc create {woman;tj;gw;gl;tx;dwg;pa;th;taish;wd;wlp;yks;stage;tp;qj;sq;sl;dalu;aid;tf;zhu;hs;cl;lotus;ntm;wg;sy;ymg;bridge;bath;jx;cx;qf;xl;fg;js;laowu;begger;gy;lsd;eh;cf;shuaiy;gland;max;tower;bana;cq;mj;lan;erg;yuzhu;sg;libie;kong;djl;cs;lixia;jlz;huang;afa;amao;fyym;cxym;xie;shiyan;mlt;srr;qxy};
+#list tgt_map create {fyall;fyall;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;cxgw;cxgw;fyall;fyall;fyall;fyall;cxgw;tieflag;tieflag;cxgw;cxgw;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;cxgw;fyall;fyall;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;fyall;fyall;cxgw;cxgw;cxgw;fyall;cxgw;fyall;cxgw;fyall;cxgw;fyall;fyall;fyall;fyall;cxgw;fyall;fyall;cxgw;fyall;cxgw};
+#list tgt_pos create {300;4;201;220;243;562;530;331;585;313;289;87;151;162;166;465;213;256;281;1;12;124;131;149;615;624;184;195;636;55;228;5;366;98;266;504;432;35;385;305;645;22;353;192;501;669;254;77;552;482;301;415;107;114;95;693;264;677;118;96;70;187;425;46;320;315;318;400;215};
 
 #alias {to}
 {
