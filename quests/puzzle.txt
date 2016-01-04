@@ -788,6 +788,36 @@ KHL - 快活林 - 楼兰
 
 北佛塔 - 独孤伤 (气使) - fight
 
+tieflag - 常春岛
+常春岛渡口
+south
+礁石
+east
+礁石
+look rock
+一处尖锐的岩石，似乎可以扳动。(move)
+move rock
+down
+铁血大旗门 第八代掌门 铁中棠(Master tie)
+进入迷宫maze，用drop coin的方法见夜帝
+石屋 - 夜帝(Ye di)
+look table
+一张石桌。
+下面有：
+    黑色火药(Powder)
+    黑色火药(Powder)
+    黑色火药(Powder)
+get powder
+down
+秘道
+open door
+你将月牙石门打开。
+bomb
+你点燃了手中的黑色火药．．．
+只听得一声滔天巨响＂轰＂，洞壁被炸开个大洞．
+
+
+
 
 【圆月弯刀】 
 奖励 100max_force and moonblade 
