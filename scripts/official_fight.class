@@ -8,4 +8,8 @@
     wield $weapon;
     perform zonghengtianxia;
 };
+#alias {re}
+{
+    exert refresh 100;
+};
 #class {official_fight} close;
